@@ -78,3 +78,7 @@ function copyToClipboard(e) {
 
     alert('링크가 복사되었습니다.');
 }
+
+function logout() {
+    location.href = '/process.php?mode=logout&tabst=handon';
+}
