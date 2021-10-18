@@ -24,7 +24,7 @@ function init() {
 function initEvent() {
 }
 
-function menuCertificate(event) {
+function popupOpenCertificate(event) {
     event.preventDefault();
     event.stopPropagation();
 
