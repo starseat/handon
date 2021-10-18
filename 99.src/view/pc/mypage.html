@@ -17,7 +17,9 @@
     <link rel="stylesheet" type="text/css" href="./css/slick.css" media="all" />
     <link rel="stylesheet" type="text/css" href="./css/common_pc.css" media="all" />
     <style>
-        .player_popup_text.text-2 { display: none; }
+        .player_popup_text.text-2 {
+            display: none;
+        }
     </style>
 </head>
 
@@ -29,14 +31,12 @@
             <!-- lnbtype_main / sticky / 모바일:gnb_open -->
             <div class="common_lnb_w">
                 <h1 class="gnb_big_logo">
-                    <a href="./index.html" class="gnb_logo"><img src="./imgs/pc/logo.png" alt="한돈대학 한돈소믈리에"></a>
+                    <a href="./cert.html" class="gnb_logo"><img src="./imgs/pc/logo.png" alt="한돈대학 한돈소믈리에"></a>
                 </h1>
                 <div class="common_lnb_inner">
                     <ul class="common_lnb_list">
                         <li class="slnb_inner">
-                            <!-- 활성화 효과 : gnb_on-->
-                            <!-- <a href="./certificate.html" class="slnb_link menu-certificate"> -->
-                            <a href="javascript: void(0);" class="slnb_link menu-certificate" onclick="popupOpenCertificate(event);">
+                            <a href="./cert.html" class="slnb_link">
                                 <span class="slnb_txt_box">
                                 <span class="slnb_txt">
                                     한돈 소믈리에 자격증
@@ -45,8 +45,7 @@
                             </a>
                         </li>
                         <li class="slnb_inner">
-                            <!-- 활성화 효과 : gnb_on-->
-                            <a href="./lecture.html" class="slnb_link">
+                            <a href="./registration.html" class="slnb_link">
                                 <span class="slnb_txt_box">
                                 <span class="slnb_txt">
                                     수강신청
@@ -54,9 +53,8 @@
                                 </span>
                             </a>
                         </li>
-                        <li class="slnb_inner">
-                            <!-- 활성화 효과 : gnb_on-->
-                            <a href="./index.html" class="slnb_link">
+                        <li class="slnb_inner gnb_on">
+                            <a href="javascript: void(0);" class="slnb_link">
                                 <span class="slnb_txt_box">
                                 <span class="slnb_txt">
                                      마이페이지
@@ -86,27 +84,26 @@
                     <div class="mypage_menu_w">
                         <ul class="mp_menu_list">
                             <li class="mpml_inner mymenu_current">
-                                <!-- 메뉴 활성화시 클래스추가 mymenu_current -->
-                                <a href="./mypage.html" class="mpml_cont">마이 첫 페이지</a>
+                                <a href="javascript: void(0);" class="mpml_cont">마이 첫 페이지</a>
                             </li>
                             <li class="mpml_inner">
                                 <a href="./lecture.html" class="mpml_cont">내 강의 보기</a>
                             </li>
                             <li class="mpml_inner">
-                                <a href="./examination.html" class="mpml_cont">내 시험 보기</a>
+                                <a href="./exam.html" class="mpml_cont">내 시험 보기</a>
                             </li>
                             <li class="mpml_inner">
                                 <!-- <a href="./certificate.html" class="mpml_cont menu-certificate">자격증 발급 신청 / 조회</a> -->
                                 <a href="javascript: void(0);" class="mpml_cont menu-certificate" onclick="popupOpenCertificate(event);">자격증 발급 신청 / 조회</a>
                             </li>
                             <li class="mpml_inner">
-                                <a href="./notice.html" class="mpml_cont">공지사항</a>
+                                <a href="https://www.han-don.com/bbs/index.php?board=announce" class="mpml_cont" target="_blank">공지사항</a>
                             </li>
                             <li class="mpml_inner">
                                 <a href="./member.html" class="mpml_cont">회원 정보 수정</a>
                             </li>
                             <li class="mpml_inner">
-                                <a href="./board.html" class="mpml_cont">문의 게시판</a>
+                                <a href="https://www.han-don.com/bbs/index.php?board=inquiry" class="mpml_cont" target="_blank">문의 게시판</a>
                             </li>
                         </ul>
                     </div>
@@ -122,14 +119,14 @@
                 <div class="sub_article_r">
                     <div class="banner_type_row2">
                         <div class="bnr_inner">
-                            <a href="#none" class="bnr_cont">
+                            <a href="https://www.han-don.com/event/index.php?type=1" class="bnr_cont" target="_blank">
                                 <strong class="bnr_title">진행중인 이벤트</strong>
                                 <span class="bnr_text">지금 바로 한돈몰의<br/>이벤트를 확인하세요!</span>
                                 <img src="./imgs/pc/bnr_img01.jpg" alt="한돈몰">
                             </a>
                         </div>
                         <div class="bnr_inner">
-                            <a href="#none" class="bnr_cont">
+                            <a href="https://www.han-don.com/bbs/index.php?board=announce" class="bnr_cont" target="_blank">
                                 <strong class="bnr_title">공지사항</strong>
                                 <span class="bnr_text">한돈몰의 공지사항을<br/>지금 바로 확인하세요!</span>
                                 <img src="./imgs/pc/bnr_img02.jpg" alt="공지사항">
@@ -142,7 +139,7 @@
                             <span>자격과정</span>
                         </div>
                         <div class="license_step_inner">
-                            <a href="#" class="license_step_box">
+                            <a href="./cert.html#section_03" class="license_step_box">
                                 <img src="./imgs/pc/license_step01.jpg" alt="" class="step_box_img">
                                 <div class="step_box_text">
                                     <strong class="sbox_title">한돈소믈리에 자격 과정</strong>

@@ -1,6 +1,6 @@
 $(document).ready(function() {
     AOS.init();
-    
+
     $('#snsShareBtn').on('click', function() {
         if (confirm('다른사람에게 이 글을 추천하고 싶나요?')) {
             copyToClipboard();
@@ -21,17 +21,13 @@ function init() {
     initEvent();
 }
 
-function initEvent() {
-}
+function initEvent() {}
 
 function popupOpenCertificate(event) {
     event.preventDefault();
     event.stopPropagation();
 
     $('.wrap').addClass('popup_open');
-    setTimeout(function() {
-        $('.wrap').removeClass('popup_open');
-    }, 2000);
 }
 
 function popupClose() {

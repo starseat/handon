@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>한돈대학</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="desc">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="title">
+    <meta property="og:description" content="deesc">
+    <meta property="og:url" content="url">
+    <link rel="canonical" href="https://url">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xpressengine/xeicon@2.3.1/xeicon.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="https://vjs.zencdn.net/7.10.2/video-js.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@silvermine/videojs-quality-selector/dist/css/quality-selector.css">
+    <link rel="stylesheet" type="text/css" href="./css/slick.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="./css/common_pc.css" media="all" />
+    <style>
+        #lecture-popup .video-js {
+            width: 100% !important;
+            height: 100% !important;
+        }
+        
+        #lecture-popup .vjs-big-play-button {
+            text-align: center;
+        }
+        
+        .icon_vod_play {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- 레이어팝업 제어 클래스 popup_open -->
+        <!-- GNB -->
+        <div class="common_gnb_w">
+            <!-- lnbtype_main / sticky / 모바일:gnb_open -->
+            <div class="common_lnb_w">
+                <h1 class="gnb_big_logo">
+                    <a href="./cert.html" class="gnb_logo"><img src="./imgs/pc/logo.png" alt="한돈대학 한돈소믈리에"></a>
+                </h1>
+                <div class="common_lnb_inner">
+                    <ul class="common_lnb_list">
+                        <li class="slnb_inner">
+                            <a href="./cert.html" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                <span class="slnb_txt">
+                                    한돈 소믈리에 자격증
+                                </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="slnb_inner">
+                            <a href="./registration.html" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                <span class="slnb_txt">
+                                    수강신청
+                                </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="slnb_inner gnb_on">
+                            <a href="./mypage.html" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                <span class="slnb_txt">
+                                     마이페이지
+                                </span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="gnb_quick_w">
+                    <a href="javascript: void(0);" class="sns_share_btn" id="snsShareBtn">
+                        <img src="./imgs/pc/sns_share.png" alt="공유링크">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 콘텐츠 -->
+        <div class="container">
+            <div class="sub_section_w">
+                <div class="sub_article_l">
+                    <div class="member_info_w">
+                        <span class="mi_text">안녕하세요!</span>
+                        <strong class="mi_name">소믈리에</strong>
+                        <span class="mi_text2">님</span>
+                    </div>
+                    <div class="mypage_menu_w">
+                        <ul class="mp_menu_list">
+                            <li class="mpml_inner">
+                                <a href="./mypage.html" class="mpml_cont">마이 첫 페이지</a>
+                            </li>
+                            <li class="mpml_inner mymenu_current">
+                                <a href="javascript: void(0);" class="mpml_cont">내 강의 보기</a>
+                            </li>
+                            <li class="mpml_inner">
+                                <a href="./exam.html" class="mpml_cont">내 시험 보기</a>
+                            </li>
+                            <li class="mpml_inner">
+                                <a href="#none" class="mpml_cont">자격증 발급 신청 / 조회</a>
+                            </li>
+                            <li class="mpml_inner">
+                                <a href="https://www.han-don.com/bbs/index.php?board=announce" class="mpml_cont" target="_blank">공지사항</a>
+                            </li>
+                            <li class="mpml_inner">
+                                <a href="#none" class="mpml_cont">회원 정보 수정</a>
+                            </li>
+                            <li class="mpml_inner">
+                                <a href="https://www.han-don.com/bbs/index.php?board=inquiry" class="mpml_cont" target="_blank">문의 게시판</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="button" class="mypage_btn_logout">
+                        <span class="mp_btn_text">
+                            <i class="xi-log-out">
+                                <span class="blind">로그아웃 아이콘</span>
+                            </i>
+                            로그아웃
+                        </span>
+                    </button>
+                </div>
+                <div class="sub_article_r">
+                    <div class="license_step_w">
+                        <div class="license_title">
+                            <strong>한돈소믈리에</strong>
+                            <span class="txt_red">자격과정</span>
+                        </div>
+                        <div class="license_step_inner">
+                            <a href="javascript: void(0);" class="license_step_box" onclick="popupOpen_lecture(event, 1)">
+                                <img src="./imgs/pc/license_step01.jpg" alt="" class="step_box_img">
+                                <div class="step_box_text">
+                                    <strong class="sbox_title">한돈소믈리에 자격 과정 <span class="txt_red">1회차 교육</span></strong>
+                                    <div class="sbox_date_w">
+                                        <strong class="sbox_date_title">수강기간</strong>
+                                        <span class="sbox_date_num">2021. 10. 25 (월) ~ 2021. 11. 21 (일)</span>
+                                    </div>
+                                </div>
+                                <div class="step_box_btn">강의 보기</div>
+                            </a>
+                            <a href="javascript: void(0);" class="license_step_box" onclick="popupOpen_lecture(event, 2)">
+                                <img src="./imgs/pc/license_step02.jpg" alt="" class="step_box_img">
+                                <div class="step_box_text">
+                                    <strong class="sbox_title">한돈소믈리에 자격 과정 <span class="txt_red">2회차 교육</span></strong>
+                                    <div class="sbox_date_w">
+                                        <strong class="sbox_date_title">시험기간</strong>
+                                        <span class="sbox_date_num">2021. 10. 25 (월) ~ 2021. 11. 21 (일)</span>
+                                    </div>
+                                </div>
+                                <div class="step_box_btn">강의 보기</div>
+                            </a>
+                            <a href="javascript: void(0);" class="license_step_box open_ready">
+                                <!-- 준비중 클래스 추가 open_ready-->
+                                <img src="./imgs/pc/license_step02.jpg" alt="" class="step_box_img">
+                                <div class="step_box_text">
+                                    <strong class="sbox_title">한돈소믈리에 자격 과정 <span class="txt_red">3회차 교육</span></strong>
+                                    <div class="sbox_date_w">
+                                        <strong class="sbox_date_title">시험기간</strong>
+                                        <span class="sbox_date_num">2021.11.01(월) ~ 2021.11.21(일)</span>
+                                    </div>
+                                </div>
+                                <div class="step_box_btn">강의 보기</div>
+                                <!-- 강의준비 -->
+                                <div class="open_ready_box">
+                                    <div class="open_ready_text">개강 준비중</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 레이어팝업 -->
+            <div class="layer_popup_w popupType2" id="lecture-popup">
+                <div class="layer_popup_box">
+                    <div class="layer_popup_inner">
+                        <div class="layer_popup_cont">
+                            <strong class="layer_popup_title">한돈소믈리에 동영상 강의</strong>
+                            <div class="popup_arrow_w">
+                                <button type="button" class="btn_arrow btn_arrow_l"><i class="xi-angle-left"></i> 이전강의</button>
+                                <button type="button" class="btn_arrow btn_arrow_r">다음강의 <i class="xi-angle-right"></i></button>
+                            </div>
+                            <div class="vod_title">한돈소믈리에 자격과정 <strong class="txt_red"></strong></div>
+                            <div class="vod_player_w">
+                                <video id="lecture-player" class="video-js vjs-big-play-centerd vjs-fluid vjs-default-skin" webkit-playsinline></video>
+                                <button type="button" class="icon_vod_play">
+                                    <i class="xi-play"><span class="blind">play</span></i>
+                                </button>
+                            </div>
+
+                        </div>
+                        <button type="button" class="popup_btn_x" title="팝업 닫기" onclick="popupClose()">
+                            <i class="xi-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <i class="dim"></i>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <div class="footer">
+            <div class="footer_inner">
+                <div class="footer_text_list">
+                    <span class="ftl_cont">법인명(상호) : 한돈소믈리에 운영사무국(한돈자조금)</span>
+                    <span class="ftl_cont">대표자(성명) : 김명준</span>
+                    <span class="ftl_cont">사업자 등록번호 안내 : 899-88-00918</span>
+                    <span class="ftl_cont">통신판매업 신고 제2017-서울서초-0176호</span>
+                    <span class="ftl_cont">전화 : 02-2135-8473</span>
+                    <span class="ftl_cont">팩스 : 02-2135-8471</span>
+                </div>
+                <div class="footer_text_list2">
+                    <span class="ftl_cont">※ 한돈소믈리에 운영사무국은 한돈소믈리에 자격증 교육과정 운영대행 업무를 맡고 있습니다.</span>
+                    <span class="ftl_cont">Copyright © mall.han-don.com. All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="./vendor/slick-1.6.0/slick-1.6.0.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="text/javascript" src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@silvermine/videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js"></script>
+    <script type="text/javascript" src="./js/common.js"></script>
+    <script type="text/javascript" src="./js/lecture.js"></script>
+</body>
+
+</html>
