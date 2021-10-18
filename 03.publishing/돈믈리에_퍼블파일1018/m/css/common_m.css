@@ -71,13 +71,14 @@ input,button,select {outline:none; border-radius:0;}
 .lnb_btn {display:block; position:absolute; right:0; top:0; z-index:9; width:8%; height:100%; box-sizing:border-box;}
 .gnb_hambug {display:block; position:absolute; right:27%; top:50%; margin-top:-9px; min-width:32px; width:40%; height:3px; background-color:#e6c097;}
 .gnb_hambug:after {display:block; content:''; position:Absolute; right:0; top:11px; width:50%; height:3px; background-color:#e6c097;}
-.lnb_btn_close {display:block; width:80px; height:80px; position:absolute; right:0; top:0;}
+.lnb_btn_close {display:block; width:80px; height:80px; position:absolute; right:0; top:0; z-index:4;}
+.lnb_btn_close i {color:#e6c097; font-size:2em;}
 .gnb_close {position:Absolute; right:15px; top:15px; width:16px; height:16px; background-position:0 -72px;}
 .gnb_big_logo {display:block; margin-left:-2.75em; position:absolute; left:50%; top:0; z-index:2;}
 .main .gnb_big_logo {}
 .gnb_logo {display:block;}
 .gnb_logo img {display:block; width:5.5em; }
-.common_lnb_inner {position:fixed; right:-999px; top:0; z-index:9; display:table; width:100%; max-width:210px; height:100%; background-color:#000; -webkit-transition:all 0.3s; -moz-transition:all 0.3s; -o-transition:all 0.3s; -ms-transition:all 0.3s; transition:all 0.3s;}
+.common_lnb_inner {position:fixed; right:-999px; top:0; z-index:9; display:table; width:80%; max-width:420px; height:100%; background-color:#000; -webkit-transition:all 0.3s; -moz-transition:all 0.3s; -o-transition:all 0.3s; -ms-transition:all 0.3s; transition:all 0.3s;}
 .gnb_open .common_lnb_inner {right:0;}
 .main .gnb_open .common_lnb_inner {max-width:420px;}
 .dim {display:none; width:100%; height:100%; position:absolute; right:-999px; top:0; z-index:8; background-color:rgba(0,0,0,.5); -webkit-transition:all 0.3s; -moz-transition:all 0.3s; -o-transition:all 0.3s; -ms-transition:all 0.3s; transition:all 0.3s;}
