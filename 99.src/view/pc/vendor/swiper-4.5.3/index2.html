@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css" media="all" />
+
+    <style>
+#business-artgg-image-swiper-container {
+    width: 100% !important;
+    height: auto;
+    padding-bottom: 50px;
+    background-color: #fff;
+    box-sizing: border-box;
+
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* background: #000; */
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+#business-artgg-image-swiper-container .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 100% !important;
+    height: 0;
+    padding-top:56.25%;
+    position:Relative;
+    overflow:hidden;
+}
+
+#business-artgg-image-swiper-container .swiper-slide img {
+    width: auto !important;
+    height: 100% !important;
+
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+        .target_youtube_view {
+            display:block; width:100%; height:100%; position:Absolute; left:0; top:0;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="section_artgg_text">
+    <div class="artgg_swiper_w">
+        <div class="swiper-container bns_artgg_logo" id="business-artgg-image-swiper-container">
+            <div class="swiper-wrapper">
+                <!-- 슬라이드이미지 영역 -->
+                <div class="swiper-slide">
+                    <img class="swiper-lazy" src="../../img/slide_test/test_1.png" alt="2020 아트경기">
+                </div>
+                <div class="swiper-slide">
+                    <iframe class="target_youtube_view" id="test1" src="https://www.youtube.com/embed/OxgiiyLp5pk?rel=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="swiper-slide">
+                    <img class="swiper-lazy" src="../../img/slide_test/test_2.png" alt="2020 아트경기">
+                </div>
+                <div class="swiper-slide">
+                    <iframe class="target_youtube_view" id="test2"  src="https://www.youtube.com/embed/Xp8Ep1W-azw?rel=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="swiper-slide">
+                    <img class="swiper-lazy" src="../../img/slide_test/test_2.png" alt="2020 아트경기">
+                </div>
+            </div>
+
+            <!-- Add Pagination -->
+            <div class="swiper-pagination artgg-swiper-button"></div>
+            <!-- Add Navigation -->
+            <div class="swiper-button-prev swiper-button-color artgg-swiper-button"></div>
+            <div class="swiper-button-next swiper-button-color artgg-swiper-button"></div>
+        </div>
+    </div>
+    <div class="bns_text_box">
+        <p class="bns_text">
+            텍스트 전체노출 텍스트 전체노출텍스트 전체노출텍스트 전체노출텍스트 전체노출텍스트 전체노출
+            가나다라마바사ㅏ 텍스트 전체노출 텍스트 전체노출텍스트 전체노출텍스트 전체노출텍스트 전체노출텍스트 전체노출전체노출전체노출전체노출
+        </p>
+    </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="./js/swiper.min.js"></script>
+    <script type="text/javascript" src="../../publish/ui.js"></script>
+
+    <script>
+$(document).ready(function () {
+    initSwiper();
+    bnsSwperTextbox();
+
+    $('.artgg-swiper-button').on('click', function() {
+        const $swiper_youtube_list = $('.target_youtube_view');
+        for(let i=0; i<$swiper_youtube_list.length; i++) {
+            $($swiper_youtube_list[i])[0].contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');
+        }
+    })
+});
+
+function initSwiper(mode) {
+    const swiperOption = {
+        centeredSlides: true,
+        lazy: true,
+        loop: true,
+        // loopFillGroupWithBlank: true,
+        // autoplay: {
+        //     delay: 2500,
+        //     disableOnInteraction: false,
+        // },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    };
+
+    var swiper = null;
+    // Init Swiper
+    swiper = new Swiper('#business-artgg-image-swiper-container', swiperOption);
+}
+
+
+
+    </script>
+</body>
+</html>
