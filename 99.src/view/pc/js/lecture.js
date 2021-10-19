@@ -4,10 +4,19 @@ function popupOpen_lecture(event, index, isOpened) {
         event.stopPropagation();
     }
 
+    $('.layer_popup_box').hide();
+    $('#lecture-popup').show();
+
     $('#lecture-popup .btn_arrow_l').hide();
     $('#lecture-popup .btn_arrow_r').hide();
     $('#lecture-popup-btn-index-prev').val(0);
     $('#lecture-popup-btn-index-next').val(0);
+
+    if(LECTURE_PLAYER != null) {
+        LECTURE_PLAYER.dispose();
+        LECTURE_PLAYER = null;
+        $('#lecture-player-box').append('<video id="lecture-player" class="video-js vjs-big-play-centerd vjs-fluid vjs-default-skin" webkit-playsinline></video>');
+    }
 
     if (index == 1) {
         initLecture1();
@@ -21,7 +30,6 @@ function popupOpen_lecture(event, index, isOpened) {
         $('.wrap').addClass('popup_open');
     }    
 }
-
 
 let LECTURE_PLAYER = null;
 const VIDEO_OPTIONS = {
@@ -52,7 +60,7 @@ function initLecture1() {
         type: "video/mp4"
     }];
 
-    LECTURE_PLAYER = null;
+    
     LECTURE_PLAYER = videojs('lecture-player', VIDEO_OPTIONS);
     LECTURE_PLAYER.ready(function() {
         // var duration_time = Math.floor(this.duration());
@@ -82,7 +90,6 @@ function initLecture2() {
         type: "video/mp4"
     }];
 
-    LECTURE_PLAYER = null;
     LECTURE_PLAYER = videojs('lecture-player', VIDEO_OPTIONS);
     LECTURE_PLAYER.ready(function() {
         this.on('ended', function() {
@@ -98,7 +105,8 @@ function initLecture3() {
 }
 
 function prevLecturePopup() {
-    popupOpen_lecture(null, parseInt($('#lecture-popup-btn-index-prev').val(), 10), true);
+    var prevIndex = parseInt($('#lecture-popup-btn-index-prev').val(), 10);
+    popupOpen_lecture(null, prevIndex, true);
 }
 
 function nextLecturePopup() {

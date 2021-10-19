@@ -29,6 +29,8 @@ function popupOpen_preparing(event) {
     event.preventDefault();
     event.stopPropagation();
 
+    $('.layer_popup_box').hide();
+    $('#preparing-popup').show();
     $('.wrap').addClass('popup_open');
 }
 
