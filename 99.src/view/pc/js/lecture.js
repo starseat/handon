@@ -1,8 +1,13 @@
-function popupOpen_lecture(event, index) {
-    event.preventDefault();
-    event.stopPropagation();
+function popupOpen_lecture(event, index, isOpened) {
+    if(event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
 
-    // $('#lecture-popup .btn_arrow').hide();
+    $('#lecture-popup .btn_arrow_l').hide();
+    $('#lecture-popup .btn_arrow_r').hide();
+    $('#lecture-popup-btn-index-prev').val(0);
+    $('#lecture-popup-btn-index-next').val(0);
 
     if (index == 1) {
         initLecture1();
@@ -12,7 +17,9 @@ function popupOpen_lecture(event, index) {
         initLecture3();
     }
 
-    $('.wrap').addClass('popup_open');
+    if(!isOpened) {
+        $('.wrap').addClass('popup_open');
+    }    
 }
 
 
@@ -37,6 +44,8 @@ const VIDEO_OPTIONS = {
 function initLecture1() {
     $('#lecture-popup .btn_arrow_r').show();
     $('#lecture-popup .txt_red').text('1회차 교육');
+    $('#lecture-popup-btn-index-next').val(2);
+
 
     VIDEO_OPTIONS.sources = [{
         src: "./video/test.mp4",
@@ -64,6 +73,9 @@ function initLecture2() {
     $('#lecture-popup .btn_arrow_l').show();
     $('#lecture-popup .btn_arrow_r').show();
     $('#lecture-popup .txt_red').text('2회차 교육');
+    $('#lecture-popup-btn-index-prev').val(1);
+    $('#lecture-popup-btn-index-next').val(3);
+
 
     VIDEO_OPTIONS.sources = [{
         src: "./video/test.mp4",
@@ -82,4 +94,18 @@ function initLecture2() {
 function initLecture3() {
     $('#lecture-popup .btn_arrow_l').show();
     $('#lecture-popup .txt_red').text('3회차 교육');
+    $('#lecture-popup-btn-index-prev').val(2);
+}
+
+function prevLecturePopup() {
+    popupOpen_lecture(null, parseInt($('#lecture-popup-btn-index-prev').val(), 10), true);
+}
+
+function nextLecturePopup() {
+    var nextIndex = parseInt($('#lecture-popup-btn-index-next').val(), 10);
+    if(nextIndex == 3) {
+        alert('3회차 교육은 준비중 입니다.');
+        return false;
+    }
+    popupOpen_lecture(null, nextIndex, true);
 }

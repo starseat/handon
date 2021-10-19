@@ -42,12 +42,12 @@
             <!-- lnbtype_main / sticky / 모바일:gnb_open -->
             <div class="common_lnb_w">
                 <h1 class="gnb_big_logo">
-                    <a href="./cert.html" class="gnb_logo"><img src="./imgs/pc/logo.png" alt="한돈대학 한돈소믈리에"></a>
+                    <a href="./index.html" class="gnb_logo"><img src="./imgs/pc/logo.png" alt="한돈대학 한돈소믈리에"></a>
                 </h1>
                 <div class="common_lnb_inner">
                     <ul class="common_lnb_list">
                         <li class="slnb_inner">
-                            <a href="./cert.html" class="slnb_link">
+                            <a href="./index.html" class="slnb_link">
                                 <span class="slnb_txt_box">
                                 <span class="slnb_txt">
                                     한돈 소믈리에 자격증
@@ -56,7 +56,7 @@
                             </a>
                         </li>
                         <li class="slnb_inner">
-                            <a href="./registration.html" class="slnb_link">
+                            <a href="./index.html#section_10" class="slnb_link">
                                 <span class="slnb_txt_box">
                                 <span class="slnb_txt">
                                     수강신청
@@ -101,10 +101,10 @@
                                 <a href="javascript: void(0);" class="mpml_cont">내 강의 보기</a>
                             </li>
                             <li class="mpml_inner">
-                                <a href="./exam.html" class="mpml_cont">내 시험 보기</a>
+                                <a href="javascript: void(0);" class="mpml_cont" onclick="popupOpen_preparing(event);">내 시험 보기</a>
                             </li>
                             <li class="mpml_inner">
-                                <a href="#none" class="mpml_cont">자격증 발급 신청 / 조회</a>
+                                <a href="javascript: void(0);" class="mpml_cont" onclick="popupOpen_preparing(event);">자격증 발급 신청 / 조회</a>
                             </li>
                             <li class="mpml_inner">
                                 <a href="https://www.han-don.com/bbs/index.php?board=announce" class="mpml_cont" target="_blank">공지사항</a>
@@ -182,8 +182,10 @@
                         <div class="layer_popup_cont">
                             <strong class="layer_popup_title">한돈소믈리에 동영상 강의</strong>
                             <div class="popup_arrow_w">
-                                <button type="button" class="btn_arrow btn_arrow_l"><i class="xi-angle-left"></i> 이전강의</button>
-                                <button type="button" class="btn_arrow btn_arrow_r">다음강의 <i class="xi-angle-right"></i></button>
+                                <button type="button" class="btn_arrow_l" onclick="prevLecturePopup()"><i class="xi-angle-left"></i> 이전강의</button>
+                                <button type="button" class="btn_arrow_r" onclick="nextLecturePopup()">다음강의 <i class="xi-angle-right"></i></button>
+                                <input type="hidden" id="lecture-popup-btn-index-prev">
+                                <input type="hidden" id="lecture-popup-btn-index-next">
                             </div>
                             <div class="vod_title">한돈소믈리에 자격과정 <strong class="txt_red"></strong></div>
                             <div class="vod_player_w">

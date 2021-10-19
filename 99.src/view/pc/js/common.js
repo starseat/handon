@@ -23,7 +23,9 @@ function init() {
 
 function initEvent() {}
 
-function popupOpenCertificate(event) {
+// 준비중 팝업
+// 나중에 삭제 필요
+function popupOpen_preparing(event) {
     event.preventDefault();
     event.stopPropagation();
 

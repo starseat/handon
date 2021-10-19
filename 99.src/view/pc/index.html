@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <div class="wrap main ">
+    <div class="wrap main">
         <!-- 레이어팝업 제어 클래스 popup_open -->
         <!-- GNB -->
         <div class="common_gnb_w">
@@ -33,7 +33,7 @@
 
             <div class="common_lnb_w">
                 <h1 class="gnb_big_logo">
-                    <a href="./cert.html" class="gnb_logo"><img src="./imgs/pc/logo.png" alt="한돈대학 한돈소믈리에"></a>
+                    <a href="./index.html" class="gnb_logo"><img src="./imgs/pc/logo.png" alt="한돈대학 한돈소믈리에"></a>
                 </h1>
                 <div class="common_lnb_inner">
                     <ul class="common_lnb_list">
@@ -48,7 +48,7 @@
                         </li>
                         <li class="slnb_inner">
                             <!-- 활성화 효과 : gnb_on-->
-                            <a href="./registration.html" class="slnb_link">
+                            <a href="#section_10" class="slnb_link">
                                 <span class="slnb_txt_box">
                                 <span class="slnb_txt">
                                     수강신청
@@ -597,7 +597,7 @@
             </div>
 
             <!-- 콘텐츠10 -->
-            <div class="section_10_w" style="background-image:url('./imgs/pc/s10_bg.jpg');">
+            <div id="section_10" class="section_10_w" style="background-image:url('./imgs/pc/s10_bg.jpg');">
                 <div class="section_inner">
                     <div class="s10_bg_img">
                         <img src="./imgs/pc/s10_frame.png" alt="">
@@ -632,7 +632,7 @@
                             </span>
                             </div>
                         </div>
-                        <button type="button" class="btn_study_enter" title="수강신청">
+                        <button type="button" class="btn_study_enter" title="수강신청" onclick="popupOpen_registerDonmmelier()">
                             <img src="./imgs/pc/s10_btn_study.png" alt="2021 한돈소믈리에 수강신청">
                         </button>
                     </div>
@@ -640,7 +640,7 @@
             </div>
 
             <!-- 이벤트 레이어팝업 -->
-            <div class="layer_popup_w event_popup">
+            <div class="layer_popup_w event_popup" id="regi-popup">
                 <div class="layer_popup_box">
                     <div class="layer_popup_inner">
                         <div class="event_popup_inner">
@@ -678,7 +678,7 @@
                                                 <span class="study_time">01:20:10</span>
                                             </a>
                                         </div>
-                                        <a href="#none" class="module_btn_red">마이페이지</a>
+                                        <a href="./mypage.html" class="module_btn_red" target="_blank">마이페이지</a>
                                     </div>
                                     <div class="study_form_w">
                                         <div class="study_form_bg">
@@ -694,16 +694,16 @@
                                                 <div class="form_input_w">
                                                     <span class="form_group">
                                                     <label class="input_label">성 함</label>
-                                                    <span class="input_box"><input type="text"></span>
+                                                    <span class="input_box"><input type="text" id="regi-name"></span>
                                                     </span>
                                                     <span class="form_group phoneNumber">
                                                     <label class="input_label">연락처</label>
                                                     <span class="input_box">
-                                                        <input type="text">
+                                                        <input type="text" id="regi-phone1">
                                                         <span class="input_dash">-</span>
-                                                    <input type="text">
+                                                    <input type="text" id="regi-phone2">
                                                     <span class="input_dash">-</span>
-                                                    <input type="text">
+                                                    <input type="text" id="regi-phone3">
                                                     </span>
                                                     </span>
                                                 </div>
@@ -711,12 +711,12 @@
                                             <span class="form_agree">
                                             <input type="checkbox" id="studyAgree" class="ip_checkbox">
                                             <label for="studyAgree" class="input_label">개인정보 수집, 이용 및 SMS 수신에 동의합니다.</label>
-                                            <button type="button" class="btn_form_send">수강 신청</button>
+                                            <button type="button" class="btn_form_send" onclick="registerDonmmelier(event)">수강 신청</button>
                                         </span>
 
                                         </div>
                                     </div>
-                                    <button type="button" class="popup_btn_x" title="팝업 닫기">
+                                    <button type="button" class="popup_btn_x" title="팝업 닫기" onclick="popupClose();">
                                     <i class="xi-close-thin xi-2x"><i class="ir">close</i></i>
                                 </button>
                                 </div>
@@ -738,6 +738,7 @@
     <script type="text/javascript" src="./vendor/slick-1.6.0/slick-1.6.0.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="text/javascript" src="./js/common.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
 </body>
 
 </html>
