@@ -70,7 +70,7 @@ function copyToClipboard(e) {
     //     content = e.innerHTML;
     // }
 
-    let content = 'http://donmmelier.com/';
+    let content = 'https://mall.han-don.com/donmmelier/index.php';
 
     tempItem.setAttribute('value', content);
     document.body.appendChild(tempItem);
