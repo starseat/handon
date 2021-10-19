@@ -437,6 +437,10 @@ input,button,select {outline:none; border-radius:0;}
 .date_day {float:right; margin-left:15px;}
 
 
+/* js 플레이버튼 제어 */
+#lecture-popup .vjs-big-play-button {position:Absolute !important; left:50% !important; top:50% !important; margin:-73px 0 0 -130px !important; font-size:9em !important; border:0 !important; background-color:rgba(0,0,0,0) !important;}
+
+
 /*  --------------- 태블릿 제어  --------------- */
 @media screen and (max-width:1080px) {
 
