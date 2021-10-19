@@ -84,5 +84,5 @@ function copyToClipboard(e) {
 }
 
 function logout() {
-    location.href = '/process.php?mode=logout&tabst=handon';
+    location.href = 'https://mall.han-don.com/member/logout.php?tabst=handon';
 }
