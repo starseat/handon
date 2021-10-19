@@ -55,7 +55,7 @@ input,button,select {outline:none; border-radius:0;}
 
 /* common */
 .blind{position:absolute !important; width:1px; height:1px; overflow:hidden; clip:rect(1px 1px 1px 1px); clip:rect(1px, 1px, 1px, 1px);}
-.ir {zoom:-10; z-index:-1; position:relative; display:block; width:100%; font-size:0px; text-align:center; white-space:nowrap; overflow:hidden;}
+.ir {zoom:-10; z-index:-1; position:relative; display:block; width:100%; font-size:0px !important; text-align:center; white-space:nowrap; overflow:hidden;}
 .icn {position:absolute; display:block; .display:inline; .zoom:1;  font:0/0 arial; vertical-align:middle; overflow:hidden; background-repeat:no-repeat; background-color:transparent; background-image:url('../imgs/pc/set_icon_pc.png'); background-size:50px auto;}
 .wrap {background-color:#fff; min-width:1920px;}
 
@@ -345,6 +345,7 @@ input,button,select {outline:none; border-radius:0;}
 .popupType2 .layer_popup_cont {padding:35px 49px 48px;}
 
 .event_popup .popup_btn_x {color:#fff; top:28px; right:28px;}
+.event_popup .popup_btn_x i {color:#fff;}
 .event_popup .dim {background-color:rgba(255,255,255,.3);}
 .event_popup .layer_popup_inner {overflow:hidden; z-index:3; width:1083px; height:738px; background-color:#222; color:#fff; border:3px solid transparent; border-radius:30px; background-image:linear-gradient(#222, #222), linear-gradient(to top, #c2ab47, #f1d95d); background-origin: border-box; background-clip: content-box, border-box;}
 .event_popup_inner {padding:40px 48px; background-color:#101010;}

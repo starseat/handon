@@ -35,6 +35,13 @@
     src: url('../fonts/한돈삼겹살체600g_OTF.otf');
 }
 
+@font-face {
+    font-family:'Arita-buri-Bold';
+    src: url('../fonts/Arita-buriB.ttf');
+    font-weight: 700;
+    font-style: normal;
+}
+
 /* RESET */
 html {scroll-behavior: smooth;}
 html,body{-webkit-text-size-adjust:none; color:#000; font-weight:400; line-height: 1.4; letter-spacing: -0.01em; overflow:auto;}
@@ -60,7 +67,7 @@ input,button,select {outline:none; border-radius:0;}
 
 /* common */
 .blind{position:absolute !important; width:1px; height:1px; overflow:hidden; clip:rect(1px 1px 1px 1px); clip:rect(1px, 1px, 1px, 1px);}
-.ir {zoom:-10; z-index:-1; position:relative; display:block; width:100%; font-size:0px; text-align:center; white-space:nowrap; overflow:hidden;}
+.ir {zoom:-10; z-index:-1; position:relative; display:block; width:100%; font-size:0px !important; text-align:center; white-space:nowrap; overflow:hidden;}
 .icn {position:absolute; display:block; .display:inline; .zoom:1;  font:0/0 arial; vertical-align:middle; overflow:hidden; background-repeat:no-repeat; background-color:transparent; background-image:url('../../public/imgs/m/set_icon.png'); background-size:106px auto;}
 .wrap {background-color:#fff;}
 
@@ -380,7 +387,7 @@ input,button,select {outline:none; border-radius:0;}
 .icon_vod_play {position:absolute; left:0; top:50%; margin-top:-50px; width:100%; text-align:center;}
 .icon_vod_play i {font-size:8em; color:#fff; }
 
-.event_popup {}
+.event_popup .popup_btn_x i {color:#fff;}
 .event_popup .layer_popup_inner {max-width:480px; width:auto; margin:0 auto;  }
 .event_popup .layer_popup_cont {padding:1.56em; background-color:#101010; border-color:#f1d95e; border-radius:20px; color:#fff;}
 .event_popup .layer_popup_title {position:Relative; padding-left:15px; color:#fff; text-align:left;}
@@ -433,8 +440,10 @@ input,button,select {outline:none; border-radius:0;}
 .input_btn {}
 .bg_black {display:block; position:Absolute; right:0; top:0; padding:0 0.7em; height:100%; line-height:1em; font-weight:700; color:#fff; background-color:#333; font-size:1em;}
 .bg_red {background-color:#9a1a18; color:#fff !important;}
-.module_btn_red {margin:1.18em auto 0; display:block; width:100%; padding:0.96em 0; border:1px solid #9a1a18; color:#9a1a18; font-weight:700; font-size:1em; box-sizing:border-box; }
-.module_btn_red:hover {color:#fff; background-color:#9a1a18;}
+[class^="module_btn_"] { display:block; margin:0 auto; padding:0.62em 0; width:100%; border:1px solid #9a1a18; font-weight:700; font-size:1em; box-sizing:border-box; }
+.module_btn_red {margin:1.18em auto 0;color:#9a1a18;}
+.module_btn_red:hover {font-weight:700; font-size:1em; color:#fff; background-color:#9a1a18;}
+.module_btn_fullred {background-color:#9a1a18; color:#fff;}
 .license_message_w {margin-top:23px;}
 .license_message_w textarea {margin-top:1.06em; resize:none; width:100%; height:200px; box-sizing:border-box; border:1px solid #e5e5e5; padding:12px 10px; font-size:1em; color:#999;}
 .license_add_w {overflow:hidden; padding-bottom:20px; border-bottom:1px solid #e5e5e5; margin-top:28px; position:relative;}
@@ -484,6 +493,50 @@ input,button,select {outline:none; border-radius:0;}
 .banner_w i {font-size:1.4em; position:Relative; top:3px; left:-2px;}
 .banner_w img {right:23px;}
 
+/* 마이페이지 : 내시험보기 : 0301 */
+.handon_test_w {position:Relative; margin-top:1.56em; background-color:#eeebe7; border:11px solid #981a18; box-sizing:border-box; text-align:center;}
+.handon_test_w:after {display:block; content:''; width:100%; height:100%; border:1px solid #efefef; box-sizing:border-box;}
+.handon_test_inner:before {display:block; content:''; width:calc(100% - 26px); height:calc(100% - 24px); position:Absolute; left:13px; top:12px; box-sizing:border-box;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#735635+0,cbaa62+8,a98e67+19,f4d58f+34,735737+54,ffe7b5+81,ffe7b5+100 */
+    background: rgb(115,86,53); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(115,86,53,1) 0%, rgba(203,170,98,1) 8%, rgba(169,142,103,1) 19%, rgba(244,213,143,1) 34%, rgba(115,87,55,1) 54%, rgba(255,231,181,1) 81%, rgba(255,231,181,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(115,86,53,1) 0%,rgba(203,170,98,1) 8%,rgba(169,142,103,1) 19%,rgba(244,213,143,1) 34%,rgba(115,87,55,1) 54%,rgba(255,231,181,1) 81%,rgba(255,231,181,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(115,86,53,1) 0%,rgba(203,170,98,1) 8%,rgba(169,142,103,1) 19%,rgba(244,213,143,1) 34%,rgba(115,87,55,1) 54%,rgba(255,231,181,1) 81%,rgba(255,231,181,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#735635', endColorstr='#ffe7b5',GradientType=0 ); /* IE6-9 */
+}
+.handon_test_inner {display:table; width:100%; box-sizing:border-box; position:relative; padding:14px 15px; z-index:2; background:url('./../imgs/m/bg_test_pattern.jpg') #f4f2ef repeat;}
+.handon_test_cont {display:table-cell; padding:4.38em 2px 1.13em;  vertical-align:middle; position:relative; z-index:2;  font-family:'한돈';}
+.handon_test_cont:after,
+.handon_test_inner:after {display:block; content:''; width:100%; height:100%; position:Absolute; left:0; top:0; }
+.handon_test_cont:after {background:url('./../imgs/m/bg_test_pattern.jpg') #f4f2ef repeat; z-index:1;}
+.handon_test_inner:after {z-index:2; width:calc(100% + 15px); height:calc(100% + 14px); left:-5px; top:-14px;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+74,000000+100&0+74,0.17+100 */
+    background: -moz-linear-gradient(-45deg,  rgba(0,0,0,0) 74%, rgba(0,0,0,0.17) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  rgba(0,0,0,0) 74%,rgba(0,0,0,0.17) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg,  rgba(0,0,0,0) 74%,rgba(0,0,0,0.17) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#2b000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+.handon_test_text {position:relative; z-index:3; }
+.hd_test_title {display:block; position:relative; z-indeX:3; font-size:3em; color:#000; font-weight:700; font-family:'Arita-buri-Bold'; line-height:1.2em}
+.hdt_sub_title {display:block; position:relative; z-indeX:3; font-size:0.5em; color:#333; line-height:1em; margin-bottom:0.58em; font-family:'한돈';}
+.hd_box_line {position:Relative; margin-top:1.5em; width:100%; height:100%;  text-align:left; display:flex; flex-shrink:0; justify-content:center; align-content:stretch; align-item:center; background:url('./../imgs/m/bg_test_boxline.png') no-repeat center; background-size:auto 100%;}
+.hd_box_intro {position:relative; padding:3em 5em; box-sizing:border-box; }
+.hd_intro_title {display:block; width:100%; font-size:1.88em;}
+.test_schedule {margin-top:1.25em;}
+.test_schedule_inner {margin-top:0.68em;}
+.test_schedule_inner:first-child {margin-top:0;}
+.schedule_label {display:inline-block; font-size:0.94em; background-color:#313131; color:#fff; padding:0.25em 1.33em 0.35em; border-radius:10px; }
+.schedule_text {display:inline-block; margin-left:0.65em; font-size:1.25em;}
+.test_type {display:inline-block; padding:10px 17px; position:Absolute; right:2em; top:2em; border:1px solid #000; background-color:#dedad4; border-radius:15px; font-weight:700; text-align:center;}
+.test_info_test {padding-top:0.94em;}
+.test_info_test strong {display:inline-block; position:relative; padding:0 10px;}
+.test_info_test strong:after {display:block; content:''; width:1px; height:12px; background-color:#313131; position:Absolute; left:0; top:6px;}
+.test_info_test strong:first-child:after {display:none;}
+.test_careful {display:block; padding-top:1.25em;}
+.handon_test_w .module_btn_fullred {margin-top:1.57em; width:86%;}
+.handon_unv {display:inline-block; margin:2.13em auto 0; height:100%; max-height:75px; overflow:hidden; text-align:Center;}
+.handon_unv img {display:inline-block; width:50%;}
 
 /*  --------------- 태블릿 제어  --------------- */
 @media screen and (max-width:768px) {
