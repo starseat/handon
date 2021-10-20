@@ -46,24 +46,13 @@
             <h1 class="gnb_big_logo">
                 <a href="./index.html" class="gnb_logo"><img src="./imgs/m/logo.png" alt="한돈대학 한돈소믈리에"></a>
             </h1>
-            <div class="common_lnb_w">
+            <div class="common_lnb_w mypage_lnb">
                 <button class="lnb_btn" id="btn-navi-menu-open">
                     <span class="gnb_hambug"><i class="blind">메뉴오픈</i></span>
                 </button>
                 <div class="common_lnb_inner">
                     <ul class="common_lnb_list">
                         <li class="slnb_inner">
-                            <!-- 활성화 효과 : gnb_on-->
-                            <a href="./index.html" class="slnb_link">
-                                <span class="slnb_txt_box">
-                                    <span class="slnb_txt">
-                                        한돈 소믈리에 자격증
-                                    </span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="slnb_inner">
-                            <!-- 활성화 효과 : gnb_on-->
                             <a href="./index.html#section_10" class="slnb_link">
                                 <span class="slnb_txt_box">
                                     <span class="slnb_txt">
@@ -73,17 +62,58 @@
                             </a>
                         </li>
                         <li class="slnb_inner">
-                            <!-- 활성화 효과 : gnb_on-->
-                            <a href="./mypage.html" class="slnb_link">
+                            <a href="./index.html" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                    <span class="slnb_txt">
+                                        한돈 소믈리에 자격증
+                                    </span>
+                                </span>
+                            </a>
+                        </li>                        
+                        <li class="slnb_inner gnb_on">
+                            <a href="javascript: void(0);" class="slnb_link">
                                 <span class="slnb_txt_box">
                                     <span class="slnb_txt">
                                         마이페이지
                                     </span>
                                 </span>
                             </a>
+                            <ul class="slnb_sub_list">
+                                <li class="ssl_inner">
+                                    <a href="./mypage.html" class="ssl_cont">마이페이지</a>
+                                </li>
+                                <li class="ssl_inner">
+                                    <a href="javascript: void(0);" class="ssl_cont">내 강의 보기</a>
+                                </li>
+                                <li class="ssl_inner">
+                                    <a href="javascript: void(0);" class="ssl_cont">내 시험보기</a>
+                                </li>
+                                <li class="ssl_inner">
+                                    <a href="javascript: void(0);" class="ssl_cont">자격증 발급 신청/조회</a>
+                                </li>
+                                <li class="ssl_inner">
+                                    <a href="https://www.han-don.com/bbs/index.php?board=announce" class="ssl_cont" target="_blank">공지사항</a>
+                                </li>
+                                <li class="ssl_inner">
+                                    <a href="https://www.han-don.com/member/mypage.php?mode=info&tabst=handon" class="ssl_cont">회원 정보 수정</a>
+                                </li>
+                                <li class="ssl_inner">
+                                    <a href="https://www.han-don.com/bbs/index.php?board=inquiry" class="ssl_cont" target="_blank">문의 게시판</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
-                    <button class="lnb_btn_close" id="btn-navi-menu-close"><span class="icn gnb_close"><i class="ir">메뉴닫기</i></span></button>
+                    <button type="button" class="mypage_btn_logout" onclick="logout()">
+                        <span class="mp_btn_text">
+                            <i class="xi-log-out">
+                                <span class="blind">로그아웃 아이콘</span>
+                            </i>
+                            로그아웃
+                        </span>
+                    </button>
+                    <button type="button" class="lnb_btn_close" id="btn-navi-menu-close">
+                        <i class="xi-close"><span class="blind">메뉴닫기</span></i>
+                    </button>
                 </div>
             </div>
             <div class="gnb_quick_w">
