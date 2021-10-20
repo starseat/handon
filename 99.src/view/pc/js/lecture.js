@@ -56,7 +56,8 @@ function initLecture1() {
 
 
     VIDEO_OPTIONS.sources = [{
-        src: "./video/test.mp4",
+        // src: "./video/test.mp4",
+        src: 'https://file.han-don.com/donmmelier/test.mp4', 
         type: "video/mp4"
     }];
 
@@ -86,7 +87,8 @@ function initLecture2() {
 
 
     VIDEO_OPTIONS.sources = [{
-        src: "./video/test.mp4",
+        // src: "./video/test.mp4",
+        src: 'https://file.han-don.com/donmmelier/test.mp4', 
         type: "video/mp4"
     }];
 
