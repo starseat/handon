@@ -13,7 +13,9 @@
  */
 namespace Controller\Mobile\Donmmelier;
 
+use Component\Member\Member;
 use Component\Member\MyPage;
+use Component\Donmmelier\DonSVC;
 use Component\Donmmelier\Test;
 use Framework\Debug\Exception\AlertBackException;
 use Framework\Debug\Exception\RedirectLoginException;
@@ -26,11 +28,21 @@ use Framework\Debug\Exception\RedirectLoginException;
 class IndexController extends \Controller\Mobile\Controller
 {
 
-    /**
-     * index
-     *
-     */
-    public function index()
-    {
+  /**
+   * index
+   *
+   */
+  public function index()
+  {
+    $isLogin = 0;
+    $session = \App::getInstance('session');
+    if ($session->has(Member::SESSION_MEMBER_LOGIN)) {
+      $isLogin = 1;
     }
+
+    $donSvc = \App::load('\\Component\\Donmmelier\\DonSVC');
+
+    $this->setData('is_login', $isLogin);
+    $this->setData('login_url', $donSvc->getLoginUrl());
+  }
 }

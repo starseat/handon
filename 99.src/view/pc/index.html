@@ -35,34 +35,42 @@
                 <h1 class="gnb_big_logo">
                     <a href="./index.html" class="gnb_logo"><img src="./imgs/pc/logo.png" alt="한돈대학 한돈소믈리에"></a>
                 </h1>
+                <input type="hidden" id="hiddenIsLogin" value="{=is_login}">
                 <div class="common_lnb_inner">
                     <ul class="common_lnb_list">
-                        <li class="slnb_inner gnb_on">
-                            <a href="javascript: void(0);" class="slnb_link">
-                                <span class="slnb_txt_box">
-                                <span class="slnb_txt">
-                                    한돈 소믈리에 자격증
-                                </span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="slnb_inner">
-                            <!-- 활성화 효과 : gnb_on-->
+                        <li class="slnb_inner"> <!-- active: gnb_on -->
                             <a href="#section_10" class="slnb_link">
                                 <span class="slnb_txt_box">
-                                <span class="slnb_txt">
-                                    수강신청
-                                </span>
+                                    <span class="slnb_txt">
+                                        수강신청
+                                    </span>
                                 </span>
                             </a>
                         </li>
                         <li class="slnb_inner">
-                            <!-- 활성화 효과 : gnb_on-->
+                            <a href="javascript: void(0);" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                    <span class="slnb_txt">
+                                        한돈 소믈리에 자격증
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="slnb_inner" id="navi-menu-login">
+                            <a href="{=login_url}" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                    <span class="slnb_txt">
+                                        로그인
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="slnb_inner" id="navi-menu-mypage">
                             <a href="./mypage.html" class="slnb_link">
                                 <span class="slnb_txt_box">
-                                <span class="slnb_txt">
-                                    마이페이지
-                                </span>
+                                    <span class="slnb_txt">
+                                        마이페이지
+                                    </span>
                                 </span>
                             </a>
                         </li>

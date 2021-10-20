@@ -1,3 +1,12 @@
+$(document).ready(function() {
+    if($('#hiddenIsLogin').val() == '1') {
+        $('#navi-menu-login').hide();
+    }
+    else {
+        $('#navi-menu-mypage').hide();
+    }
+});
+    
 function popupOpen_registerDonmmelier() {
     if (!$('#oathAgree').is(":checked")) {
         alert('한돈에 진심이어야 합니다.');
