@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/swiper.min.css">
+
+    <style>
+#business-artgg-image-swiper-container {
+    width: 640px !important;
+    height: 410px;
+    padding-bottom: 50px;
+    background-color: #fff;
+    box-sizing: border-box;
+
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* background: #000; */
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+#business-artgg-image-swiper-container .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 640px;
+    height: 360px;
+}
+
+#business-artgg-image-swiper-container .swiper-slide img {
+    width: auto;
+    height: 350px;
+
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+
+    </style>
+</head>
+<body>
+    
+<div class="swiper-container bns_artgg_logo" id="business-artgg-image-swiper-container">
+    <div class="swiper-wrapper">
+        <!-- 슬라이드이미지 영역 -->
+        <div class="swiper-slide">
+            <img class="swiper-lazy" src="../../img/slide_test/test_1.png" alt="2020 아트경기">
+        </div>
+        <div class="swiper-slide">
+            <div class="swiper-video-container" data-id="OxgiiyLp5pk">
+                <div class="swiper-video-iframe"></div>
+                <div class="swiper-video-play"></div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <img class="swiper-lazy" src="../../img/slide_test/test_2.png" alt="2020 아트경기">
+        </div>
+        <div class="swiper-slide">
+            <div class="swiper-video-container" data-id="Xp8Ep1W-azw">
+                <div class="swiper-video-iframe"></div>
+                <div class="swiper-video-play"></div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <img class="swiper-lazy" src="../../img/slide_test/test_2.png" alt="2020 아트경기">
+        </div>
+    </div>
+
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Navigation -->
+    <div class="swiper-button-prev swiper-button-color"></div>
+    <div class="swiper-button-next swiper-button-color"></div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="./js/swiper.min.js"></script>
+
+    <script>
+$(document).ready(function () {
+    initSwiper('youtube');
+});
+
+function initSwiper(mode) {
+    const swiperOption = {
+        centeredSlides: true,
+        lazy: true,
+        loop: true,
+        // loopFillGroupWithBlank: true,
+        // autoplay: {
+        //     delay: 2500,
+        //     disableOnInteraction: false,
+        // },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    };
+
+    var swiper = null;
+    if(mode == 'youtube') {
+        initSwiper_youtube();
+        
+        swiper = new Swiper('#business-artgg-image-swiper-container', swiperOption).on('slideChange', function () {
+            var isVideo = swiper.slides[swiper.previousIndex].querySelector('.swiper-video-container');
+            if (isVideo) {
+                YT.get(isVideo.querySelector('iframe').id).stopVideo();
+                //console.log(isVideo.querySelector('iframe').id);
+            }
+        });        
+    }
+    else {
+         // Init Swiper
+        swiper = new Swiper('#business-artgg-image-swiper-container', swiperOption);
+    }
+}
+
+function initSwiper_youtube() {
+    // This code loads the IFrame Player API code asynchronously.
+    let tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    let firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var initPlayer = function (element) {
+        var player = element.querySelector('.swiper-video-iframe');
+        var button = element.querySelector('.swiper-video-play');
+        var ytplayer = new YT.Player(player, {
+            playerVars: {
+                'autoplay': 0,
+                'modestbranding': 1,
+                'controls': 0,
+                'rel': 0,
+            },
+            videoId: element.dataset.id
+        });
+
+        button.addEventListener('click', function () {
+            //console.log(ytplayer);
+            //console.log(ytplayer.getPlayerState());
+            ytplayer.playVideo();
+            switch (ytplayer.getPlayerState()) {
+                case 1: { ytplayer.stopVideo(); } break;
+                default: { ytplayer.playVideo(); } break;
+            }
+        });
+    };
+
+    // This function creates an <iframe> (and YouTube player)
+    //    after the API code downloads.
+    window.onYouTubePlayerAPIReady = function () {
+        var container = document.querySelectorAll('.swiper-video-container');
+        for (var i = 0; i < container.length; i++) {
+            initPlayer(container[i])
+        }
+    };
+}
+    </script>
+</body>
+</html>
