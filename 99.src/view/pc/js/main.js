@@ -1,6 +1,6 @@
 function popupOpen_registerDonmmelier() {
     if (!$('#oathAgree').is(":checked")) {
-        alert('개인정보 수집, 이용 및 SMS 수신에 동의하셔야 합니다.');
+        alert('한돈에 진심이어야 합니다.');
         return false;
     }
 
@@ -11,6 +11,11 @@ function registerDonmmelier(event) {
     if(event) {
         event.preventDefault();
         event.stopPropagation();
+    }
+
+    if (!$('#studyAgree').is(":checked")) {
+        alert('개인정보 수집, 이용 및 SMS 수신에 동의하셔야 합니다.');
+        return false;
     }
     
 }
