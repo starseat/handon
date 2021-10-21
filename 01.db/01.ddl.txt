@@ -1,3 +1,23 @@
+
+/**
+ * 돈믈리에 수강 신청
+ *  - es_member 테이블에서 cellPhone 비교 후 번호 존재시 멤버 정보 update
+ *  - 로그인 후에 수강신청시 로그인 정보로 내용 추가
+ */
+CREATE TABLE donmm_registration (
+    seq BIGINT NOT NULL AUTO_INCREMENT comment 'pk', 
+    phone VARCHAR(16) NOT NULL comment '전화번호 01011112222 형식',
+    name VARCHAR(32) NOT NULL comment '이름',
+    memNo int(10) NULL comment '계정 번호', 
+    memId varchar(50) NULL comment '계정 id', 
+	created_at DATETIME NOT NULL DEFAULT now() comment '등록 날짜',
+	PRIMARY KEY (seq, phone)
+) COLLATE='utf8mb4_unicode_ci' ENGINE=InnoDB;
+
+CREATE INDEX donmm_registration_idx_01 ON donmm_registration ( phone );
+CREATE INDEX donmm_registration_idx_02 ON donmm_registration ( memId );
+
+
 /**
  * 돈믈리에 강의
  */
@@ -6,7 +26,7 @@ CREATE TABLE donmm_lecture (
     memNo int(10) NOT NULL comment '로그인 계정 번호', 
     memId varchar(50) NOT NULL comment '로그인 계정 id', 
     season int NOT NULL comment '시즌', 
-    index TINYINT NOT NULL comment '수강한 강의 번호', 
+    num TINYINT NOT NULL comment '수강한 강의 번호', 
     created_at DATETIME NOT NULL DEFAULT now() comment '수강 완료 날짜',
     PRIMARY KEY (`seq`, `memNo`, `memId` )
 ) COLLATE='utf8mb4_unicode_ci' ENGINE=InnoDB;
@@ -19,28 +39,10 @@ CREATE TABLE donmm_exam (
     memNo int(10) NOT NULL comment '로그인 계정 번호', 
     memId varchar(50) NOT NULL comment '로그인 계정 id', 
     season int NOT NULL comment '시즌', 
-    index TINYINT NOT NULL comment '시험 번호', 
+    num TINYINT NOT NULL comment '시험 번호', 
     type varchar(8) NOT NULL comment '시험 유형', 
     score int NOT NULL default 0 comment '시험 점수', 
     created_at DATETIME NOT NULL DEFAULT now() comment '시험 날짜',
     PRIMARY KEY (`seq`, `memNo`, `memId` )
 ) COLLATE='utf8mb4_unicode_ci' ENGINE=InnoDB;
 
-/**
- * 돈믈리에 수강 신청
- *  - 예약 테이블에서 정보 받아온 내용 추가 필요
- *  - es_member 테이블에서 cellPhone 비교 후 번호 존재시 멤버 정보 update
- *  - 로그인 후에 수강신청시 로그인 정보로 내용 추가
- */
-CREATE TABLE donmm_registration (
-    seq BIGINT NOT NULL AUTO_INCREMENT comment 'pk', 
-    phone VARCHAR(16) NOT NULL comment '전화번호 01011112222 형식',
-    name VARCHAR(32) NOT NULL comment '이름',
-    device VARCHAR(16) NULL comment '신청 기기', 
-    detail VARCHAR(32) NULL comment '신성 기기 상세',
-    memNo int(10) NULL comment '계정 번호', 
-    memId varchar(50) NULL comment '계정 id', 
-	created_at DATETIME NOT NULL DEFAULT now(),
-	PRIMARY KEY (seq, phone),
-	UNIQUE INDEX phone (phone)
-) COLLATE='utf8mb4_unicode_ci' ENGINE=InnoDB;
