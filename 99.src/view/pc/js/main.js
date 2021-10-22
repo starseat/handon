@@ -1,8 +1,22 @@
 $(document).ready(function() {
     if ($('#hiddenIsLogin').val() == '1') {
-        $('#navi-menu-login-link').hide();
+        $('#navi-menu-login').hide();
     }
 });
+
+function moveLoginPage(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    if ($('#hiddenIsLogin').val() == '1') {
+        location.href = './mypage.php';
+    } else {
+        alert('로그인이 필요합니다.');
+        return false;
+    }
+}
 
 function popupOpen_registerDonmmelier() {
     if (!$('#oathAgree').is(":checked")) {
@@ -11,8 +25,7 @@ function popupOpen_registerDonmmelier() {
     }
 
     if ($('#hiddenIsLogin').val() != '1') {
-        alert('로그인이 필요합니다. 로그인페이지로 이동합니다.');
-        location.href = $('#navi-menu-login a').attr('href');
+        alert('로그인이 필요합니다.');
         return false;
     }
 

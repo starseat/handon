@@ -61,7 +61,8 @@
                             </a>
                         </li>
                         <li class="slnb_inner" id="navi-menu-login">
-                            <a href="{=login_url}" class="slnb_link">
+                            <input type="hidden" id="navi-menu-login-link" value="{=login_url}">
+                            <a href="{=login_url}" class="slnb_link" onclick="moveLoginPage(event)">
                                 <span class="slnb_txt_box">
                                     <span class="slnb_txt">
                                         로그인
