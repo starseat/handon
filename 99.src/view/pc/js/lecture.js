@@ -1,5 +1,5 @@
 function popupOpen_lecture(event, index, isOpened) {
-    if(event) {
+    if (event) {
         event.preventDefault();
         event.stopPropagation();
     }
@@ -12,7 +12,7 @@ function popupOpen_lecture(event, index, isOpened) {
     $('#lecture-popup-btn-index-prev').val(0);
     $('#lecture-popup-btn-index-next').val(0);
 
-    if(LECTURE_PLAYER != null) {
+    if (LECTURE_PLAYER != null) {
         LECTURE_PLAYER.dispose();
         LECTURE_PLAYER = null;
         $('#lecture-player-box').append('<video id="lecture-player" class="video-js vjs-big-play-centerd vjs-fluid vjs-default-skin" webkit-playsinline></video>');
@@ -26,9 +26,9 @@ function popupOpen_lecture(event, index, isOpened) {
         initLecture3();
     }
 
-    if(!isOpened) {
+    if (!isOpened) {
         $('.wrap').addClass('popup_open');
-    }    
+    }
 }
 
 let LECTURE_PLAYER = null;
@@ -43,7 +43,7 @@ const VIDEO_OPTIONS = {
         playToggle: true, // 재생/일시정지
         pictureInPictureToggle: false, // pip 모드
         remainingTimeDisplay: true, // 남은시간
-        progressControl: true, // 영상 시간 조정 
+        progressControl: false, // 영상 시간 조정 
         qualitySelector: true,
         timeControl: true,
     }
@@ -57,11 +57,11 @@ function initLecture1() {
 
     VIDEO_OPTIONS.sources = [{
         // src: "./video/test.mp4",
-        src: 'https://file.han-don.com/donmmelier/test.mp4', 
+        src: 'https://file.han-don.com/donmmelier/lecture1.mp4',
         type: "video/mp4"
     }];
 
-    
+
     LECTURE_PLAYER = videojs('lecture-player', VIDEO_OPTIONS);
     LECTURE_PLAYER.ready(function() {
         // var duration_time = Math.floor(this.duration());
@@ -73,7 +73,7 @@ function initLecture1() {
         // });
 
         this.on('ended', function() {
-            alert('1번 다봤당 - ended');
+            sendViewComplated(1);
         });
     });
 }
@@ -88,7 +88,7 @@ function initLecture2() {
 
     VIDEO_OPTIONS.sources = [{
         // src: "./video/test.mp4",
-        src: 'https://file.han-don.com/donmmelier/test.mp4', 
+        src: 'https://file.han-don.com/donmmelier/lecture2.mp4',
         type: "video/mp4"
     }];
 
@@ -113,9 +113,28 @@ function prevLecturePopup() {
 
 function nextLecturePopup() {
     var nextIndex = parseInt($('#lecture-popup-btn-index-next').val(), 10);
-    if(nextIndex == 3) {
+    if (nextIndex == 2) {
+        alert('2회차 교육은 준비중 입니다.');
+        return false;
+    }
+    if (nextIndex == 3) {
         alert('3회차 교육은 준비중 입니다.');
         return false;
     }
     popupOpen_lecture(null, nextIndex, true);
+}
+
+function sendViewComplated(index) {
+    $.ajax({
+        type: 'post',
+        url: './api_lecture_view_complated.php',
+        data: { lecture_index: index },
+        dataType: 'json',
+        success: function(resultData) {
+            console.log('[sendViewComplated] ajax success. result data: ', resultData);
+        },
+        error: function(xhr, status, error) {
+            console.error('[sendViewComplated] ajax error:: ', error);
+        },
+    });
 }

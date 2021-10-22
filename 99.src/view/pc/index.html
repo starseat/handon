@@ -38,7 +38,8 @@
                 <input type="hidden" id="hiddenIsLogin" value="{=is_login}">
                 <div class="common_lnb_inner">
                     <ul class="common_lnb_list">
-                        <li class="slnb_inner"> <!-- active: gnb_on -->
+                        <li class="slnb_inner">
+                            <!-- active: gnb_on -->
                             <a href="#section_10" class="slnb_link">
                                 <span class="slnb_txt_box">
                                     <span class="slnb_txt">
@@ -48,19 +49,10 @@
                             </a>
                         </li>
                         <li class="slnb_inner">
-                            <a href="javascript: void(0);" class="slnb_link">
+                            <a href="#section_05" class="slnb_link">
                                 <span class="slnb_txt_box">
                                     <span class="slnb_txt">
                                         한돈 소믈리에 자격증
-                                    </span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="slnb_inner" id="navi-menu-login">
-                            <a href="{=login_url}" class="slnb_link">
-                                <span class="slnb_txt_box">
-                                    <span class="slnb_txt">
-                                        로그인
                                     </span>
                                 </span>
                             </a>
@@ -75,6 +67,15 @@
                             </a>
                         </li>
                     </ul>
+                </div>
+                <div class="gnb_quick_w">
+                    <a href="{=login_url}" class="sns_share_btn" id="navi-menu-login-link">
+                        <span class="slnb_txt_box">
+                            <span class="slnb_txt">
+                                로그인
+                            </span>
+                        </span>
+                    </a>
                 </div>
                 <div class="gnb_quick_w">
                     <a href="javascript: void(0);" class="sns_share_btn" id="snsShareBtn">
@@ -668,22 +669,22 @@
                                         <div class="study_list_cont study_on">
                                             <a href="#none" class="study_link">
                                                 <span class="study_label">영상 1회차</span>
-                                                <strong class="study_title">우리돼지, 한돈을 아시나요?</strong>
-                                                <span class="study_time">01:20:10</span>
+                                                <strong class="study_title">한돈 그것을 알려드림!</strong>
+                                                <span class="study_time">10:36</span>
                                             </a>
                                         </div>
                                         <div class="study_list_cont">
                                             <a href="#none" class="study_link">
                                                 <span class="study_label">영상 2회차</span>
                                                 <strong class="study_title">한돈학개론</strong>
-                                                <span class="study_time">01:20:10</span>
+                                                <span class="study_time">-</span>
                                             </a>
                                         </div>
                                         <div class="study_list_cont">
                                             <a href="#none" class="study_link">
                                                 <span class="study_label">영상 3회차</span>
-                                                <strong class="study_title">나는 한돈소믈리에입니다.</strong>
-                                                <span class="study_time">01:20:10</span>
+                                                <strong class="study_title">한돈 굽고 인싸되기!</strong>
+                                                <span class="study_time">-</span>
                                             </a>
                                         </div>
                                         <a href="./mypage.php" class="module_btn_red" target="_blank">마이페이지</a>
@@ -727,6 +728,7 @@
                                     <button type="button" class="popup_btn_x" title="팝업 닫기" onclick="popupClose();">
                                     <i class="xi-close-thin xi-2x"><i class="ir">close</i></i>
                                 </button>
+                                    <input type="hidden" id="hiddenIsRegi" value="{=is_regi}">
                                 </div>
                             </div>
                         </div>

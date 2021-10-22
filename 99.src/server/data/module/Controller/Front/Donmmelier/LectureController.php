@@ -33,9 +33,9 @@ class LectureController extends \Controller\Front\Controller
    */
   public function index()
   {
+    $donSvc = \App::load('\\Component\\Donmmelier\\DonSVC');
     $session = \App::getInstance('session');
     if (!$session->has(Member::SESSION_MEMBER_LOGIN)) {
-      $donSvc = \App::load('\\Component\\Donmmelier\\DonSVC');
       $returnUrl = $donSvc->getLoginUrl();
       $msg = 'alert(\'로그인이 필요합니다.\');parent.location.href=\'' . $returnUrl . '\';';
       $this->js($msg);
@@ -45,10 +45,15 @@ class LectureController extends \Controller\Front\Controller
     /* 회원 로그인 정보 */
     $myPage = new MyPage();
     $memberData = $myPage->myInformation();
+    $memId = $memberData['memId'];
     $memNm = $memberData['memNm'];
 
-    // $share = new Test();
-    // $total = $share->getCommentTotal();      
+    $regi_count = $donSvc->getCountDonmmRegisteredFromId($memId);
+    if($regi_count < 1) {
+      $msg = 'alert(\'수강 신청을 하신 후 이용 바랍니다.\');parent.location.href=\'./index.php\';';
+      $this->js($msg);
+      exit;
+    }
 
     $this->setData('member', json_encode($memberData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     $this->setData('member_name', $memNm);
