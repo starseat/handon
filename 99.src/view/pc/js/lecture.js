@@ -57,9 +57,11 @@ const VIDEO_OPTIONS = {
         qualitySelector: true,
         timeControl: true,
     }
+    // lesson_thumb259X216.png
 };
 
 function initLecture1() {
+    console.log('123');
     $('#lecture-popup .btn_arrow_r').show();
     $('#lecture-popup .txt_red').text('1회차 교육');
     $('#lecture-popup-btn-index-next').val(2);
@@ -70,6 +72,7 @@ function initLecture1() {
         src: 'https://file.han-don.com/donmmelier/lecture1.mp4',
         type: "video/mp4"
     }];
+    VIDEO_OPTIONS.poster = './imgs/pc/lesson_thumb259X216.png'
 
 
     LECTURE_PLAYER = videojs('lecture-player', VIDEO_OPTIONS);

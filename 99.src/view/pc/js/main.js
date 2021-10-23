@@ -4,7 +4,7 @@ $(document).ready(function() {
     }
 });
 
-function moveLoginPage(event) {
+function moveMyPage(event) {
     if (event) {
         event.preventDefault();
         event.stopPropagation();

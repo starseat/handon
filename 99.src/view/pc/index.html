@@ -58,17 +58,7 @@
                             </a>
                         </li>
                         <li class="slnb_inner" id="navi-menu-login">
-                            <input type="hidden" id="navi-menu-login-link" value="{=login_url}">
-                            <a href="javascript: void(0);" class="slnb_link" onclick="moveLoginPage(event)">
-                                <span class="slnb_txt_box">
-                                    <span class="slnb_txt">
-                                        마이페이지
-                                    </span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="slnb_inner" id="navi-menu-mypage">
-                            <a href="./mypage.php" class="slnb_link">
+                            <a href="javascript: void(0);" class="slnb_link" onclick="moveMyPage(event)">
                                 <span class="slnb_txt_box">
                                     <span class="slnb_txt">
                                         마이페이지
@@ -79,10 +69,18 @@
                     </ul>
                 </div>
                 <div class="gnb_quick_w">
+                    <a href="{=login_url}" class="member_btn" id="navi-menu-login">
+                        <span class="slnb_txt_box">
+                            <span class="slnb_txt">
+                                로그인
+                            </span>
+                        </span>
+                    </a>
                     <a href="javascript: void(0);" class="sns_share_btn" id="snsShareBtn">
                         <img src="./imgs/pc/sns_share.png" alt="공유링크">
                     </a>
                 </div>
+                <input type="hidden" id="navi-menu-login-link" value="{=login_url}">
             </div>
         </div>
 
@@ -220,7 +218,7 @@
                                 <strong class="step_title">내 취향저격!</strong>
                                 <div class="step_image"><img src="./imgs/pc/s05_step1.png" alt="좋은 돼지고기 고르는 법"></div>
                             </div>
-                            <div class="s05_step_cont aos-item aos-init aos-animate" data-aos="fade-up" data-aos-duration="3000">
+                            <div class="s05_step_cont aos-item aos-init aos-animate" data-aos="fade-up" data-aos-duration="3400">
                                 <strong class="step_title">건강까지 챙기는</strong>
                                 <div class="step_image"><img src="./imgs/pc/s05_step2.png" alt="부위별 맛과 영양분"></div>
                             </div>
@@ -658,7 +656,7 @@
                             <div class="event_popup_cont">
                                 <div class="event_popup_text_w">
                                     <p class="evp_text01">
-                                        <span class="evp_img"><img src="" alt="강의이미지"></span>
+                                        <span class="evp_img"><img src="./imgs/pc/lesson_thumb210x130.png" alt="강의이미지"></span>
                                         <strong>
                                         한돈소믈리에가 되기 위한 시작!<br/>
                                         당신의 고기부심! 이제는 마음껏 펼치세요!
@@ -737,12 +735,25 @@
                 </div>
                 <i class="dim"></i>
             </div>
-
-
         </div>
+    </div>
 
-
-
+    <!-- footer -->
+    <div class="footer">
+        <div class="footer_inner">
+            <div class="footer_text_list">
+                <span class="ftl_cont">법인명(상호) : 한돈소믈리에 운영사무국(한돈자조금)</span>
+                <span class="ftl_cont">대표자(성명) : 김명준</span>
+                <span class="ftl_cont">사업자 등록번호 안내 : 899-88-00918</span>
+                <span class="ftl_cont">통신판매업 신고 제2017-서울서초-0176호</span>
+                <span class="ftl_cont">전화 : 02-2135-8473</span>
+                <span class="ftl_cont">팩스 : 02-2135-8471</span>
+            </div>
+            <div class="footer_text_list2">
+                <span class="ftl_cont">※ 한돈소믈리에 운영사무국은 한돈소믈리에 자격증 교육과정 운영대행 업무를 맡고 있습니다.</span>
+                <span class="ftl_cont">Copyright © mall.han-don.com. All rights reserved.</span>
+            </div>
+        </div>
     </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -756,6 +767,7 @@
     <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="text/javascript" src="./js/common.js"></script>
     <script type="text/javascript" src="./js/main.js"></script>
+
 </body>
 
 </html>

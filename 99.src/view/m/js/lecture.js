@@ -69,6 +69,7 @@ function initLecture1() {
         src: 'https://file.han-don.com/donmmelier/lecture1.mp4',
         type: "video/mp4"
     }];
+    VIDEO_OPTIONS.poster = './imgs/m/lesson_thumb957X416.png'
 
 
     LECTURE_PLAYER = videojs('lecture-player', VIDEO_OPTIONS);
