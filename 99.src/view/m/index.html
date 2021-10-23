@@ -22,6 +22,11 @@
             width: 100%;
             height: 100%;
         }
+        
+        #navi-menu-login {
+            color: white;
+            font-size: 1.5em;
+        }
     </style>
 </head>
 
@@ -60,18 +65,8 @@
                                 </span>
                             </a>
                         </li>
-                        <li class="slnb_inner" id="navi-menu-login">
-                            <input type="hidden" id="navi-menu-login-link" value="{=login_url}">
-                            <a href="{=login_url}" class="slnb_link" onclick="moveLoginPage(event)">
-                                <span class="slnb_txt_box">
-                                    <span class="slnb_txt">
-                                        로그인
-                                    </span>
-                                </span>
-                            </a>
-                        </li>
                         <li class="slnb_inner" id="navi-menu-mypage">
-                            <a href="./mypage.php" class="slnb_link">
+                            <a href="javascript: void(0);" class="slnb_link" onclick="moveMyPage(event)">
                                 <span class="slnb_txt_box">
                                     <span class="slnb_txt">
                                         마이페이지
@@ -80,6 +75,12 @@
                             </a>
                         </li>
                     </ul>
+                    <input type="hidden" id="navi-menu-login-link" value="{=login_url}">
+                    <button type="button" class="mypage_btn_logout" onclick="login()" id="navi-menu-login">
+                        <span class="mp_btn_text">
+                            로그인
+                        </span>
+                    </button>
                     <button type="button" class="lnb_btn_close" title="메뉴닫기" id="btn-navi-menu-close">
                         <i class="xi-close"><span class="blind">메뉴닫기</span></i>
                     </button>

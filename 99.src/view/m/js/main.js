@@ -4,7 +4,7 @@ $(document).ready(function() {
     }
 });
 
-function moveLoginPage(event) {
+function moveMyPage(event) {
     if (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -16,6 +16,10 @@ function moveLoginPage(event) {
         alert('로그인이 필요합니다.');
         return false;
     }
+}
+
+function login() {
+    location.href = $('#navi-menu-login-link').val();
 }
 
 function popupOpen_registerDonmmelier() {
