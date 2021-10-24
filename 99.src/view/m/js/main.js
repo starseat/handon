@@ -10,9 +10,14 @@ function moveMyPage(event) {
         event.stopPropagation();
     }
 
-    if ($('#hiddenIsLogin').val() == '1') {
+    var isLogin = $('#hiddenIsLogin').val();
+    var isRegistered = $('#hiddenIsRegistered').val();
+
+    if (isLogin == '1' && isRegistered == '1') {
         location.href = './mypage.php';
-    } else {
+    } else if (isRegistered == '0') {
+        location.href = './index.php#section_10';
+    } else { // if (isLogin == '0') {
         alert('로그인이 필요합니다.');
         return false;
     }

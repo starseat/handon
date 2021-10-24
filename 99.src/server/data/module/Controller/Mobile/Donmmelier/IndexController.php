@@ -35,14 +35,24 @@ class IndexController extends \Controller\Mobile\Controller
   public function index()
   {
     $isLogin = 0;
+    $isRegistered = 0;
     $session = \App::getInstance('session');
+    $donSvc = \App::load('\\Component\\Donmmelier\\DonSVC');
     if ($session->has(Member::SESSION_MEMBER_LOGIN)) {
       $isLogin = 1;
-    }
 
-    $donSvc = \App::load('\\Component\\Donmmelier\\DonSVC');
+      $myPage = new MyPage();
+      $memberData = $myPage->myInformation();
+      $memId = $memberData['memId'];
+
+      $isRegistered = $donSvc->getCountDonmmRegisteredFromId($memId);
+      if($isRegistered > 0) {
+        $isRegistered = 1;
+      }
+    }    
 
     $this->setData('is_login', $isLogin);
+    $this->setData('is_registered', $isRegistered);
     $this->setData('login_url', $donSvc->getLoginUrl());
   }
 }
