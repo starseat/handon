@@ -48,6 +48,13 @@ class DonSVC
         return $data['cnt'];
     }
 
+    public function getDonmmRegisteredInfoFromId($memId) {
+        $sql = "SELECT seq, phone, name, memNo, memId, created_at FROM `donmm_registration` WHERE `memId` = '{$memId}'";
+        $query = $this->db->query($sql);
+        $data = $this->db->fetch($query);
+        return $data;
+    }
+
     public function insertDonmmRegistered($insert_info) {
 
         $check_result = $this->checkDonmmInfo($insert_info);

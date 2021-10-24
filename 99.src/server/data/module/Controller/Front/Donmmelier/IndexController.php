@@ -36,6 +36,8 @@ class IndexController extends \Controller\Front\Controller
   {
     $isLogin = 0;
     $isRegistered = 0;
+    $regi_name = '';
+    $regi_phone = '';
     $session = \App::getInstance('session');
     $donSvc = \App::load('\\Component\\Donmmelier\\DonSVC');
     if ($session->has(Member::SESSION_MEMBER_LOGIN)) {
@@ -48,11 +50,17 @@ class IndexController extends \Controller\Front\Controller
       $isRegistered = $donSvc->getCountDonmmRegisteredFromId($memId);
       if($isRegistered > 0) {
         $isRegistered = 1;
-      }
+
+        $regi_info = $donSvc->getDonmmRegisteredInfoFromId($memId);
+        $regi_name = $regi_info['name'];
+        $regi_phone = $regi_info['phone'];
+      }      
     }    
 
     $this->setData('is_login', $isLogin);
     $this->setData('is_registered', $isRegistered);
+    $this->setData('regi_name', $regi_name);
+    $this->setData('regi_phone', $regi_phone);
     $this->setData('login_url', $donSvc->getLoginUrl());
   }
 }

@@ -1,6 +1,26 @@
 $(document).ready(function() {
     if ($('#hiddenIsLogin').val() == '1') {
         $('#navi-menu-login').hide();
+
+        if ($('#hiddenIsRegistered').val() == '1') {
+            var regiName = $('#hiddenRegiName').val();
+            var regiPhone = $('#hiddenRegiPhone').val();
+
+            if (regiName != '') {
+                $('#regi-name').val(regiName);
+                $('#regi-name').attr('disabled', true);
+            }
+
+            if (regiPhone != '') {
+                $('#regi-phone1').val(regiPhone.substr(0, 3));
+                $('#regi-phone2').val(regiPhone.substr(3, 4));
+                $('#regi-phone3').val(regiPhone.substr(7, 4));
+
+                $('#regi-phone1').attr('disabled', true);
+                $('#regi-phone2').attr('disabled', true);
+                $('#regi-phone3').attr('disabled', true);
+            }
+        }
     }
 });
 
