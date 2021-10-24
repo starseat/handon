@@ -39,7 +39,7 @@
 html {scroll-behavior: smooth;}
 html,body{-webkit-text-size-adjust:none; color:#000; font-weight:400; line-height: 1.4; letter-spacing: -0.01em; overflow:auto;}
 body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select,img,div {margin:0; padding:0;}
-body {position:relative; min-width:1422px; font-family:'NotoSerifKR', 'Noto Sans', 'malgun gothic' , '맑은 고딕' , sans-serif; }
+body {overflow:hidden; overflow-y:auto; position:relative; min-width:1920px; font-family:'NotoSerifKR', 'Noto Sans', 'malgun gothic' , '맑은 고딕' , sans-serif; }
 img,fieldset{border:0}
 img {display:inline-block; max-width:100%;}
 button {background:none; border:0; cursor:pointer;}
@@ -58,7 +58,7 @@ input,button,select {outline:none; border-radius:0;}
 .ir {zoom:-10; z-index:-1; position:relative; display:block; width:100%; font-size:0px !important; text-align:center; white-space:nowrap; overflow:hidden;}
 .icn {position:absolute; display:block; .display:inline; .zoom:1;  font:0/0 arial; vertical-align:middle; overflow:hidden; background-repeat:no-repeat; background-color:transparent; background-image:url('../imgs/pc/set_icon_pc.png'); background-size:50px auto;}
 .wrap {background-color:#fff; min-width:1920px;}
-.main {overflow:hidden; overflow-y:auto;}
+
 
 /* GNB */
 .common_gnb_w {position:fixed; left:0; top:0; z-index:5; width:100%; height:101px; background-color:#05121a;}
@@ -226,7 +226,7 @@ input,button,select {outline:none; border-radius:0;}
 .commit_list_w {margin-top:17px; border-top:2px solid #dadada; padding-top:16px; font-size:14px; color:#777;}
 .commit_list_w li {margin-top:3px; padding-left:15px; position:Relative;}
 .commit_list_w li:after {display:Block; content:''; position:Absolute; left:0; top:5px; width:7px; height:7px; border-radius:100%; background-color:#f9a01b; }
-.s08_table_w {margin-right:0; width:737px; padding:17px 30px; background-color:#fff;}
+.s08_table_w {margin-right:0; width:737px; padding:32px 35px; background-color:#fff;}
 .table_scroll {height:100%; overflow-y:auto;
     scrollbar-arrow-color:#9D9992;
     scrollbar-3dlight-color:#D4D0C8;
@@ -252,13 +252,11 @@ input,button,select {outline:none; border-radius:0;}
 .table_scroll::-webkit-scrollbar-track {background: #efefef;}
 .table_scroll::-webkit-scrollbar-thumb {height: 50px; width: 50px; background:#dadada; }
 
-.s08_table_w table {height:100%; position:relative; }
-.s08_table_w table:after {display:block; content:''; position:Absolute; left:4px; top:0; width:3px; height:100%; background-color:#e7e7e7;}
-.s08_table_w tbody {position:relative; z-index:2;}
-.s08_table_w td {vertical-align:top; padding:2px 0; font-size:14px; line-height:20px; color:#777;}
-.s08_table_w .year {position:Relative; top:0; padding-left:19px; font-size:20px; color:#f9a01b; font-weight:700; font-style:italic; vertical-align:top;}
-.s08_table_w .year:after {display:block; content:''; position:Absolute; left:0; top:0.62em; width:10px; height:10px; border-radius:100%; background-color:#d2232a;}
-.s08_table_w .month {text-align:left; padding-left:10px; font-weight:700;}
+.table_scroll p {margin-top:18px; font-size:14px; color:#777; line-height:21px;}
+.table_scroll p:first-child {margin-top:0;}
+.table_scroll strong {display:block; min-height:26px; margin-bottom:10px; font-size:24px; color:#f9a01b;}
+
+
 
 .section_09_w {}
 .s09_text {text-align:center; color:#fff;}
@@ -470,7 +468,7 @@ input,button,select {outline:none; border-radius:0;}
 
 /*  --------------- pc 중간제어  --------------- */
 @media screen and (max-width:1920px) {
-    .main {overflow-x:auto;}
+    body {overflow-x:auto;}
 }
 
 /* --------------- end:pc 중간제어 --------------- */
