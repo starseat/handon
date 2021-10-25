@@ -43,6 +43,25 @@ function moveMyPage(event) {
     }
 }
 
+function moveLecture(event, index) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    var isLogin = $('#hiddenIsLogin').val();
+    var isRegistered = $('#hiddenIsRegistered').val();
+
+    if (isLogin == '1' && isRegistered == '1') {
+        location.href = './lecture.php';
+    } else if (isRegistered == '0') {
+        location.href = './index.php#section_10';
+    } else { // if (isLogin == '0') {
+        alert('로그인이 필요합니다.');
+        return false;
+    }
+}
+
 function popupOpen_registerDonmmelier() {
     if (!$('#oathAgree').is(":checked")) {
         alert('한돈에 진심이어야 합니다.');
