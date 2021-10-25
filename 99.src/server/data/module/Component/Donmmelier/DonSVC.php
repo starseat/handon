@@ -12,6 +12,10 @@ use Framework\Utility\StringUtils;
 class DonSVC 
 {
     protected $db = null;
+    protected $password_options = [
+        'salt' => 'donmm_admin',
+        'cost' => 12 // the default cost is 10
+    ];
 
     /**
      * 생성자
@@ -127,4 +131,110 @@ class DonSVC
         $this->db->query($sql);
         return 1;
     }
+
+    public function isEmpty($value) {
+        if (isset($value) && !empty($value) && $value != null && $value != '') {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function getPagingInfo($current_page, $total_item_count, $item_row_count, $page_block_count) {
+        $page_db = ($current_page - 1) * $item_row_count;
+    
+        // 전체 block 수
+        $page_total = ceil($total_item_count / $page_block_count);
+        if ($page_total == 0) {
+            $page_total = 1;
+        }
+        // block 시작
+        $page_start = (((ceil($current_page / $page_block_count) - 1) * $page_block_count) + 1);
+    
+        // block 끝
+        $page_end = $page_start + $page_block_count - 1;
+        if ($page_total < $page_end) {
+            $page_end = $page_total;
+        }
+    
+        // 시작 바로 전 페이지
+        $page_prev = $page_start - 1;
+        // 마지막 다음 페이지
+        $page_next = $page_end + 1;
+    
+        return array(
+            'page_db' => $page_db,  // db 조회시 사용
+            'page_start' => $page_start, 
+            'page_end' => $page_end,
+            'page_prev' => $page_prev,
+            'page_next' => $page_next, 
+            'page_total' => $page_total
+        );
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    // admin
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function loginAction($login_id, $login_pw) {
+        $result_array = array();
+
+        $sql = "SELECT count(*) as cnt FROM `donmm_members` WHERE `user_id` = '{$login_id}'";
+        $query = $this->db->query($sql);
+        $data = $this->db->fetch($query);
+
+        if($data['cnt'] == 0) {
+            $result_array['result'] = false;
+            $result_array['code'] = -1;
+            return $result_array;
+        }
+
+        $sql  = "
+            SELECT seq, user_id, name, member_type, password 
+            FROM `donmm_members`
+            WHERE `user_id` = '{$login_id}'
+        ";
+
+        $query = $this->db->query($sql);
+        $data = $this->db->fetch($query);
+
+        $dbPassword = $data['password'];
+
+        if ($this->password_matches($login_pw, $dbPassword) == 0) {
+            $result_array['result'] = false;
+            $result_array['code'] = -2;
+            return $result_array;
+        }
+
+        $result_array['result'] = true;
+        $result_array['code'] = 1;
+        $result_array['seq'] = $data['seq'];
+        $result_array['user_id'] = $data['user_id'];
+        $result_array['name'] = $data['name'];
+        $result_array['member_type'] = $data['member_type'];
+
+        return $result_array;
+    }
+    
+    
+    public function password_encrypt($password) {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT /*, $password_options */);
+        // $hashed_password = password_hash($password, PASSWORD_DEFAULT, $password_options);
+        // $hashed_password = password_hash($password, PASSWORD_BCRYPT, $password_options);
+        return $hashed_password;
+    }
+    
+    public function password_matches($password, $hashed_password) {
+        if (password_verify($password, $hashed_password /*, password_options */)) {
+            //return true;
+            return 1;
+        } else {
+            //return false;
+            return 0;
+        }
+    }
+
+    
+
+    
 }

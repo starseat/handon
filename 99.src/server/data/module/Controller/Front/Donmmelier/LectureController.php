@@ -55,7 +55,7 @@ class LectureController extends \Controller\Front\Controller
       exit;
     }
 
-    $this->setData('member', json_encode($memberData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    // $this->setData('member', json_encode($memberData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     $this->setData('member_name', $memNm);
   }
 }
