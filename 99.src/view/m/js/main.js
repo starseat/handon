@@ -74,7 +74,7 @@ function popupOpen_registerDonmmelier() {
 
     if ($('#hiddenIsLogin').val() != '1') {
         alert('로그인이 필요합니다. 로그인페이지로 이동합니다.');
-        location.href = $('#navi-menu-login a').attr('href');
+        location.href = $('#navi-menu-login-link').val();
         return false;
     }
 
