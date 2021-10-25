@@ -41,8 +41,27 @@ CREATE TABLE donmm_exam (
     season int NOT NULL comment '시즌', 
     num TINYINT NOT NULL comment '시험 번호', 
     type varchar(8) NOT NULL comment '시험 유형', 
-    score int NOT NULL default 0 comment '시험 점수', 
+    score int NULL comment '시험 점수', 
     created_at DATETIME NOT NULL DEFAULT now() comment '시험 날짜',
     PRIMARY KEY (`seq`, `memNo`, `memId` )
 ) COLLATE='utf8mb4_unicode_ci' ENGINE=InnoDB;
+
+/**
+ * 돈믈리에 멤버
+ */
+CREATE TABLE donmm_members (
+	seq BIGINT NOT NULL AUTO_INCREMENT,
+    user_id VARCHAR(32) NOT NULL,    
+	name VARCHAR(32) NULL DEFAULT NULL,
+	password VARCHAR(128) NOT NULL,
+	member_type CHAR(1) NOT NULL DEFAULT 'B',
+	created_at DATETIME NOT NULL DEFAULT now(),
+	updated_at DATETIME NOT NULL DEFAULT now(),
+	deleted_at DATETIME NULL DEFAULT NULL,
+	PRIMARY KEY (seq, user_id),
+	UNIQUE INDEX user_id (user_id)
+) COLLATE='utf8mb4_unicode_ci' ENGINE=InnoDB;
+
+INSERT INTO donmm_members (user_id, name, password, member_type)
+VALUES ('admin', '관리자', '$2y$10$xWS5oYGmDHnVju5qWFJX.evgGxzmjQJoycBtG.ISbPHlOBjFJWBsO', 'A');
 
