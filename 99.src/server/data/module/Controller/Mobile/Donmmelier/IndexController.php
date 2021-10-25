@@ -61,6 +61,6 @@ class IndexController extends \Controller\Mobile\Controller
     $this->setData('is_registered', $isRegistered);
     $this->setData('regi_name', $regi_name);
     $this->setData('regi_phone', $regi_phone);
-    $this->setData('login_url', $donSvc->getLoginUrl());
+    $this->setData('login_url', $donSvc->getLoginUrl('m'));
   }
 }

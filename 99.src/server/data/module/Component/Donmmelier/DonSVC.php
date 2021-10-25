@@ -23,9 +23,16 @@ class DonSVC
         }
     }
 
-    public function getLoginUrl() {
+    public function getLoginUrl($device = 'pc') {
         // 통합 로그인 전
-        $returnUrl = 'https://www.han-don.com/member/index.php?mode=login&tabst=donmmelier';
+        $returnUrl = '';
+
+        if($device == 'm') {
+            $returnUrl = 'https://www.han-don.com/m/index.php?grp=member&mode=login&tabst=handon';
+        }
+        else {
+            $returnUrl = 'https://www.han-don.com/member/index.php?mode=login&tabst=donmmelier';
+        }
 
         // 통합 로그인 후
         // $donmmelierUrl = 'https://mall.han-don.com/donmmelier/index.php';
