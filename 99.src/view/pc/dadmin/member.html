@@ -70,13 +70,16 @@
                     <div class="list_search_w">
                         <div class="select_option_w">
                             <span class="select_arrow"><i class="xi-angle-down-min"></i></span>
-                            <select name="" id="">
-                                <option value="selectId">아이디</option>
+                            <select id="search-type">
+                                <option value="id">아이디</option>
+                                <option value="name">이름</option>
                             </select>
                         </div>
-                        <input type="text" class="search_ip" />
-                        <button type="button" class="btn_search">검색</button>
-                        <button type="button" class="btn_search">엑셀 다운로드</button>
+                        <input type="text" class="search_ip" id="search-str" />
+                        <button type="button" class="btn_search" onclick="doSearch();">검색</button>
+                        <button type="button" class="btn_search" onclick="printExcel()">엑셀 다운로드</button>
+                        <input type="hidden" id="hiddenParamSearchType" value="{=param_search_type}">
+                        <input type="hidden" id="hiddenParamSearchStr" value="{=param_search_str}">
                     </div>
                     <div class="member_table_w">
                         <table>
@@ -90,65 +93,44 @@
                                     <th class="list_date" rowspan="2">수강신청일</th>
                                     <th class="list_level" rowspan="2">강의진도</th>
                                     <th class="list_test" colspan="2">시험결과</th>
-                                    <th class="list_license" rowspan="2">최종 응시일</th>
+                                    <!-- <th class="list_license" rowspan="2">최종 응시일</th> -->
                                 </tr>
                                 <tr>
                                     <th class="list_test01">1차</th>
                                     <th class="list_test02">2차</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="member-list">
+                                <!--{ @ data_list }-->
                                 <tr>
                                     <td class="list_check"><input type="checkbox"></td>
-                                    <td class="list_num">1</td>
-                                    <td class="list_id">handon1</td>
-                                    <td class="list_name">김한돈</td>
-                                    <td class="list_phone">01023453563</td>
-                                    <td class="list_date">2021. 09. 24</td>
-                                    <td class="list_level">1</td>
-                                    <td class="list_test01">N</td>
-                                    <td class="list_test02">N</td>
-                                    <td class="list_license">2021. 09. 24</td>
+                                    <td class="list_num">{=.no}</td>
+                                    <td class="list_id">{=.mem_id}</td>
+                                    <td class="list_name">{=.name}</td>
+                                    <td class="list_phone">{=.phone}</td>
+                                    <td class="list_date">{=.created_at}</td>
+                                    <td class="list_level">{=.lnum}</td>
+                                    <td class="list_test01">{=.score1}</td>
+                                    <td class="list_test02">{=.score2}</td>
                                 </tr>
-                                <tr>
-                                    <td class="list_check"><input type="checkbox"></td>
-                                    <td class="list_num">1</td>
-                                    <td class="list_id">handon1</td>
-                                    <td class="list_name">김한돈</td>
-                                    <td class="list_phone">01023453563</td>
-                                    <td class="list_date">2021. 09. 24</td>
-                                    <td class="list_level">1</td>
-                                    <td class="list_test01">N</td>
-                                    <td class="list_test02">N</td>
-                                    <td class="list_license">2021. 09. 24</td>
-                                </tr>
-                                <tr>
-                                    <td class="list_check"><input type="checkbox"></td>
-                                    <td class="list_num">1</td>
-                                    <td class="list_id">handon1</td>
-                                    <td class="list_name">김한돈</td>
-                                    <td class="list_phone">01023453563</td>
-                                    <td class="list_date">2021. 09. 24</td>
-                                    <td class="list_level">1</td>
-                                    <td class="list_test01">N</td>
-                                    <td class="list_test02">N</td>
-                                    <td class="list_license">2021. 09. 24</td>
-                                </tr>
+                                <!--{ / }-->
                             </tbody>
                         </table>
                         <div class="admin_listbtn_w">
                             <div class="admin_paging_w">
-                                <ul class="paging_list">
-                                    <li class="current"><a href="#none" class="pg_link">1</a></li>
-                                    <li><a href="#none" class="pg_link">2</a></li>
-                                    <li><a href="#none" class="pg_link">3</a></li>
-                                    <li><a href="#none" class="pg_link">4</a></li>
-                                    <li><a href="#none" class="pg_link">5</a></li>
+                                <input type="hidden" id="page_cur" value="{=page_cur}">
+                                <input type="hidden" id="page_db" value="{=page_db}">
+                                <input type="hidden" id="page_start" value="{=page_start}">
+                                <input type="hidden" id="page_end" value="{=page_end}">
+                                <input type="hidden" id="page_prev" value="{=page_prev}">
+                                <input type="hidden" id="page_next" value="{=page_next}">
+                                <input type="hidden" id="page_total" value="{=page_total}">
+                                <ul class="paging_list" id="paging-list">
                                 </ul>
-                                <button type="button" class="paging_arrow_l">
+                                <button type="button" class="paging_arrow_l" id="paging-prev" onclick="movePage(0);">
                                     <span class="arrow_l"><i class="xi-angle-left-min"><i class="blind">이전</i></i></span>
                                 </button>
-                                <button type="button" class="paging_arrow_r">
+                                <button type="button" class="paging_arrow_r" id="paging-next" onclick="movePage(0);">
                                     <span class="arrow_l"><i class="xi-angle-right-min"><i class="blind">다음</i></i></span>
                                 </button>
                             </div>
@@ -178,7 +160,11 @@
     </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./vendor/jw-excel/sheetjs/xlsx.full.min.js"></script>
+    <script src="./vendor/jw-excel/FileSaver/FileSaver.min.js"></script>
+    <script src="./vendor/jw-excel/jw.excel.js"></script>
     <script type="text/javascript" src="./js/common.js"></script>
+    <script type="text/javascript" src="./js/member.js"></script>
 </body>
 
 </html>

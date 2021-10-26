@@ -39,4 +39,24 @@ function copyToClipboard(e) {
     alert('링크가 복사되었습니다.');
 }
 
-function logout() {}
+function getObjQueryString(obj) {
+    return Object.keys(obj).map(function(key) {
+        return key + '=' + obj[key];
+    }).join('&');
+}
+
+function getParameter(name) {
+    var rtnval = '';
+    var nowAddress = unescape(location.href);
+    var parameters = (nowAddress.slice(nowAddress.indexOf('?') + 1, nowAddress.length)).split('&');
+
+    for (var i = 0; i < parameters.length; i++) {
+        var varName = parameters[i].split('=')[0];
+        if (varName.toUpperCase() == name.toUpperCase()) {
+            rtnval = parameters[i].split('=')[1];
+            break;
+        }
+    }
+
+    return rtnval;
+}
