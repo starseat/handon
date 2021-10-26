@@ -4,6 +4,12 @@ function popupOpen_lecture(event, index, isOpened) {
         event.stopPropagation();
     }
 
+    var lastLectureNum = parseInt($('#last_lecture_num').val(), 10);
+    if (!((lastLectureNum + 1) >= index)) {
+        alert('이전 강의를 완료해주세요.');
+        return false;
+    }
+
     $('.layer_popup_box').hide();
     $('#lecture-popup').show();
 
