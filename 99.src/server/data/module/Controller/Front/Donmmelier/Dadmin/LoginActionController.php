@@ -44,7 +44,7 @@ class LoginActionController extends \Controller\Front\Controller
         $session->set('donmm_is_login', 1);
         $session->set('donmm_login_info', $result_array);
 
-        $msg = 'alert(\'로그인 성공하였습니다.\');parent.location.href=\'./cert.php\';';
+        $msg = 'alert(\'로그인 성공하였습니다.\');parent.location.href=\'./member.php\';';
     }
     else {
         $session->del('donmm_is_login');

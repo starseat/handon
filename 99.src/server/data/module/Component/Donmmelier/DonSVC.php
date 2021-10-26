@@ -143,7 +143,10 @@ class DonSVC
     }
 
     public function getPagingInfo($current_page, $total_item_count, $item_row_count, $page_block_count) {
-        $page_db = ($current_page - 1) * $item_row_count;
+        $page_db = (($current_page - 1) * $item_row_count) - 1;
+        if($page_db < 0) {
+            $page_db = 0;
+        }
     
         // 전체 block 수
         $page_total = ceil($total_item_count / $page_block_count);
@@ -236,7 +239,7 @@ class DonSVC
         }
     }
 
-    public function getMemberInfoList($page = 1, $searchStr = '', $searchType = '') {
+    public function getMemberInfoList($page = 1, $searchType = '',  $searchStr = '') {
         $baseSql = "
             select 
               @rownum:=@rownum+1 as no, 
@@ -256,9 +259,9 @@ class DonSVC
         $searchSql = "SELECT ss_temp.* from ( " . $baseSql . " ) ss_temp ";
         if($searchStr != '') {
             if($searchType == 'name') {
-                $searchSql .= "where ss_temp.memId = '{$searchStr}' ";
+                $searchSql .= "where name like '%{$searchStr}%' ";
             } else { // if($searchType == 'id') {
-                $searchSql .= "where ss_temp.name like '%{$searchStr}%' ";
+                $searchSql .= "where memId = '{$searchStr}' ";
             }
         }
 
@@ -273,19 +276,65 @@ class DonSVC
         $pageSql = "SELECT page_temp.* FROM ( " . $searchSql . " ) page_temp limit " . $paging_info['page_db'] . ", " . $this->item_row_count;
 
         $query = $this->db->query($pageSql);
-        $data = $this->db->fetch($query);
+        $data_list = array();
+        while ($data = $this->db->fetch($query)) {
+            array_push($data_list, [
+                'no' => $data['no'],
+                'mem_id' => $data['memId'],
+                'name' => $data['name'],
+                'phone' => $data['phone'],
+                'created_at' => $data['created_at'],
+                'lnum' => $data['lnum'],
+                'score1' => $data['score1'],
+                'score2' => $data['score2']
+            ]);
+        }
 
         $paging_info_json = json_encode($paging_info, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         $result_array = [
+            'page_sql' => $pageSql, 
             'paging_info' => $paging_info,
             'paging_info_json' => $paging_info_json, 
-            'data' => $data
+            'data_list' => $data_list
         ];
 
         return $result_array;
     }
 
     
+    public function getMemberInfoTotalList() {
+        $sql = "
+            select 
+              @rownum:=@rownum+1 as no, 
+              vv.memId, vv.name, vv.phone, vv.created_at, ifnull(vv.num, 'N') as lnum, ifnull(exam.score1, 'N') as score1, ifnull(exam.score2, 'N') as score2 from (
+                select regi.memId, regi.name, regi.phone, regi.created_at, lect.num
+                from donmm_registration regi
+                left outer join (select ltemp.memId, max(ifnull(ltemp.num, 0)) as num from donmm_lecture ltemp group by ltemp.memId) lect on regi.memId = lect.memId 
+            ) vv left outer join (SELECT 
+            etemp.memId, 
+            GROUP_CONCAT( if(etemp.num=1, etemp.score, NULL) ) AS score1, 
+            GROUP_CONCAT( if(etemp.num=2, etemp.score, NULL) ) AS score2
+            FROM donmm_exam etemp, (SELECT @rownum:=0) no_temp
+            GROUP BY etemp.memId) exam on vv.memId = exam.memId
+            ORDER BY vv.created_at asc 
+        ";
 
+        $query = $this->db->query($sql);
+        $data_list = array();
+        while ($data = $this->db->fetch($query)) {
+            array_push($data_list, [
+                'no' => $data['no'],
+                'mem_id' => $data['memId'],
+                'name' => $data['name'],
+                'phone' => $data['phone'],
+                'created_at' => $data['created_at'],
+                'lnum' => $data['lnum'],
+                'score1' => $data['score1'],
+                'score2' => $data['score2']
+            ]);
+        }
+
+        return $data_list;
+    }
     
 }
