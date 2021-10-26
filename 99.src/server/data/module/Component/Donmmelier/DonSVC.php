@@ -177,6 +177,22 @@ class DonSVC
         );
     }
 
+    public function getLastLectureNumber($login_id) {
+        $lastNum = 0;
+
+        $sql = "SELECT count(*) as cnt FROM `donmm_lecture` where memId = '{$login_id}'";
+        $query = $this->db->query($sql);
+        $data = $this->db->fetch($query);
+        if($data['cnt'] == 0) {
+            return $lastNum;
+        }
+
+        $sql = "SELECT max(ifnull(num, 0)) as last_num FROM `donmm_lecture` where memId = '{$login_id}' group by memId";
+        $query = $this->db->query($sql);
+        $data = $this->db->fetch($query);
+
+        return $data['last_num'];
+    }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     // admin
