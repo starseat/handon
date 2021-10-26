@@ -16,6 +16,8 @@ class DonSVC
         'salt' => 'donmm_admin',
         'cost' => 12 // the default cost is 10
     ];
+    protected $item_row_count = 10;
+    protected $page_block_count = 10;
 
     /**
      * 생성자
@@ -232,6 +234,55 @@ class DonSVC
             //return false;
             return 0;
         }
+    }
+
+    public function getMemberInfoList($page = 1, $searchStr = '', $searchType = '') {
+        $baseSql = "
+            select 
+              @rownum:=@rownum+1 as no, 
+              vv.memId, vv.name, vv.phone, vv.created_at, ifnull(vv.num, 'N') as lnum, ifnull(exam.score1, 'N') as score1, ifnull(exam.score2, 'N') as score2 from (
+                select regi.memId, regi.name, regi.phone, regi.created_at, lect.num
+                from donmm_registration regi
+                left outer join (select ltemp.memId, max(ifnull(ltemp.num, 0)) as num from donmm_lecture ltemp group by ltemp.memId) lect on regi.memId = lect.memId 
+            ) vv left outer join (SELECT 
+            etemp.memId, 
+            GROUP_CONCAT( if(etemp.num=1, etemp.score, NULL) ) AS score1, 
+            GROUP_CONCAT( if(etemp.num=2, etemp.score, NULL) ) AS score2
+            FROM donmm_exam etemp, (SELECT @rownum:=0) no_temp
+            GROUP BY etemp.memId) exam on vv.memId = exam.memId
+            ORDER BY vv.created_at desc 
+        ";
+
+        $searchSql = "SELECT ss_temp.* from ( " . $baseSql . " ) ss_temp ";
+        if($searchStr != '') {
+            if($searchType == 'name') {
+                $searchSql .= "where ss_temp.memId = '{$searchStr}' ";
+            } else { // if($searchType == 'id') {
+                $searchSql .= "where ss_temp.name like '%{$searchStr}%' ";
+            }
+        }
+
+        $totalSql = 'select count(*) as cnt FROM (' . $searchSql . ') as count_temp';
+        $query = $this->db->query($totalSql);
+        $data = $this->db->fetch($query);
+
+        $total_count = $data['cnt'];
+
+        $paging_info = $this->getPagingInfo($page, $total_count, $this->item_row_count, $this->page_block_count);
+
+        $pageSql = "SELECT page_temp.* FROM ( " . $searchSql . " ) page_temp limit " . $paging_info['page_db'] . ", " . $this->item_row_count;
+
+        $query = $this->db->query($pageSql);
+        $data = $this->db->fetch($query);
+
+        $paging_info_json = json_encode($paging_info, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        $result_array = [
+            'paging_info' => $paging_info,
+            'paging_info_json' => $paging_info_json, 
+            'data' => $data
+        ];
+
+        return $result_array;
     }
 
     
