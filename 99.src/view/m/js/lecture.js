@@ -5,7 +5,7 @@ function popupOpen_lecture(event, index, isOpened) {
     }
 
     var lastLectureNum = parseInt($('#last_lecture_num').val(), 10);
-    if (!((lastLectureNum + 1) >= index)) {
+    if(index > (lastLectureNum+1)) {
         alert('이전 강의를 완료해주세요.');
         return false;
     }
@@ -110,7 +110,7 @@ function initLecture2() {
     LECTURE_PLAYER = videojs('lecture-player', VIDEO_OPTIONS);
     LECTURE_PLAYER.ready(function() {
         this.on('ended', function() {
-            alert('2번 다봤당 - ended');
+            sendViewComplated(2);
         });
     });
 }
@@ -128,10 +128,6 @@ function prevLecturePopup() {
 
 function nextLecturePopup() {
     var nextIndex = parseInt($('#lecture-popup-btn-index-next').val(), 10);
-    if (nextIndex == 2) {
-        alert('2회차 교육은 준비중 입니다.');
-        return false;
-    }
     if (nextIndex == 3) {
         alert('3회차 교육은 준비중 입니다.');
         return false;
