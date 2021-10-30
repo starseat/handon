@@ -194,6 +194,94 @@ class DonSVC
         return $data['last_num'];
     }
 
+    public function getExamCount($login_id) {
+        $sql = "SELECT count(*) as cnt FROM `donmm_exam` where memId = '{$login_id}'";
+        $query = $this->db->query($sql);
+        $data = $this->db->fetch($query);
+        return $data['cnt'];
+    }
+
+    public function getExamAnswerList($type) {
+        // O: 1, X: 2
+        if($type == 'a') {
+            return array(
+                4, 3, 4, 4, 2, 
+                2, 1, 4, 3, 2, 
+                4, 1, 3, 1, 1, 
+                2, 1, 1, 2, 2
+            );
+        }
+        else {
+            return array(
+                4, 2, 4, 3, 2, 
+                3, 2, 1, 4, 4, 
+                3, 4, 2, 1, 1, 
+                2, 1, 1, 2, 2
+            );
+        }
+    }
+
+    public function getExamResult($login_id) {
+        $sql = "SELECT memNo, memId, season, num, type, score  FROM `donmm_exam` where memId = '{$login_id}'";
+        $query = $this->db->query($sql);
+        $data = $this->db->fetch($query);
+        return $data;
+    }
+
+    public function getExamResultLast($login_id) {
+        $sql = "SELECT memNo, memId, season, num, type, score  FROM `donmm_exam` where memId = '{$login_id}' 
+                and num = (SELECT max(tt.num) FROM `donmm_exam` tt where tt.memId = '{$login_id}')";
+        $query = $this->db->query($sql);
+        $data = $this->db->fetch($query);
+        return $data;
+    }
+
+    // 응시 X : 0
+    // 합격 : 1
+    // 불합격 - 응시1: -1
+    // 불합격 - 응시2: -2  // 다음기회 X
+    public function checkExamPass($login_id) {
+        $examCount = $this->getExamCount($login_id);
+        if($examCount == 0) {
+            return 0;
+        }
+
+        $examResult = $this->getExamResultLast($login_id);
+        $score = $examResult['score'];
+        $num = $examResult['num'];
+
+        $ret = 0;
+        if($score >= 60) {
+            $ret = 1;
+        }
+        else {
+            if($num > 1) {
+                $ret = -2;
+            }
+            else {
+                $ret = -1;
+            }
+        }
+
+        return $ret;
+    }
+
+    public function insertExamResult($insert_info) {        
+        $memNo = $insert_info['memNo'];
+        $memId = $insert_info['memId'];
+        $type = $insert_info['type'];
+        $score = $insert_info['score'];
+        $season = 1;        
+
+        $sql = "
+            INSERT INTO `donmm_exam` (memNo, memId, season, num, type, score) 
+            VALUES ('{$memNo}', '{$memId}', '{$season}', (SELECT (ifnull(max(tt.num), 0) + 1) num FROM `donmm_exam` tt where tt.memId = '{$memId}'), '{$type}', {$score})
+        ";
+        
+        $this->db->query($sql);
+        return 1;
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     // admin
     ////////////////////////////////////////////////////////////////////////////////////////////////////

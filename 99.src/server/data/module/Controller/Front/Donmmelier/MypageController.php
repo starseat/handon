@@ -61,6 +61,7 @@ class MypageController extends \Controller\Front\Controller
     }
 
     // $this->setData('member', json_encode($memberData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-    $this->setData('member_name', $memNm);
+    $this->setData('last_lecture_num', $donSvc->getLastLectureNumber($memId));
+    $this->setData('member_name', $memNm);    
   }
 }
