@@ -109,3 +109,9 @@ function getCookie(key) {
     });
     return result;
 }
+
+function delCookie(key) {
+    // document.cookie = key + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    // document.cookie = key + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=C.kr;path=/;';
+    setCookie(key, 'null', 1);
+}
