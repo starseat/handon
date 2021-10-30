@@ -3,25 +3,33 @@ $(document).ready(function() {
 });
 
 var __TEMP_QUIZ_INFO_KEY = '';
-var __TEMP_QUIZ_TYPE = 'a'; // generateQuizType()
-var __TEMP_QUIZ_INFO = { answers: [], index: 0, remaining: 600 }
+var __TEMP_QUIZ_TYPE = 'a';
+var __TEMP_QUIZ_INFO = { selectList: [], index: 0, remaining: 600 }
 var __quiz_length = 20;
 var __time_id = 0;
 
 function initExam() {
-    // __TEMP_QUIZ_INFO_KEY = 'quiz_' + $('#member_id').val() + '_' + getToday();
-    __TEMP_QUIZ_INFO_KEY = 'quiz_' + 'dev' + '_' + getToday();
+    __TEMP_QUIZ_TYPE = $('#exam_type').val();
+    if (__TEMP_QUIZ_TYPE) {
+        if (__TEMP_QUIZ_TYPE != 'a' || __TEMP_QUIZ_TYPE != 'b') {
+            __TEMP_QUIZ_TYPE = 'a';
+        }
+    } else {
+        __TEMP_QUIZ_TYPE = 'a';
+    }
+    __TEMP_QUIZ_INFO_KEY = 'donmm_quiz_' + $('#member_id').val() + '_' + $('#exam_number').val();
+    // __TEMP_QUIZ_INFO_KEY = 'quiz_' + 'dev' + '_' + getToday();
     var temp_info = decodeURIComponent(getCookie(__TEMP_QUIZ_INFO_KEY));
     if (typeof temp_info != 'undefined' && temp_info != null && temp_info != 'null') {
         __TEMP_QUIZ_INFO = JSON.parse(temp_info);
     } else {
         for (let i = 0; i < __quiz_length; i++) {
-            __TEMP_QUIZ_INFO.answers[i] = 0;
+            __TEMP_QUIZ_INFO.selectList[i] = 0;
         }
         __TEMP_QUIZ_INFO.remaining = 600;
     }
 
-    getQuizView(__TEMP_QUIZ_TYPE, __TEMP_QUIZ_INFO.index);
+    getQuizView(__TEMP_QUIZ_INFO.index);
     startTimer();
 }
 
@@ -34,7 +42,7 @@ function selectQuizList(num) {
     $('.quiz-list-item').removeClass('quiz_select');
     $($('.quiz-list-item')[(num - 1)]).addClass('quiz_select');
 
-    __TEMP_QUIZ_INFO.answers[__TEMP_QUIZ_INFO.index] = num;
+    __TEMP_QUIZ_INFO.selectList[__TEMP_QUIZ_INFO.index] = num;
     setCookie(__TEMP_QUIZ_INFO_KEY, JSON.stringify(__TEMP_QUIZ_INFO), 1);
 }
 
@@ -62,7 +70,8 @@ function startTimer() {
             clearInterval(__time_id);
             __TEMP_QUIZ_INFO.remaining = 0;
 
-            // 시간 다된거 처리
+            alert('시간이 초가되었습니다. 강제로 제출됩니다.');
+            _submitQuiz();
         }
     }, 1000);
 }
@@ -83,25 +92,66 @@ function getTimeStringSeconds(seconds) {
     return min + ':' + sec;
 }
 
+function submitQuiz(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    var isSubmit = true;
+    for (let i = 0; i < __quiz_length; i++) {
+        if (__TEMP_QUIZ_INFO.selectList[i] == 0) {
+            if (!confirm(parseInt((i + 1), 10) + '번 문제를 풀지 않으셨습니다. 그래도 제출하시겠습니까?')) {
+                isSubmit = false;
+            }
+            break;
+        }
+    }
+
+    if (isSubmit) {
+        _submitQuiz();
+    }
+}
+
+function _submitQuiz() {
+    var $tempForm = $('<form></form>');
+    $tempForm.attr('id', 'temp-submit-form');
+    $tempForm.attr('name', 'temp-submit-form');
+    $tempForm.attr('method', 'post');
+    $tempForm.attr('action', './exam_submit.php');
+    $tempForm.appendTo('#hidden-view-box');
+
+    for (let i = 0; i < __quiz_length; i++) {
+        $tempForm.append('<input type="hidden" name="select_answer_' + i + '" value="' + __TEMP_QUIZ_INFO.selectList[i] + '">');
+    }
+
+    $tempForm.append('<input type="hidden" name="quiz_type" value="' + __TEMP_QUIZ_TYPE + '">');
+    delCookie(__TEMP_QUIZ_INFO_KEY)
+    $tempForm.submit();
+}
+
 function movePrevQuiz(index) {
-    if (__TEMP_QUIZ_INFO.answers[__TEMP_QUIZ_INFO.index] == 0) {
+    if (__TEMP_QUIZ_INFO.selectList[__TEMP_QUIZ_INFO.index] == 0) {
         alert('답변이 선택되지 않았습니다.');
     }
     getQuizView(index);
 }
 
 function moveNextQuiz(index) {
-    if (__TEMP_QUIZ_INFO.answers[__TEMP_QUIZ_INFO.index] == 0) {
+    if (__TEMP_QUIZ_INFO.selectList[__TEMP_QUIZ_INFO.index] == 0) {
         alert('답변이 선택되지 않았습니다.');
     }
     getQuizView(index);
 }
+
 
 function getQuizView(index) {
     __TEMP_QUIZ_INFO.index = index;
     $('#quiz-prev-btn').attr('onclick', 'movePrevQuiz(' + parseInt((index - 1), 10) + ')').show();
     $('#quiz-next-btn').attr('onclick', 'movePrevQuiz(' + parseInt((index + 1), 10) + ')').show();
     $('#quiz-questions').empty();
+
+    $('#quiz-submit-btn').hide();
 
     type = (__TEMP_QUIZ_TYPE + '').toLocaleLowerCase();
     if (type == 'a') {
@@ -110,8 +160,8 @@ function getQuizView(index) {
         getQuizView_b(index);
     }
 
-    if (__TEMP_QUIZ_INFO.answers[__TEMP_QUIZ_INFO.index] > 0) {
-        $('.quiz-list-item').eq(__TEMP_QUIZ_INFO.answers[__TEMP_QUIZ_INFO.index] - 1).addClass('quiz_select');
+    if (__TEMP_QUIZ_INFO.selectList[__TEMP_QUIZ_INFO.index] > 0) {
+        $('.quiz-list-item').eq(__TEMP_QUIZ_INFO.selectList[__TEMP_QUIZ_INFO.index] - 1).addClass('quiz_select');
     }
 }
 
@@ -245,6 +295,24 @@ function getQuizView_b(index) {
     }
 }
 
+// 1 ~ 3
+function viewQuizTitleClass1() {
+    $('#quiz-class').text('제 1교시');
+    $('#quiz-title').text('한돈 그것을 알려드림');
+}
+
+// 4 ~ 8
+function viewQuizTitleClass2() {
+    $('#quiz-class').text('제 2교시');
+    $('#quiz-title').text('한돈학개론');
+}
+
+// 9 ~ 20
+function viewQuizTitleClass3() {
+    $('#quiz-class').text('제 3교시');
+    $('#quiz-title').text('한돈 굽고 인싸되기!');
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Quiz - A
@@ -279,6 +347,8 @@ function getQuizView_a_0() {
     $('#quiz-number').text(1);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass1();
 }
 
 function getQuizView_a_1() {
@@ -310,6 +380,8 @@ function getQuizView_a_1() {
     $('#quiz-number').text(2);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass1();
 }
 
 function getQuizView_a_2() {
@@ -350,6 +422,8 @@ function getQuizView_a_2() {
     $('#quiz-number').text(3);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass1();
 }
 
 function getQuizView_a_3() {
@@ -381,6 +455,8 @@ function getQuizView_a_3() {
     $('#quiz-number').text(4);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass2();
 }
 
 function getQuizView_a_4() {
@@ -412,6 +488,8 @@ function getQuizView_a_4() {
     $('#quiz-number').text(5);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass2();
 }
 
 function getQuizView_a_5() {
@@ -446,6 +524,8 @@ function getQuizView_a_5() {
     $('#quiz-number').text(6);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass2();
 }
 
 function getQuizView_a_6() {
@@ -477,6 +557,8 @@ function getQuizView_a_6() {
     $('#quiz-number').text(7);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass2();
 }
 
 function getQuizView_a_7() {
@@ -512,6 +594,8 @@ function getQuizView_a_7() {
     $('#quiz-number').text(8);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass2();
 }
 
 function getQuizView_a_8() {
@@ -547,6 +631,8 @@ function getQuizView_a_8() {
     $('#quiz-number').text(9);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_a_9() {
@@ -578,6 +664,8 @@ function getQuizView_a_9() {
     $('#quiz-number').text(10);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_a_10() {
@@ -613,6 +701,8 @@ function getQuizView_a_10() {
     $('#quiz-number').text(11);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_a_11() {
@@ -644,6 +734,8 @@ function getQuizView_a_11() {
     $('#quiz-number').text(12);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_a_12() {
@@ -675,6 +767,8 @@ function getQuizView_a_12() {
     $('#quiz-number').text(13);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_a_13() {
@@ -706,6 +800,8 @@ function getQuizView_a_13() {
     $('#quiz-number').text(14);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_a_14() {
@@ -737,6 +833,8 @@ function getQuizView_a_14() {
     $('#quiz-number').text(15);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_a_15() {
@@ -750,6 +848,8 @@ function getQuizView_a_15() {
     $('#quiz-number').text(16);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_a_16() {
@@ -763,6 +863,8 @@ function getQuizView_a_16() {
     $('#quiz-number').text(17);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_a_17() {
@@ -776,6 +878,8 @@ function getQuizView_a_17() {
     $('#quiz-number').text(18);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_a_18() {
@@ -789,10 +893,13 @@ function getQuizView_a_18() {
     $('#quiz-number').text(19);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_a_19() {
     $('#quiz-next-btn').hide();
+    $('#quiz-submit-btn').show();
 
     var quiz_list_title = '<strong class="quiz_list_title"><span>20.</span>모든 고기는 딱 2번만 뒤집는거다</strong>';
     var quiz_list_items = '';
@@ -804,6 +911,8 @@ function getQuizView_a_19() {
     $('#quiz-number').text(20);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -840,6 +949,8 @@ function getQuizView_b_0() {
     $('#quiz-number').text(1);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass1();
 }
 
 function getQuizView_b_1() {
@@ -871,6 +982,8 @@ function getQuizView_b_1() {
     $('#quiz-number').text(2);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass1();
 }
 
 function getQuizView_b_2() {
@@ -911,6 +1024,8 @@ function getQuizView_b_2() {
     $('#quiz-number').text(3);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass1();
 }
 
 function getQuizView_b_3() {
@@ -942,6 +1057,8 @@ function getQuizView_b_3() {
     $('#quiz-number').text(4);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass2();
 }
 
 function getQuizView_b_4() {
@@ -976,6 +1093,8 @@ function getQuizView_b_4() {
     $('#quiz-number').text(5);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass2();
 }
 
 function getQuizView_b_5() {
@@ -1010,6 +1129,8 @@ function getQuizView_b_5() {
     $('#quiz-number').text(6);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass2();
 }
 
 function getQuizView_b_6() {
@@ -1045,6 +1166,8 @@ function getQuizView_b_6() {
     $('#quiz-number').text(7);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass2();
 }
 
 function getQuizView_b_7() {
@@ -1080,6 +1203,8 @@ function getQuizView_b_7() {
     $('#quiz-number').text(8);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass2();
 }
 
 function getQuizView_b_8() {
@@ -1115,6 +1240,8 @@ function getQuizView_b_8() {
     $('#quiz-number').text(9);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_b_9() {
@@ -1146,6 +1273,8 @@ function getQuizView_b_9() {
     $('#quiz-number').text(10);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_b_10() {
@@ -1177,6 +1306,8 @@ function getQuizView_b_10() {
     $('#quiz-number').text(11);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_b_11() {
@@ -1212,6 +1343,8 @@ function getQuizView_b_11() {
     $('#quiz-number').text(12);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_b_12() {
@@ -1247,6 +1380,8 @@ function getQuizView_b_12() {
     $('#quiz-number').text(13);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_b_13() {
@@ -1278,6 +1413,8 @@ function getQuizView_b_13() {
     $('#quiz-number').text(14);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_b_14() {
@@ -1309,6 +1446,8 @@ function getQuizView_b_14() {
     $('#quiz-number').text(15);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_b_15() {
@@ -1322,6 +1461,8 @@ function getQuizView_b_15() {
     $('#quiz-number').text(16);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_b_16() {
@@ -1335,6 +1476,8 @@ function getQuizView_b_16() {
     $('#quiz-number').text(17);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_b_17() {
@@ -1348,6 +1491,8 @@ function getQuizView_b_17() {
     $('#quiz-number').text(18);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_b_18() {
@@ -1361,10 +1506,13 @@ function getQuizView_b_18() {
     $('#quiz-number').text(19);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }
 
 function getQuizView_b_19() {
     $('#quiz-next-btn').hide();
+    $('#quiz-submit-btn').show();
 
     var quiz_list_title = '<strong class="quiz_list_title"><span>20.</span>모든 고기는 딱 2번만 뒤집는거다</strong>';
     var quiz_list_items = '';
@@ -1376,4 +1524,6 @@ function getQuizView_b_19() {
     $('#quiz-number').text(20);
     $('#quiz-questions').append(quiz_list_title);
     $('#quiz-questions').append(quiz_list_items);
+
+    viewQuizTitleClass3();
 }

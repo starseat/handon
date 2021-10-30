@@ -158,7 +158,7 @@ input,button,select {outline:none; border-radius:0;}
 .form_agree .input_label {position:static; font-size:14px; color:#212121; cursor:pointer;}
 .btn_form_send {display:block; margin:53px auto 0; width:209px; height:58px; line-height:58px; font-size:16px; background-color:#a61e1c; color:#fff;}
 .btn_form_send:hover,
-.study_list_w .module_btn_red:hover {background-color:#000; border-color:#000;}
+.study_list_w .module_btn_red:hover {background-color:#000 !important;; border-color:#000 !important;}
 
 .section_03_w {background-color:#181717; }
 .section_03_w .section_inner {z-index:3; height:896px; vertical-align:top;}
@@ -320,7 +320,7 @@ input,button,select {outline:none; border-radius:0;}
     .banner_type_row2 .bnr_inner {float:left; width:50%; padding-right:40px; box-sizing:border-box;}
     .bnr_cont {display:block; position:relative; padding:30px 250px 45px 30px; height:180px; box-sizing:border-box; color:#333; background-color:#faefda;}
     .bnr_inner:nth-child(2) .bnr_cont {background-color:#ebd8d1;}
-    .bnr_title {display:block; display:block; font-size:20px;}
+    .bnr_title {display:block; display:block; height:45px; font-size:20px; letter-spacing:-0.025rem;}
     .bnr_text {display:block; margin-top:30px; font-size:16px;}
     .bnr_cont img {display:block; position:Absolute; right:0; top:0; width:250px; height:180px;}
     .license_step_w {}
@@ -465,7 +465,7 @@ input,button,select {outline:none; border-radius:0;}
 .test_info_test strong {position:relative; padding:5px 10px; display:block;}
 .test_info_test strong:first-child:after {display:none;}
 .test_careful {display:block; padding-top:30px; width:100%; margin:0 auto; font-size:18px;}
-.handon_test_w .module_btn_fullred,
+.module_btn_fullred,
 .handon_test_w .module_btn_red {height:70px; line-height:70px;  width:500px; font-size:32px; margin:37px auto 0; border-width:2px; box-sizing:border-box; font-weight:700;}
 .handon_unv {display:block; margin:90px auto 0; height:100%; max-height:75px; overflow:hidden; text-align:Center;}
 .handon_unv img {display:inline-block;}
@@ -481,10 +481,10 @@ input,button,select {outline:none; border-radius:0;}
 .hd_quiz_w {position:relative; width:100%; margin:25px auto 0; padding:0 56px; box-sizing:border-box;}
 .quiz_page_w {overflow:hidden; margin:0 auto; display:flex; flex-shrink:1; width:calc(100% - 50px);}
 .quiz_prev,
-.quiz_next {display:inline-block; width:235px; height:48px; box-sizing:border-box; font-size:1.19em; padding:0.5em 1.06em 0.4em; background-color:#dedad4; border:1px solid #313131; border-radius:8px; font-weight:700; font-family:'한돈'; color:#000;}
+.quiz_next {display:inline-block; flex-shrink:0; width:145px; height:48px; box-sizing:border-box; font-size:1.19em; padding:0.5em 1.06em 0.4em; background-color:#dedad4; border:1px solid #313131; border-radius:8px; font-weight:700; font-family:'한돈'; color:#000;}
 .quiz_prev i,
 .quiz_next i{color:#000;}
-.quiz_number {position:relative; top:0; width:100%; height:48px; line-height:50px; font-weight:700; font-size:32px;}
+.quiz_number {position:relative; top:0; width:calc(100% - 290px); height:48px; line-height:50px; font-weight:700; font-size:32px;}
 .quiz_list_w {margin:40px auto 0;}
 .quiz_list_title {display:block; position:Relative; padding-left:50px; text-align:left; font-size:26px;}
 .quiz_list_title span {position:Absolute; left:0; top:0px;}
@@ -541,10 +541,11 @@ input,button,select {outline:none; border-radius:0;}
 .license_input::placeholder {font-size:16px; color:#999;}
 .input_btn {}
 .bg_black {display:block; position:Absolute; right:0; top:0; min-width:140px; height:40px; line-height:36px; font-weight:700; color:#fff; background-color:#333;}
-.module_btn_red {margin:50px auto 0; display:block; min-width:252px; height:60px; line-height:60px; border:2px solid #9a1a18; color:#9a1a18; font-weight:700; font-size:18px; box-sizing:border-box; padding:0 60px;}
+.module_btn_red,
+.module_button_w [class^="module_btn_"] {margin:50px auto 0; display:block; min-width:252px; height:60px; line-height:60px; border:2px solid #9a1a18; color:#9a1a18; font-weight:700; font-size:18px; box-sizing:border-box; padding:0 60px;}
 .module_btn_red:hover {color:#fff; background-color:#9a1a18;}
 .module_btn_fullred {color:#fff !important; background-color:#9a1a18;}
-.module_btn_fullred:hover {background-color:#0d0d0d;}
+.module_btn_fullred:hover {background-color:#0d0d0d !important; border:2px solid #0d0d0d; !important;}
 .license_message_w {}
 .license_message_w textarea {margin-top:20px; resize:none; width:100%; height:200px; box-sizing:border-box; border:1px solid #e5e5e5; padding:18px 22px; font-size:16px; color:#999;}
 .license_add_w {overflow:hidden; padding-bottom:30px; border-bottom:1px solid #e5e5e5; margin-top:28px; position:relative; padding-left:95px;}
@@ -577,7 +578,8 @@ input,button,select {outline:none; border-radius:0;}
 /* 서브 0403 : 자격증신청하기 */
 .module_button_w {text-align:center;}
 .module_button_w [class^="module_btn_"]{display:inline-block; margin:50px 7px 0;}
-.module_button_w [class^="module_btn_"]:hover {text-decoration:underline;}
+.license_issue_w .module_button_w {width:904px;}
+.license_issue_w [class^="module_btn_"] {width:363px; padding:0;}
 
 /* 서브 0404 : 자격증신청하기 */
 .license_issue_view {padding:100px 0; width:960px;}
@@ -589,7 +591,7 @@ input,button,select {outline:none; border-radius:0;}
 
 
 /* 관리자 로그인 */
-.admin_login_w {width:400px; margin:0 auto;}
+.admin_login_w {width:500px; height:500px; margin:0 auto; padding:60px 50px 50px; box-sizing:border-box; border:1px solid #ebebeb; box-shadow:10px 10px 4px #e5e5e5;}
 .login_title {display:block; text-align:center; text-transform:uppercase; font-size:40px; color:#0d0d0d; font-family: '한돈';}
 .login_hd_flst {margin-top:79px;}
 .login_input_w {position:relative; margin-top:23px;}
@@ -597,7 +599,9 @@ input,button,select {outline:none; border-radius:0;}
 [class^="lg_hdlb_"] {position:Absolute; left:45px; bottom:12px; font-size:16px; color:#999999;}
 .login_input_w i {position:Absolute; left:0; bottom:12px; color:#111; font-size:24px;}
 [class^="lg_hdinput_"] {display:block; padding-left:45px;  width:100%; height:40px; line-height:40px; border:0; border-bottom:1px solid #666;font-size:16px; color:#333; box-sizing:border-box;}
-.lg_hd_btn {display:block; width:100%; margin-top:100px; background-color:#fff;}
+[class^="lg_hdinput_"]:focus {border-bottom:2px solid #9a1a18;}
+.lg_hd_btn {display:block; width:100%; margin-top:100px; border:0; font-size:24px; margin:102px 0 0 !important;}
+.lg_hd_btn:hover {text-decoration:none !important; cursor:pointer;}
 
 
 /* 관리자 회원관리 */

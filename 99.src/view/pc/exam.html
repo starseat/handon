@@ -22,6 +22,11 @@
         .player_popup_text.text-2 {
             display: none;
         }
+        
+        #hidden-view-box,
+        #temp-submit-form {
+            display: none;
+        }
     </style>
 </head>
 
@@ -84,6 +89,7 @@
                         <span class="mi_text2">님</span>
                     </div>
                     <input type="hidden" id="member_id" value="{=member_id}">
+                    <input type="hidden" id="exam_number" value="{=exam_number}">
                     <div class="mypage_menu_w">
                         <ul class="mp_menu_list">
                             <li class="mpml_inner">
@@ -119,6 +125,7 @@
                     </button>
                 </div>
                 <div class="sub_article_r">
+                    <input type="hidden" id="exam_type" value="{=exam_type}">
                     <div class="handon_test_w handon_quiz" id="quiz-box">
                         <div class="handon_test_inner">
                             <div class="handon_test_cont">
@@ -145,6 +152,7 @@
                                         <div class="quiz_list_w" id="quiz-questions">
 
                                         </div>
+                                        <button type="button" class="module_btn_red" id="quiz-submit-btn" onclick="submitQuiz(event)">제출하기</button>
                                         <span class="handon_unv"><img src="./imgs/pc/mark_handonunv.png" alt="한돈대학"><i class="blind">한돈대학</i></span>
                                     </div>
                                 </div>
@@ -155,7 +163,7 @@
             </div>
 
             <input type="hidden" id="hiddenLastLectureNum" value="{=last_lecture_num}">
-
+            <div id="hidden-view-box"></div>
             <!-- 레이어팝업 -->
             <div class="layer_popup_w">
 
