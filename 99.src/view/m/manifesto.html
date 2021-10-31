@@ -74,11 +74,11 @@
                                     <a href="./lecture.php" class="ssl_cont">내 강의 보기</a>
                                 </li>
                                 <li class="ssl_inner">
-                                    <a href="javascript: void(0);" class="ssl_cont">내 시험보기</a>
+                                    <a href="javascript: void(0);" class="ssl_cont" onclick="popupOpen_preparing(event);">내 시험보기</a>
+                                    <!-- ./exam_init.php -->
                                 </li>
                                 <li class="ssl_inner">
-                                    <a href="javascript: void(0);" class="ssl_cont" onclick="popupOpen_preparing(event);">자격증 발급 신청/조회</a>
-                                    <!-- ./manifesto.php -->
+                                    <a href="javascript: void(0);" class="ssl_cont">자격증 발급 신청/조회</a>
                                 </li>
                                 <li class="ssl_inner">
                                     <a href="https://www.han-don.com/bbs/index.php?board=announce" class="ssl_cont" target="_blank">공지사항</a>
@@ -172,8 +172,8 @@
                                 </p>
                             </div>
                         </div>
-                        <button type="button" class="module_btn_red bg_red">한돈소믈리에 자격증 발급받기</button>
-                        <button type="button" class="module_btn_red">한돈소믈리에 선언문 공유하기</button>
+                        <button type="button" class="module_btn_red bg_red" onclick="movePage('license');">한돈소믈리에 자격증 발급받기</button>
+                        <button type="button" class="module_btn_red" onclick="shareManifesto();">한돈소믈리에 선언문 공유하기</button>
                     </div>
                 </div>
             </div>
