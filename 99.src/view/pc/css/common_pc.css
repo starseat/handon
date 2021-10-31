@@ -479,12 +479,14 @@ input,button,select {outline:none; border-radius:0;}
 .qt_text {float:left;}
 .qt_timer {float:left; }
 .hd_quiz_w {position:relative; width:100%; margin:25px auto 0; padding:0 56px; box-sizing:border-box;}
-.quiz_page_w {overflow:hidden; margin:0 auto; display:flex; flex-shrink:1; width:calc(100% - 50px);}
+.quiz_page_w {overflow:hidden; position:Relative; margin:0 auto; width:calc(100% - 50px);}
 .quiz_prev,
-.quiz_next {display:inline-block; flex-shrink:0; width:145px; height:48px; box-sizing:border-box; font-size:1.19em; padding:0.5em 1.06em 0.4em; background-color:#dedad4; border:1px solid #313131; border-radius:8px; font-weight:700; font-family:'한돈'; color:#000;}
+.quiz_next {position:absolute; top:0; z-index:2; width:145px; height:48px; box-sizing:border-box; font-size:1.19em; padding:0.5em 1.06em 0.4em; background-color:#dedad4; border:1px solid #313131; border-radius:8px; font-weight:700; font-family:'한돈'; color:#000;}
+.quiz_prev {left:0;}
+.quiz_next {right:0;}
 .quiz_prev i,
 .quiz_next i{color:#000;}
-.quiz_number {position:relative; top:0; width:calc(100% - 290px); height:48px; line-height:50px; font-weight:700; font-size:32px;}
+.quiz_number {position:relative; top:0; z-index:1; margin:0 auto; width:calc(100% - 290px); height:48px; line-height:50px; font-weight:700; font-size:32px;}
 .quiz_list_w {margin:40px auto 0;}
 .quiz_list_title {display:block; position:Relative; padding-left:50px; text-align:left; font-size:26px;}
 .quiz_list_title span {position:Absolute; left:0; top:0px;}

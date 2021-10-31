@@ -573,12 +573,15 @@ input,button,select {outline:none; border-radius:0;}
 .qt_text {float:left;}
 .qt_timer {float:left; }
 .hd_quiz_w {position:relative; max-width:370px; margin:0.93em auto; }
-.quiz_page_w {overflow:hidden; display:flex; width:100%;}
+.quiz_page_w {position:relative; width:100%;}
+.quiz_page_w:after {display:block; content:''; clear:both;}
 .quiz_prev,
-.quiz_next {width:60%; font-size:1em; padding:0.35em; background-color:#dedad4; border:1px solid #313131; border-radius:8px; font-weight:700; font-family:'한돈'; color:#000;}
+.quiz_next {position:Absolute; top:0; z-index:2; width:30%; font-size:1em; padding:0.35em; background-color:#dedad4; border:1px solid #313131; border-radius:8px; font-weight:700; font-family:'한돈'; color:#000;}
+.quiz_prev {left:0;}
+.quiz_next {right:0;}
 .quiz_prev i,
 .quiz_next i {color:#000;}
-.quiz_number {position:relative; top:2px; width:100%; font-weight:700; font-size:1.25em;}
+.quiz_number {position:relative; z-index:1; top:2px; margin:0 auto; width:55%; font-weight:700; font-size:1.25em;}
 .quiz_list_w {margin-top:2.19em;}
 .quiz_ex_list li {padding:0.25em 1em 0.25em 1.8em; line-height:20px; position:Relative; }
 .quiz_ex_list li span {position:Absolute; left:0; top:0.25em;}
@@ -771,6 +774,8 @@ input,button,select {outline:none; border-radius:0;}
     .test_schedule_inner {margin-top:5px; padding-left:60px;}
     .test_type {top:-1px; height:22px; line-height:17px;}
 
+    .quiz_number {width:30%;}
+    .quiz_prev,.quiz_next {width:34%;}
 }
 /*  --------------- end:모바일 제어  --------------- */
 
