@@ -11,7 +11,7 @@
  * @copyright ⓒ 2016, NHN godo: Corp.
  * @link http://www.godo.co.kr
  */
-namespace Controller\Front\Donmmelier;
+namespace Controller\Mobile\Donmmelier;
 
 use App;
 use Globals;
@@ -26,11 +26,11 @@ use Framework\Debug\Exception\AlertBackException;
 use Framework\Debug\Exception\RedirectLoginException;
 
 /**
- * 한돈 소믈리에 시험 준비
+ * 한돈 소믈리에 시험 처리
  *  - 로그인 필요
  * @author jw.lee
  */
-class ExamInitController extends \Controller\Front\Controller
+class ExamController extends \Controller\Mobile\Controller
 {
   /**
    * index
@@ -78,7 +78,23 @@ class ExamInitController extends \Controller\Front\Controller
       exit;
     }
 
+    $eCount = $retExam;
+    if($eCount == -1) {
+      $eCount = 1;
+    }
+
+    $examType = Request::get()->get('qtype');
+    if(!isset($examType) || empty($examType)) {
+      $examType = 'a';
+    }
+    else {
+      $examType = strtolower($examType);
+    }
+
     $this->setData('last_lecture_num', $donSvc->getLastLectureNumber($memId));
-    $this->setData('member_name', $memNm); 
+    $this->setData('member_name', $memNm);
+    $this->setData('member_id', $memId);
+    $this->setData('exam_type', $examType);
+    $this->setData('exam_number', ($eCount) + 1);
   }
 }

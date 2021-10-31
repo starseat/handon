@@ -26,7 +26,7 @@ use Framework\Debug\Exception\AlertBackException;
 use Framework\Debug\Exception\RedirectLoginException;
 
 /**
- * 한돈 소믈리에 자격증
+ * 한돈 소믈리에 자격증 신청
  *  - 로그인 필요
  * @author jw.lee
  */

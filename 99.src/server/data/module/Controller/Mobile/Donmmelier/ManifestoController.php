@@ -11,7 +11,7 @@
  * @copyright ⓒ 2016, NHN godo: Corp.
  * @link http://www.godo.co.kr
  */
-namespace Controller\Front\Donmmelier;
+namespace Controller\Mobile\Donmmelier;
 
 use App;
 use Globals;
@@ -26,11 +26,11 @@ use Framework\Debug\Exception\AlertBackException;
 use Framework\Debug\Exception\RedirectLoginException;
 
 /**
- * 한돈 소믈리에 시험 준비
+ * 한돈 소믈리에 선언문
  *  - 로그인 필요
  * @author jw.lee
  */
-class ExamInitController extends \Controller\Front\Controller
+class ManifestoController extends \Controller\Mobile\Controller
 {
   /**
    * index
@@ -53,32 +53,32 @@ class ExamInitController extends \Controller\Front\Controller
     $memId = $memberData['memId'];
     $memNm = $memberData['memNm'];
 
+    $is_regi = 1;
     $regi_count = $donSvc->getCountDonmmRegisteredFromId($memId);
     if($regi_count < 1) {
-      $msg = 'alert(\'수강 신청을 하신 후 이용 바랍니다.\');parent.location.href=\'./index.php\';';
-      $this->js($msg);
-      exit;
+      $is_regi = 0;
     }
 
+    $is_all_view_lecture = 1;
     $lnum = $donSvc->getLastLectureNumber($memId);
     if($lnum < 3) {
-      $msg = 'alert(\'강의를 모두 보아야 이용 가능합니다.\');parent.location.href=\'./lecture.php\';';
-      $this->js($msg);
-      exit;
+      $is_all_view_lecture = 0;
     }
 
+    $is_pass = 1;
     // 응시 X : 0
     // 합격 : 1
     // 불합격 - 응시1: -1
     // 불합격 - 응시2: -2  // 다음기회 X
     $retExam = $donSvc->checkExamPass($memId);
-    if($retExam == 1 || $retExam == -2) {
-      $msg = 'parent.location.href=\'./exam_result.php\';';
-      $this->js($msg);
-      exit;
+    if($retExam < 1) {
+      $is_pass = 0;
     }
 
     $this->setData('last_lecture_num', $donSvc->getLastLectureNumber($memId));
-    $this->setData('member_name', $memNm); 
+    $this->setData('member_name', $memNm);
+    $this->setData('is_regi', $is_regi);
+    $this->setData('is_all_view_lecture', $is_all_view_lecture);
+    $this->setData('is_pass', $is_pass);
   }
 }

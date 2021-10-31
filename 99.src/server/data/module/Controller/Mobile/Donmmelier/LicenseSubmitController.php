@@ -11,7 +11,7 @@
  * @copyright ⓒ 2016, NHN godo: Corp.
  * @link http://www.godo.co.kr
  */
-namespace Controller\Front\Donmmelier;
+namespace Controller\Mobile\Donmmelier;
 
 use App;
 use Globals;
@@ -26,11 +26,11 @@ use Framework\Debug\Exception\AlertBackException;
 use Framework\Debug\Exception\RedirectLoginException;
 
 /**
- * 한돈 소믈리에 자격증 신청 결과
+ * 한돈 소믈리에 자격증 신청서 제출
  *  - 로그인 필요
  * @author jw.lee
  */
-class LicenseResultController extends \Controller\Front\Controller
+class LicenseSubmitController extends \Controller\Mobile\Controller
 {
   /**
    * index
@@ -79,28 +79,42 @@ class LicenseResultController extends \Controller\Front\Controller
       exit;
     }
 
-    $lCount = $donSvc->getLicenseCount($memId);
-    if($lCount < 1) {
-      $msg = 'alert(\'한돈 소믈리에 자격증 신청 후 바랍니다.\');parent.location.href=\'manifesto./.php\';';
-      $this->js($msg);
-      exit;
-    }
+    $params = Request::post()->toArray();
+    
+    $_uploadFile = Request::files()->get('licenseFile');
+    $uploadInfo = $donSvc->uploadImage($_uploadFile);
 
-    $lInfo = $donSvc->getLicenseInfo($memId);
+    $image_name = $uploadInfo['file_name'];
+    $image_name_save = $uploadInfo['file_save_name'];
+    $upload_path = $uploadInfo['upload_file_path'];
 
-    $this->setData('last_lecture_num', $donSvc->getLastLectureNumber($memId));
-    $this->setData('member_id', $memId);
-    $this->setData('member_name', $memNm);
-    $this->setData('license_name', $lInfo['name']);
-    $this->setData('license_phone', $lInfo['phone']);
-    $this->setData('license_post_code', $lInfo['post_code']);
-    $this->setData('license_address', $lInfo['address']);
-    $this->setData('license_address_detail', $lInfo['address_detail']);
-    $this->setData('license_address_extra', $lInfo['address_extra']);
-    $this->setData('license_send_message', $lInfo['send_message']);
-    $this->setData('license_img_real_name', $lInfo['img_real_name']);
-    $this->setData('license_img_save_name', $lInfo['img_save_name']);
-    $this->setData('license_img_upload_path', $lInfo['img_upload_path']);
-    $this->setData('license_created_at', $lInfo['created_at']);    
+    $insert_info = [
+      'memNo' => $memberData['memNo'], 
+      'memId' => $memId, 
+      'season' => 1, 
+      'name' => $params['licenseName'], 
+      'phone' => $params['licensePhone'], 
+      'post_code' => $params['licensePostCode'], 
+      'address' => $params['licenseAddress'], 
+      'address_detail' => $params['licenseAddressDetail'], 
+      'address_extra' => $params['licenseAddressExtra'], 
+      'send_message' => $params['licenseSendMessage'], 
+      'img_real_name' => $image_name, 
+      'img_save_name' => $image_name_save, 
+      'img_upload_path' => $upload_path
+    ];
+
+    // $this->setData('last_lecture_num', $donSvc->getLastLectureNumber($memId));
+    // $this->setData('member_name', $memNm);
+    // $this->setData('params', json_encode($params, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    // $this->setData('insert_info', json_encode($insert_info, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    // $this->setData('godo_directory_uri', Request::getDirectoryUri());
+    // $this->setData('godo_file_uri', Request::getFileUri());
+
+    $donSvc->insertLicenseSendInfo($insert_info);
+    $msg = 'parent.location.href=\'./license_result.php\';';
+    $this->js($msg);
+    exit;
+    
   }
 }

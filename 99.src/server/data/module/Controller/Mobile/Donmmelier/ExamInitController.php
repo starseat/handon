@@ -11,7 +11,7 @@
  * @copyright ⓒ 2016, NHN godo: Corp.
  * @link http://www.godo.co.kr
  */
-namespace Controller\Front\Donmmelier;
+namespace Controller\Mobile\Donmmelier;
 
 use App;
 use Globals;
@@ -30,7 +30,7 @@ use Framework\Debug\Exception\RedirectLoginException;
  *  - 로그인 필요
  * @author jw.lee
  */
-class ExamInitController extends \Controller\Front\Controller
+class ExamInitController extends \Controller\Mobile\Controller
 {
   /**
    * index
