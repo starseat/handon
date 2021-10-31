@@ -65,3 +65,26 @@ CREATE TABLE donmm_members (
 INSERT INTO donmm_members (user_id, name, password, member_type)
 VALUES ('admin', '관리자', '$2y$10$xWS5oYGmDHnVju5qWFJX.evgGxzmjQJoycBtG.ISbPHlOBjFJWBsO', 'A');
 
+/**
+ * 돈믈리에 자격증
+ */
+CREATE TABLE donmm_license (
+    seq BIGINT NOT NULL AUTO_INCREMENT comment 'pk', 
+    memNo int(10) NOT NULL comment '로그인 계정 번호', 
+    memId varchar(50) NOT NULL comment '로그인 계정 id', 
+    season int NOT NULL comment '시즌', 
+    name VARCHAR(32) NOT NULL comment '이름',
+    phone VARCHAR(16) NOT NULL comment '전화번호',
+    post_code VARCHAR(16) NOT NULL comment '우편번호',
+    address VARCHAR(64) NOT NULL comment '주소',
+    address_detail VARCHAR(64) NOT NULL comment '상세 주소',
+    address_extra VARCHAR(64) NOT NULL comment '참고 주소',
+    send_message VARCHAR(64) NULL comment '배송 메시지',
+    img_real_name VARCHAR(256) NOT NULL comment '이미지 실제이름',
+	img_save_name VARCHAR(256) NOT NULL comment '이미지 저장이름', 
+    img_upload_path VARCHAR(2048) NOT NULL comment '이미지 경로', 
+    created_at DATETIME NOT NULL DEFAULT now() comment '등록 날짜',
+    PRIMARY KEY (`seq`, `memNo`, `memId` )
+) COLLATE='utf8mb4_unicode_ci' ENGINE=InnoDB;
+
+
