@@ -595,4 +595,88 @@ class DonSVC
         return $data_list;
     }
     
+    public function getLicenseInfoList($page = 1, $searchType = '',  $searchStr = '') {
+        $baseSql = "
+            SELECT 
+                @rownum:=@rownum+1 as no, lic.memNo, lic.memId, lic.season, lic.name, lic.phone, 
+                lic.post_code, lic.address, lic.address_detail, lic.address_extra, lic.send_message, lic.created_at
+            FROM donmm_license lic, (SELECT @rownum:=0) no_temp
+            order by lic.created_at desc
+        ";
+
+        $searchSql = "SELECT ss_temp.* from ( " . $baseSql . " ) ss_temp ";
+        if($searchStr != '') {
+            if($searchType == 'name') {
+                $searchSql .= "where name like '%{$searchStr}%' ";
+            } else { // if($searchType == 'id') {
+                $searchSql .= "where memId = '{$searchStr}' ";
+            }
+        }
+
+        $totalSql = 'select count(*) as cnt FROM (' . $searchSql . ') as count_temp';
+        $query = $this->db->query($totalSql);
+        $data = $this->db->fetch($query);
+
+        $total_count = $data['cnt'];
+
+        $paging_info = $this->getPagingInfo($page, $total_count, $this->item_row_count, $this->page_block_count);
+
+        $pageSql = "SELECT page_temp.* FROM ( " . $searchSql . " ) page_temp limit " . $paging_info['page_db'] . ", " . $this->item_row_count;
+
+        $query = $this->db->query($pageSql);
+        $data_list = array();
+        while ($data = $this->db->fetch($query)) {
+            array_push($data_list, [
+                'no' => $data['no'],
+                'mem_id' => $data['memId'],
+                'name' => $data['name'],
+                'phone' => $data['phone'],
+                'post_code' => $data['post_code'],
+                'address' => $data['address'],
+                'address_detail' => $data['address_detail'],
+                'address_extra' => $data['address_extra'],
+                'send_message' => $data['send_message'],
+                'created_at' => $data['created_at']
+            ]);
+        }
+        $paging_info_json = json_encode($paging_info, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        $result_array = [
+            'page_sql' => $pageSql, 
+            'paging_info' => $paging_info,
+            'paging_info_json' => $paging_info_json, 
+            'data_list' => $data_list
+        ];
+
+        return $result_array;
+    }
+
+    
+    public function getLicenseInfoTotalList() {
+        $sql = "
+        SELECT 
+            @rownum:=@rownum+1 as no, lic.memNo, lic.memId, lic.season, lic.name, lic.phone, 
+            lic.post_code, lic.address, lic.address_detail, lic.address_extra, lic.send_message, lic.created_at
+        FROM donmm_license lic, (SELECT @rownum:=0) no_temp
+        order by lic.created_at desc
+        ";
+
+        $query = $this->db->query($sql);
+        $data_list = array();
+        while ($data = $this->db->fetch($query)) {
+            array_push($data_list, [
+                'no' => $data['no'],
+                'mem_id' => $data['memId'],
+                'name' => $data['name'],
+                'phone' => $data['phone'],
+                'post_code' => $data['post_code'],
+                'address' => $data['address'],
+                'address_detail' => $data['address_detail'],
+                'address_extra' => $data['address_extra'],
+                'send_message' => $data['send_message'],
+                'created_at' => $data['created_at']
+            ]);
+        }
+
+        return $data_list;
+    }
 }
