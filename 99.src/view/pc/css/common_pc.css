@@ -556,6 +556,8 @@ input,button,select {outline:none; border-radius:0;}
 .addfile_info {float:left; }
 .addfile_info_text{display:block; font-size:14px; color:#999;}
 .addfile_upload {float:right; position:relative; padding-right:140px; width:420px; height:40px; background-color:#e6e6e6; box-sizing:border-box;}
+.addfile_upload .input_btn {line-height:40px; font-weight:400; text-align:center; font-size:13px;}
+.input_file {opacity:0;}
 .addfile_name {display:block; font-size:14px; height:40px; line-height:36px; width:100%; padding:0 10px; box-sizing:border-box;}
 .user_agree_w {}
 .user_agree_w .form_agree {height:24px; line-height:22px;}

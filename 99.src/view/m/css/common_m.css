@@ -473,7 +473,8 @@ input,button,select {outline:none; border-radius:0;}
 .addfile_info {float:left; }
 .addfile_info_text{display:block; margin-top:3px; font-size:0.75em; color:#999;}
 .addfile_upload {clear:both; margin-top:19px; position:relative; padding:0.82em 11em 0.82em 0.5em; width:100%; background-color:#e6e6e6; box-sizing:border-box;}
-.addfile_upload .bg_black {width:10em;}
+.addfile_upload .bg_black {width:10em; padding-top:0.82em; font-weight:400; text-align:center; box-sizing:border-box;}
+.input_file {width:10em; opacity:0; position:absolute; right:0; top:0;}
 .addfile_name {display:block; font-size:0.85em; width:100%; box-sizing:border-box;}
 .user_agree_w {}
 .user_agree_w .form_agree {width:100%; padding-left:2.82em; margin-top:1.44em;}
