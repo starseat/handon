@@ -12,14 +12,3 @@ $(document).ready(function() {
     }
     $('#donmm-quiz-result-box').show();
 });
-
-function movePage(pageName) {
-    var _link = './mypage.php';
-    if (pageName == 'quiz') {
-        _link = 'exam_init.php';
-    } else if (pageName == 'license') {
-        _link = 'license.php';
-    }
-
-    location.href = _link;
-}

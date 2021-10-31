@@ -97,13 +97,14 @@
                                 <a href="./mypage.php" class="mpml_cont">마이 첫 페이지</a>
                             </li>
                             <li class="mpml_inner">
-                                <a href="./lecture.html" class="mpml_cont">내 강의 보기</a>
+                                <a href="./lecture.php" class="mpml_cont">내 강의 보기</a>
                             </li>
                             <li class="mpml_inner mymenu_current">
                                 <a href="javascript: void(0);" class="mpml_cont">내 시험 보기</a>
                             </li>
                             <li class="mpml_inner">
                                 <a href="javascript: void(0);" class="mpml_cont" onclick="popupOpen_preparing(event);">자격증 발급 신청 / 조회</a>
+                                <!-- ./manifesto.php -->
                             </li>
                             <li class="mpml_inner">
                                 <a href="https://www.han-don.com/bbs/index.php?board=announce" class="mpml_cont" target="_blank">공지사항</a>
@@ -151,7 +152,7 @@
                                             <strong>축하드립니다!</strong> 대한민국 한돈 최고의 경지,한돈소믈리에! <br/> 앞으로 한돈에 대한 많은 사랑과 관심을 온 세상에 널리 전해주세요!
                                         </div>
                                         <button type="button" class="module_btn_red" onclick="movePage('home')">홈으로 돌아가기</button>
-                                        <button type="button" class="module_btn_fullred" onclick="movePage('license')">자격증 신청하기</button>
+                                        <button type="button" class="module_btn_fullred" onclick="movePage('manifesto')">자격증 신청하기</button>
                                         <span class="handon_unv"><img src="./imgs/pc/mark_handonunv.png" alt="한돈대학"><i class="blind">한돈대학</i></span>
                                     </div>
                                     <div class="hd_quiz_intro_w" id="donmm-quiz-result-box-fail">
@@ -230,7 +231,7 @@
     <script>
         var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
         if (isMobile) {
-            document.location.href = '//m.mall.han-don.com/donmmelier/exam.php';
+            document.location.href = '//m.mall.han-don.com/donmmelier/exam_result.php';
         }
     </script>
     <script type="text/javascript" src="./vendor/slick-1.6.0/slick-1.6.0.min.js"></script>

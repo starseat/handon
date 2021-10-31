@@ -5,7 +5,7 @@ function popupOpen_lecture(event, index, isOpened) {
     }
 
     var lastLectureNum = parseInt($('#last_lecture_num').val(), 10);
-    if(index > (lastLectureNum+1)) {
+    if (index > (lastLectureNum + 1)) {
         alert('이전 강의를 완료해주세요.');
         return false;
     }

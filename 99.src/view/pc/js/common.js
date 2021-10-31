@@ -115,3 +115,16 @@ function delCookie(key) {
     // document.cookie = key + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=C.kr;path=/;';
     setCookie(key, 'null', 1);
 }
+
+function movePage(pageName) {
+    var _link = './mypage.php';
+    if (pageName == 'quiz') {
+        _link = 'exam_init.php';
+    } else if (pageName == 'license') {
+        _link = 'license.php';
+    } else if (pageName == 'manifesto') {
+        _link = 'manifesto.php';
+    }
+
+    location.href = _link;
+}

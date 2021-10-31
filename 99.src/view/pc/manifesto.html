@@ -19,7 +19,10 @@
     <link rel="stylesheet" type="text/css" href="./css/slick.css" media="all" />
     <link rel="stylesheet" type="text/css" href="./css/common_pc.css" media="all" />
     <style>
-        .player_popup_text.text-2 {
+        #noti-popup,
+        #noti-popup-msg-1,
+        #noti-popup-msg-2,
+        #noti-popup-msg-3 {
             display: none;
         }
     </style>
@@ -92,12 +95,11 @@
                             <li class="mpml_inner">
                                 <a href="./lecture.php" class="mpml_cont">내 강의 보기</a>
                             </li>
-                            <li class="mpml_inner mymenu_current">
-                                <a href="javascript: void(0);" class="mpml_cont">내 시험 보기</a>
-                            </li>
                             <li class="mpml_inner">
-                                <a href="javascript: void(0);" class="mpml_cont" onclick="popupOpen_preparing(event);">자격증 발급 신청 / 조회</a>
-                                <!-- ./manifesto.php -->
+                                <a href="./exam_init.php" class="mpml_cont">내 시험 보기</a>
+                            </li>
+                            <li class="mpml_inner mymenu_current">
+                                <a href="javascript: void(0);" class="mpml_cont">자격증 발급 신청 / 조회</a>
                             </li>
                             <li class="mpml_inner">
                                 <a href="https://www.han-don.com/bbs/index.php?board=announce" class="mpml_cont" target="_blank">공지사항</a>
@@ -119,65 +121,80 @@
                         </span>
                     </button>
                 </div>
+
                 <div class="sub_article_r">
-                    <div class="handon_test_w handon_intro">
-                        <div class="handon_test_inner">
-                            <div class="handon_test_cont">
-                                <div class="handon_test_text">
-                                    <strong class="hd_test_title">
-                                        <span class="hdt_sub_title">2021 한돈소믈리에 자격 과정</span>
-                                        한돈소믈리에<br/>자격 시험
-                                    </strong>
-                                    <div class="hd_box_line">
-                                        <span class="box_line_bg"><img src="./imgs/pc/bg_test_boxline.png" alt=""></span>
-                                        <div class="hd_box_intro">
-                                            <strong class="hd_intro_title">시험영역</strong>
-                                            <ul class="test_schedule">
-                                                <li class="test_schedule_inner">
-                                                    <span class="schedule_label">제 1교시</span>
-                                                    <strong class="schedule_text">한돈 기본 상식 영역</strong>
-                                                </li>
-                                                <li class="test_schedule_inner">
-                                                    <span class="schedule_label">제 2교시</span>
-                                                    <strong class="schedule_text">한돈 조리 영역</strong>
-                                                </li>
-                                            </ul>
-                                            <span class="test_type">돼지고기형</span>
-                                        </div>
-                                    </div>
-                                    <div class="hd_quiz_intro_w">
-                                        <div class="test_info_test">
-                                            <strong>총 20문제</strong>
-                                            <strong>시험시간 60분</strong>
-                                        </div>
-                                        <button type="button" class="module_btn_fullred" onclick="moveExam();">시험시작</button>
-                                        <span class="test_careful">※ 한돈소믈리에 자격 시험은 총 2회까지 응시 가능합니다. </span>
-                                        <span class="handon_unv"><img src="./imgs/pc/mark_handonunv.png" alt="한돈대학"><i class="blind">한돈대학</i></span>
-                                    </div>
-                                </div>
+                    <div class="license_issue_w">
+                        <div class="license_issue_inner">
+                            <img src="./imgs/pc/license_issue.jpg" alt="한돈대학 수료증">
+                            <div class="license_issue_cont blind">
+                                <strong class="card_title">
+                                    <span>Han-don Sommelier Manifesto</span>
+                                    한돈소믈리에 선언문
+                                </strong>
+                                <p class="card_text_box">
+                                    <span class="card_text txt_blue">
+                                        나는 이순간 대한민국 밥상위의<br/>
+                                        국가대표 한돈의 부름을 받고<br/>
+                                        영광스러운 대한민국 한돈소믈리에로 나섭니다.
+                                    </span>
+                                    <span class="card_text">
+                                        한돈의, 한돈에 의한, 한돈을 위한 한돈소믈리에로서,<br/>
+                                        홍익한돈의 정신으로 한돈을 널리 알려 이롭게 하는<br/>
+                                        막중한 사명을 부여받았습니다.
+                                    </span>
+                                    <span class="card_text">
+                                        나는 비록 집게를 빼앗길지라도 위엄을 갖고<br/>
+                                        한돈의 모든 부위를 공정히 사랑할 것이며,<br/>
+                                        조리법을 존엄하게 지킬것입니다.
+                                    </span>
+                                    <span class="card_text txt_blue">
+                                        나는 한돈에 대한 도전을 멈추지 않을 것입니다.
+                                    </span>
+                                    <span class="card_text">
+                                        내가 어떤 식당을 방문하든,<br/>
+                                        내가 어떤 정육점을 방문하든,<br/>
+                                        나는 오로지 한돈에 대한 사랑에 힘쓰겠으며<br/>
+                                        한돈소믈리에의 명예를 실추시키는 일을<br/>
+                                        절대로 저지르지 않겠습니다.
+                                    </span>
+                                    <span class="card_text txt_blue">
+                                        나는 이 모든 선언을 나의 이름을 걸고<br/>
+                                        엄숙히 다짐하는 바입니다.
+                                    </span>
+                                </p>
                             </div>
+                        </div>
+                        <div class="module_button_w">
+                            <button type="button" class="module_btn_fullred" onclick="movePage('license');">한돈소믈리에 자격증 발급받기</button>
+                            <button type="button" class="module_btn_red" onclick="shareManifesto();">한돈소믈리에 선언문 공유하기</button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <input type="hidden" id="hiddenLastLectureNum" value="{=last_lecture_num}">
+            <input type="hidden" id="hiddenIsRegi" value="{=is_regi}">
+            <input type="hidden" id="hiddenIsAllViewLecture" value="{=is_all_view_lecture}">
+            <input type="hidden" id="hiddenIsPass" value="{=is_pass}">
 
             <!-- 레이어팝업 -->
             <div class="layer_popup_w">
-
-                <!-- popup 2 - 알림 -->
-                <div class="layer_popup_box" id="preparing-popup">
+                <!-- popup -->
+                <div class="layer_popup_box" id="noti-popup">
                     <div class="layer_popup_inner">
                         <div class="layer_popup_cont">
                             <strong class="layer_popup_title">시험응시</strong>
-                            <p class="player_popup_text text-1">
+                            <p class="player_popup_text text-1" id="noti-popup-msg-1">
+                                예비 한돈소믈리에 님,<br />
+                                <strong>수강 신청 후 이용하실 수 있습니다.</strong>
+                            </p>
+                            <p class="player_popup_text text-1" id="noti-popup-msg-2">
                                 예비 한돈소믈리에 님,<br />
                                 <strong>시험은 기초과정의 3강좌를<br />모두 수강 후 응시 가능합니다.</strong>
                             </p>
-                            <p class="player_popup_text text-2">
+                            <p class="player_popup_text text-3" id="noti-popup-msg-3">
                                 예비 한돈소믈리에 님,<br />
-                                <strong>가슴 속 고기부심을 먼저<br />한돈 프로 자격증 시험으로 증명해주세요.</strong>
+                                <strong>가슴 속 고기부심을 증명 후 이용 가능합니다.</strong>
                             </p>
                         </div>
                         <button type="button" class="popup_btn_x" title="팝업 닫기" onclick="popupClose()">
@@ -213,19 +230,15 @@
     <script>
         var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
         if (isMobile) {
-            document.location.href = '//m.mall.han-don.com/donmmelier/exam_init.php';
+            document.location.href = '//m.mall.han-don.com/donmmelier/manifesto.php';
         }
     </script>
     <script type="text/javascript" src="./vendor/slick-1.6.0/slick-1.6.0.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="text/javascript" src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/@silvermine/videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js"></script>
-    <script type="text/javascript" src="./js/common.js"></script>
-    <script>
-        function moveExam() {
-            location.href = './exam_preview.php';
-        }
-    </script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/manifesto.js"></script>
 </body>
 
 </html>
