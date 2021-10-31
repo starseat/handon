@@ -282,6 +282,160 @@ class DonSVC
         return 1;
     }
 
+    function convertUTF8String($str) {
+        $enc = mb_detect_encoding($str, array("UTF-8", "EUC-KR", "SJIS"));
+        if($str != "UTF-8") {
+            $str = iconv($enc, "UTF-8", $str);
+        }
+    
+        return $str;
+    }
+
+    function isUploadBannedItem($file_name) {
+        // 파일 업로드 금지
+        $ban_list = array('php', 'html', 'css', 'js'); // 금지 파일 확장자 수정 필요!!
+        $exp_file_name = explode('.', $file_name);
+    
+        // 확장자 소문자로 가져오기
+        $ext = strtolower($exp_file_name[sizeof($exp_file_name) - 1]);
+        if (in_array($ext, $ban_list)) {
+            return false;
+        }
+        return true;
+    }
+
+    function uuidgen() {
+        return sprintf('%08x-%04x-%04x-%04x-%04x%08x',
+            mt_rand(0, 0xffffffff),
+            mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff), mt_rand(0, 0xffffffff)
+        );
+    }
+
+    function getFileExtension($file_name) {
+        $exp_file_name = explode('.', $file_name);
+    
+        // 확장자 소문자로 가져오기
+        return strtolower($exp_file_name[sizeof($exp_file_name) - 1]);
+    }
+
+    function uploadImage($upload_file) {
+        $ret_upload_file_array_item = [
+            'upload_file_path' => '',
+            'file_name' => '',
+            'file_save_name' => ''
+        ];
+    
+        $file_name = basename($this->convertUTF8String($upload_file['name']));
+    
+        if (empty($file_name)) {
+            return null;
+        }
+    
+        $file_temp_name = $this->convertUTF8String($upload_file['tmp_name']);
+        //$file_type = $upload_files['type'][$i];
+        //$file_size = $upload_files['size'][$i];
+        //$file_error = $upload_files['error'][$i];
+    
+        if (!$this->isUploadBannedItem($file_name)) {
+            return null;
+        }
+    
+        // if( $file_error != UPLOAD_ERR_OK ) {
+        //     $upload_error_msg = "";
+        //     switch( $error ) {
+        //         case UPLOAD_ERR_INI_SIZE:
+        //         case UPLOAD_ERR_FORM_SIZE:
+        //             $upload_error_msg = "파일이 너무 큽니다. ($error)";
+        //             break;
+        //         case UPLOAD_ERR_NO_FILE:
+        //             $upload_error_msg = "파일이 첨부되지 않았습니다. ($error)";
+        //             break;
+        //         default:
+        //             $upload_error_msg = "파일이 제대로 업로드되지 않았습니다. ($error)";
+        //     }
+        //     //error_alert($upload_error_msg);
+        //     exit;
+        // }
+    
+        // if($file_size > 500000) {
+        //     //error_alert ("파일이 너무 큽니다.");
+        //     exit;
+        // }
+    
+        $today = date("Ymd");
+        $upload_path = '/donmmelier/upload/' . $today;
+        // $real_upload_path = '~/data/skin/front/mplshop_210928' . $upload_path;
+        $real_upload_path = '.' . $upload_path;
+        if (!is_dir($real_upload_path)) {
+            mkdir($real_upload_path, 766, true);
+        }
+    
+        
+        //$file_save_name = $today . '_' . uuidgen() . '_' . $file_name;
+        $file_save_name = $today . '_' . $this->uuidgen() . '.' . $this->getFileExtension($file_name);
+        $real_upload_file = $real_upload_path . $file_save_name;
+        //$move_resuslt = move_uploaded_file($file_temp_name, $upload_file);
+        $move_resuslt = move_uploaded_file($file_temp_name, $real_upload_file);
+        $ret_upload_file_array_item = [
+            'upload_file_path' => $upload_path,
+            'file_name' => $file_name,
+            'file_save_name' => $file_save_name
+        ];
+    
+        return $ret_upload_file_array_item;
+    }
+
+    public function insertLicenseSendInfo($insert_info) {
+        $memNo = $insert_info['memNo'];
+        $memId = $insert_info['memId'];
+        $season = $insert_info['season'];
+        $name = $insert_info['name'];
+        $phone = $insert_info['phone'];
+        $post_code = $insert_info['post_code'];
+        $address = $insert_info['address'];
+        $address_detail = $insert_info['address_detail'];
+        $address_extra = $insert_info['address_extra'];
+        $send_message = $insert_info['send_message'];
+        $img_real_name = $insert_info['img_real_name'];
+        $img_save_name = $insert_info['img_save_name'];
+        $img_upload_path = $insert_info['img_upload_path'];
+
+        $sql = "
+        INSERT INTO `donmm_license` 
+            (memNo, memId, season, name, phone, 
+            post_code, address, address_detail, address_extra, send_message, 
+            img_real_name, img_save_name, img_upload_path ) 
+        VALUES (
+            '{$memNo}', '{$memId}', {$season}, '{$name}', '{$phone}', 
+            '{$post_code}', '{$address}', '{$address_detail}', '{$address_extra}', '{$send_message}', 
+            '{$img_real_name}', '{$img_save_name}', '{$img_upload_path}'
+        )
+        ";
+        
+        $this->db->query($sql);
+        return 1;
+    }
+
+    public function getLicenseCount($login_id) {
+        $sql = "SELECT count(*) as cnt FROM `donmm_license` WHERE `memId` = '{$login_id}'";
+        $query = $this->db->query($sql);
+        $data = $this->db->fetch($query);
+        return $data['cnt'];
+    }
+
+    public function getLicenseInfo($login_id) {
+        $sql = "SELECT 
+            memNo, memId, season, name, phone, 
+            post_code, address, address_detail, address_extra, send_message, 
+            img_real_name, img_save_name, img_upload_path, created_at
+        FROM `donmm_license` 
+        WHERE `memId` = '{$login_id}'";
+        $query = $this->db->query($sql);
+        $data = $this->db->fetch($query);
+        return $data;
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     // admin
     ////////////////////////////////////////////////////////////////////////////////////////////////////
