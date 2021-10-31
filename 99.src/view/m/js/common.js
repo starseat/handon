@@ -32,7 +32,7 @@ function initEvent() {
         if (confirm('다른사람에게 이 글을 추천하고 싶나요?')) {
             copyToClipboard();
         }
-    });    
+    });
 }
 
 // 준비중 팝업
@@ -97,4 +97,46 @@ function copyToClipboard(e) {
 
 function logout() {
     location.href = 'https://mall.han-don.com/member/logout.php?tabst=handon';
+}
+
+function setCookie(key, value, expiredays) {
+    var todayDate = new Date();
+    todayDate.setDate(todayDate.getDate() + expiredays);
+    document.cookie = key + '=' + escape(value) + '; path=/; expires=' + todayDate.toGMTString() + ';';
+}
+
+function getCookie(key) {
+    var result = null;
+    var cookie = document.cookie.split(';');
+    cookie.some(function(item) {
+        // 공백을 제거
+        item = item.replace(' ', '');
+
+        var dic = item.split('=');
+
+        if (key === dic[0]) {
+            result = dic[1];
+            return true; // break;
+        }
+    });
+    return result;
+}
+
+function delCookie(key) {
+    // document.cookie = key + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    // document.cookie = key + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=C.kr;path=/;';
+    setCookie(key, 'null', 1);
+}
+
+function movePage(pageName) {
+    var _link = './mypage.php';
+    if (pageName == 'quiz') {
+        _link = 'exam_init.php';
+    } else if (pageName == 'license') {
+        _link = 'license.php';
+    } else if (pageName == 'manifesto') {
+        _link = 'manifesto.php';
+    }
+
+    location.href = _link;
 }
