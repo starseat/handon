@@ -13,14 +13,15 @@
  */
 namespace Controller\Front\Donmmelier\Dadmin;
 
+use Request;
 use Component\Member\Member;
 use Component\Member\MyPage;
-use Component\Donmmelier\Test;
+use Component\Donmmelier\DonSVC;
 use Framework\Debug\Exception\AlertBackException;
 use Framework\Debug\Exception\RedirectLoginException;
 
 /**
- * 한돈 소믈리에 관리자 자격증 관리
+ * 한돈 소믈리에 관리자 자격증 신청 관리
  * @author jw.lee
  */
 class LicenseController extends \Controller\Front\Controller
@@ -70,5 +71,7 @@ class LicenseController extends \Controller\Front\Controller
     $this->setData('page_total', $result_array['paging_info']['page_total']);
 
     $this->setData('data_list', $result_array['data_list']);
+
+    // $this->setData('page_sql', $result_array['page_sql']);
   }
 }

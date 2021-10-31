@@ -76,8 +76,10 @@
                             </select>
                         </div>
                         <input type="text" class="search_ip" id="search-str" />
-                        <button type="button" class="btn_search">검색</button>
-                        <button type="button" class="btn_search">엑셀 다운로드</button>
+                        <button type="button" class="btn_search" onclick="doSearch();">검색</button>
+                        <button type="button" class="btn_search" onclick="printExcel()">엑셀 다운로드</button>
+                        <input type="hidden" id="hiddenParamSearchType" value="{=param_search_type}">
+                        <input type="hidden" id="hiddenParamSearchStr" value="{=param_search_str}">
                     </div>
                     <div class="member_table_w">
                         <table>
@@ -91,7 +93,7 @@
                                     <th class="list_date">주소</th>
                                     <th class="list_date">상세</th>
                                     <th class="list_date">배송 메시지</th>
-                                    <th class="list_date" colspan="2">신청일</th>
+                                    <th class="list_date">신청일</th>
                                 </tr>
                             </thead>
                             <tbody id="license-list">
@@ -103,7 +105,6 @@
                                     <td class="list_name">{=.name}</td>
                                     <td class="list_phone">{=.phone}</td>
                                     <td class="list_date">{=.address}</td>
-                                    <td class="list_date">{=.address_detail}</td>
                                     <td class="list_date">{=.address_detail}</td>
                                     <td class="list_date">{=.send_message}</td>
                                     <td class="list_date">{=.created_at}</td>
@@ -155,6 +156,10 @@
     </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./vendor/jw-excel/sheetjs/xlsx.full.min.js"></script>
+    <script src="./vendor/jw-excel/FileSaver/FileSaver.min.js"></script>
+    <script src="./vendor/jw-excel/jw.excel.js"></script>
+    <script type="text/javascript" src="./js/common.js"></script>
     <script type="text/javascript" src="./js/license.js"></script>
 </body>
 
