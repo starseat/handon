@@ -79,6 +79,13 @@ class LicenseController extends \Controller\Front\Controller
       exit;
     }
 
+    $submitLicenseCount = $donSvc->getLicenseCount($memId);
+    if($submitLicenseCount > 0) {
+      $msg = 'alert(\'자격증 신청이 완료되었습니다. \');parent.location.href=\'./license_result.php\';';
+      $this->js($msg);
+      exit;
+    }
+
     $regiInfo = $donSvc->getDonmmRegisteredInfoFromId($memId);
     $this->setData('last_lecture_num', $donSvc->getLastLectureNumber($memId));
     $this->setData('member_name', $memNm);
