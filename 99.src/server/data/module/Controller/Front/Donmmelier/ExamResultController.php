@@ -68,7 +68,8 @@ class ExamResultController extends \Controller\Front\Controller
     }
 
     $isPass = 0;
-    $examResult = $donSvc->getExamResultLast($memId);
+    // $examResult = $donSvc->getExamResultLast($memId);
+    $examResult = $donSvc->getExamResultHigherScore($memId);  // 요청사항: 더 높은 점수를 화면에 표시.
     if(intval($examResult['score']) >= 60) {
       $isPass = 1;
     }

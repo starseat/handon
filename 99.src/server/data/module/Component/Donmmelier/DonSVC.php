@@ -239,6 +239,15 @@ class DonSVC
         return $data;
     }
 
+    public function getExamResultHigherScore($login_id) {
+        $sql = "SELECT memNo, memId, season, num, type, score  FROM `donmm_exam` where memId = '{$login_id}'
+                and score = (SELECT max(tt.score) FROM `donmm_exam` tt where tt.memId = '{$login_id}')";
+        $query = $this->db->query($sql);
+        $data = $this->db->fetch($query);
+        $data['num'] = $this->getExamCount($login_id);
+        return $data;
+    }
+
     // 응시 X : 0
     // 합격 : 1
     // 불합격 - 응시1: -1
