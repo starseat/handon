@@ -8,8 +8,9 @@ use Framework\Database\DBTool;
 use Framework\Object\SingletonTrait;
 use Framework\Utility\DateTimeUtils;
 use Framework\Utility\StringUtils;
+use Component\Storage\Storage;
 
-class DonSVC 
+class DonSVC
 {
     protected $db = null;
     protected $password_options = [
@@ -27,6 +28,8 @@ class DonSVC
         if (!is_object($this->db)) {
             $this->db = \App::load('DB');
         }
+
+        $this->storage = Storage::disk(Storage::PATH_CODE_BOARD, 'local');    //파일저장소세팅
     }
 
     public function getLoginUrl($device = 'pc') {
@@ -81,10 +84,10 @@ class DonSVC
         $memId = $insert_info['memId'];
 
         $sql = "
-            INSERT INTO `donmm_registration` (phone, name, memNo, memId) 
+            INSERT INTO `donmm_registration` (phone, name, memNo, memId)
             VALUES ('{$phone}', '{$name}', '{$memNo}', '{$memId}')
         ";
-        
+
         $this->db->query($sql);
         return 1;
     }
@@ -126,10 +129,10 @@ class DonSVC
         $num = $lecture_info['num'];
 
         $sql = "
-            INSERT INTO `donmm_lecture` (memNo, memId, season, num) 
+            INSERT INTO `donmm_lecture` (memNo, memId, season, num)
             VALUES ('{$memNo}', '{$memId}', {$season}, {$num})
         ";
-        
+
         $this->db->query($sql);
         return 1;
     }
@@ -147,7 +150,7 @@ class DonSVC
         if($page_db < 0) {
             $page_db = 0;
         }
-    
+
         // 전체 block 수
         $page_total = ceil($total_item_count / $page_block_count);
         if ($page_total == 0) {
@@ -155,24 +158,24 @@ class DonSVC
         }
         // block 시작
         $page_start = (((ceil($current_page / $page_block_count) - 1) * $page_block_count) + 1);
-    
+
         // block 끝
         $page_end = $page_start + $page_block_count - 1;
         if ($page_total < $page_end) {
             $page_end = $page_total;
         }
-    
+
         // 시작 바로 전 페이지
         $page_prev = $page_start - 1;
         // 마지막 다음 페이지
         $page_next = $page_end + 1;
-    
+
         return array(
             'page_db' => $page_db,  // db 조회시 사용
-            'page_start' => $page_start, 
+            'page_start' => $page_start,
             'page_end' => $page_end,
             'page_prev' => $page_prev,
-            'page_next' => $page_next, 
+            'page_next' => $page_next,
             'page_total' => $page_total
         );
     }
@@ -205,17 +208,17 @@ class DonSVC
         // O: 1, X: 2
         if($type == 'a') {
             return array(
-                4, 3, 4, 4, 2, 
-                2, 1, 4, 3, 2, 
-                4, 1, 3, 1, 1, 
+                4, 3, 4, 4, 2,
+                2, 1, 4, 3, 2,
+                4, 1, 3, 1, 1,
                 2, 1, 1, 2, 2
             );
         }
         else {
             return array(
-                4, 2, 4, 3, 2, 
-                3, 2, 1, 4, 4, 
-                3, 4, 2, 1, 1, 
+                4, 2, 4, 3, 2,
+                3, 2, 1, 4, 4,
+                3, 4, 2, 1, 1,
                 2, 1, 1, 2, 2
             );
         }
@@ -229,7 +232,7 @@ class DonSVC
     }
 
     public function getExamResultLast($login_id) {
-        $sql = "SELECT memNo, memId, season, num, type, score  FROM `donmm_exam` where memId = '{$login_id}' 
+        $sql = "SELECT memNo, memId, season, num, type, score  FROM `donmm_exam` where memId = '{$login_id}'
                 and num = (SELECT max(tt.num) FROM `donmm_exam` tt where tt.memId = '{$login_id}')";
         $query = $this->db->query($sql);
         $data = $this->db->fetch($query);
@@ -266,18 +269,18 @@ class DonSVC
         return $ret;
     }
 
-    public function insertExamResult($insert_info) {        
+    public function insertExamResult($insert_info) {
         $memNo = $insert_info['memNo'];
         $memId = $insert_info['memId'];
         $type = $insert_info['type'];
         $score = $insert_info['score'];
-        $season = 1;        
+        $season = 1;
 
         $sql = "
-            INSERT INTO `donmm_exam` (memNo, memId, season, num, type, score) 
+            INSERT INTO `donmm_exam` (memNo, memId, season, num, type, score)
             VALUES ('{$memNo}', '{$memId}', '{$season}', (SELECT (ifnull(max(tt.num), 0) + 1) num FROM `donmm_exam` tt where tt.memId = '{$memId}'), '{$type}', {$score})
         ";
-        
+
         $this->db->query($sql);
         return 1;
     }
@@ -287,7 +290,7 @@ class DonSVC
         if($str != "UTF-8") {
             $str = iconv($enc, "UTF-8", $str);
         }
-    
+
         return $str;
     }
 
@@ -295,7 +298,7 @@ class DonSVC
         // 파일 업로드 금지
         $ban_list = array('php', 'html', 'css', 'js'); // 금지 파일 확장자 수정 필요!!
         $exp_file_name = explode('.', $file_name);
-    
+
         // 확장자 소문자로 가져오기
         $ext = strtolower($exp_file_name[sizeof($exp_file_name) - 1]);
         if (in_array($ext, $ban_list)) {
@@ -314,76 +317,131 @@ class DonSVC
 
     function getFileExtension($file_name) {
         $exp_file_name = explode('.', $file_name);
-    
+
         // 확장자 소문자로 가져오기
         return strtolower($exp_file_name[sizeof($exp_file_name) - 1]);
     }
 
-    function uploadImage($upload_file) {
-        $ret_upload_file_array_item = [
-            'upload_file_path' => '',
-            'file_name' => '',
-            'file_save_name' => ''
+    // function uploadImage($upload_file) {
+    //     $ret_upload_file_array_item = [
+    //         'upload_file_path' => '',
+    //         'file_name' => '',
+    //         'file_save_name' => ''
+    //     ];
+    //
+    //     $file_name = basename($this->convertUTF8String($upload_file['name']));
+    //
+    //     if (empty($file_name)) {
+    //         return null;
+    //     }
+    //
+    //     $file_temp_name = $this->convertUTF8String($upload_file['tmp_name']);
+    //     //$file_type = $upload_files['type'][$i];
+    //     //$file_size = $upload_files['size'][$i];
+    //     //$file_error = $upload_files['error'][$i];
+    //
+    //     if (!$this->isUploadBannedItem($file_name)) {
+    //         return null;
+    //     }
+    //
+    //     // if( $file_error != UPLOAD_ERR_OK ) {
+    //     //     $upload_error_msg = "";
+    //     //     switch( $error ) {
+    //     //         case UPLOAD_ERR_INI_SIZE:
+    //     //         case UPLOAD_ERR_FORM_SIZE:
+    //     //             $upload_error_msg = "파일이 너무 큽니다. ($error)";
+    //     //             break;
+    //     //         case UPLOAD_ERR_NO_FILE:
+    //     //             $upload_error_msg = "파일이 첨부되지 않았습니다. ($error)";
+    //     //             break;
+    //     //         default:
+    //     //             $upload_error_msg = "파일이 제대로 업로드되지 않았습니다. ($error)";
+    //     //     }
+    //     //     //error_alert($upload_error_msg);
+    //     //     exit;
+    //     // }
+    //
+    //     // if($file_size > 500000) {
+    //     //     //error_alert ("파일이 너무 큽니다.");
+    //     //     exit;
+    //     // }
+    //
+    //     $today = date("Ymd");
+    //     $upload_path = '/donmmelier/upload/' . $today;
+    //     // $real_upload_path = '~/data/skin/front/mplshop_210928' . $upload_path;
+    //     $real_upload_path = '.' . $upload_path;
+    //     if (!is_dir($real_upload_path)) {
+    //         mkdir($real_upload_path, 766, true);
+    //     }
+    //
+    //
+    //     //$file_save_name = $today . '_' . uuidgen() . '_' . $file_name;
+    //     $file_save_name = $today . '_' . $this->uuidgen() . '.' . $this->getFileExtension($file_name);
+    //     $real_upload_file = $real_upload_path . $file_save_name;
+    //     //$move_resuslt = move_uploaded_file($file_temp_name, $upload_file);
+    //     $move_resuslt = move_uploaded_file($file_temp_name, $real_upload_file);
+    //     $ret_upload_file_array_item = [
+    //         'upload_file_path' => $upload_path,
+    //         'file_name' => $file_name,
+    //         'file_save_name' => $file_save_name
+    //     ];
+    //
+    //     return $ret_upload_file_array_item;
+    // }
+
+    /**
+     * uploadFile 프로필 사진 처리
+     */
+    public function uploadImage($fileData)
+      {
+          $uploadMaxSize = 10;
+          $imgUploadPath = 'upload/donmmelier/';
+          if ($errorCode = $fileData['error'] != UPLOAD_ERR_OK) {
+              switch ($errorCode) {
+                  case UPLOAD_ERR_INI_SIZE :
+                      throw new \Exception(sprintf(__('업로드 용량이 %1$s MByte(s) 를 초과했습니다.'), $uploadMaxSize));
+                      break;
+                  default :
+                      throw new \Exception(__('알수 없는 오류입니다.') . '( UPLOAD ERROR CODE : ' . $errorCode . ')');
+              }
+          }
+
+          if ($this->isAllowImageExtention($fileData['name']) === false) {
+              $_errorFileName = str_replace(' ', '', $fileData['name']);
+              throw new \Exception(__('허용하지 않는 확장자입니다.') . ' (' . $_errorFileName . ')');
+          }
+
+          if (is_uploaded_file($fileData['tmp_name'])) {
+              if ($uploadMaxSize && $fileData['size'] > ($uploadMaxSize * 1024 * 1024)) {
+                  throw new \Exception(sprintf(__('업로드 용량이 %1$s MByte(s) 를 초과했습니다.'), $uploadMaxSize));
+              }
+          }
+
+          $uploadFileNm = $fileData['name'];
+          $saveFileNm = 'tmp_' . substr(md5(microtime()), 0, 16).'.'.strtolower(pathinfo($fileData['name'], PATHINFO_EXTENSION));;
+
+          $result = $this->storage->upload($fileData['tmp_name'], $imgUploadPath . $saveFileNm);
+
+          return ['result' => $result, 'file_name' => $uploadFileNm, 'file_save_name' => $saveFileNm, 'img_upload_path' => $imgUploadPath];
+      }
+
+    /**
+     * 이미지 확장자 체크
+     *
+     * @param $filename
+     * @return bool
+     */
+    protected function isAllowImageExtention($filename)
+    {
+        $allowUploadExtension = [
+            'jpg', 'png', 'jpeg'
         ];
-    
-        $file_name = basename($this->convertUTF8String($upload_file['name']));
-    
-        if (empty($file_name)) {
-            return null;
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        if (in_array($ext, $allowUploadExtension) === false) {
+            return false;
         }
-    
-        $file_temp_name = $this->convertUTF8String($upload_file['tmp_name']);
-        //$file_type = $upload_files['type'][$i];
-        //$file_size = $upload_files['size'][$i];
-        //$file_error = $upload_files['error'][$i];
-    
-        if (!$this->isUploadBannedItem($file_name)) {
-            return null;
-        }
-    
-        // if( $file_error != UPLOAD_ERR_OK ) {
-        //     $upload_error_msg = "";
-        //     switch( $error ) {
-        //         case UPLOAD_ERR_INI_SIZE:
-        //         case UPLOAD_ERR_FORM_SIZE:
-        //             $upload_error_msg = "파일이 너무 큽니다. ($error)";
-        //             break;
-        //         case UPLOAD_ERR_NO_FILE:
-        //             $upload_error_msg = "파일이 첨부되지 않았습니다. ($error)";
-        //             break;
-        //         default:
-        //             $upload_error_msg = "파일이 제대로 업로드되지 않았습니다. ($error)";
-        //     }
-        //     //error_alert($upload_error_msg);
-        //     exit;
-        // }
-    
-        // if($file_size > 500000) {
-        //     //error_alert ("파일이 너무 큽니다.");
-        //     exit;
-        // }
-    
-        $today = date("Ymd");
-        $upload_path = '/donmmelier/upload/' . $today;
-        // $real_upload_path = '~/data/skin/front/mplshop_210928' . $upload_path;
-        $real_upload_path = '.' . $upload_path;
-        if (!is_dir($real_upload_path)) {
-            mkdir($real_upload_path, 766, true);
-        }
-    
-        
-        //$file_save_name = $today . '_' . uuidgen() . '_' . $file_name;
-        $file_save_name = $today . '_' . $this->uuidgen() . '.' . $this->getFileExtension($file_name);
-        $real_upload_file = $real_upload_path . $file_save_name;
-        //$move_resuslt = move_uploaded_file($file_temp_name, $upload_file);
-        $move_resuslt = move_uploaded_file($file_temp_name, $real_upload_file);
-        $ret_upload_file_array_item = [
-            'upload_file_path' => $upload_path,
-            'file_name' => $file_name,
-            'file_save_name' => $file_save_name
-        ];
-    
-        return $ret_upload_file_array_item;
+
+        return true;
     }
 
     public function insertLicenseSendInfo($insert_info) {
@@ -402,17 +460,17 @@ class DonSVC
         $img_upload_path = $insert_info['img_upload_path'];
 
         $sql = "
-        INSERT INTO `donmm_license` 
-            (memNo, memId, season, name, phone, 
-            post_code, address, address_detail, address_extra, send_message, 
-            img_real_name, img_save_name, img_upload_path ) 
+        INSERT INTO `donmm_license`
+            (memNo, memId, season, name, phone,
+            post_code, address, address_detail, address_extra, send_message,
+            img_real_name, img_save_name, img_upload_path )
         VALUES (
-            '{$memNo}', '{$memId}', {$season}, '{$name}', '{$phone}', 
-            '{$post_code}', '{$address}', '{$address_detail}', '{$address_extra}', '{$send_message}', 
+            '{$memNo}', '{$memId}', {$season}, '{$name}', '{$phone}',
+            '{$post_code}', '{$address}', '{$address_detail}', '{$address_extra}', '{$send_message}',
             '{$img_real_name}', '{$img_save_name}', '{$img_upload_path}'
         )
         ";
-        
+
         $this->db->query($sql);
         return 1;
     }
@@ -425,11 +483,11 @@ class DonSVC
     }
 
     public function getLicenseInfo($login_id) {
-        $sql = "SELECT 
-            memNo, memId, season, name, phone, 
-            post_code, address, address_detail, address_extra, send_message, 
+        $sql = "SELECT
+            memNo, memId, season, name, phone,
+            post_code, address, address_detail, address_extra, send_message,
             img_real_name, img_save_name, img_upload_path, created_at
-        FROM `donmm_license` 
+        FROM `donmm_license`
         WHERE `memId` = '{$login_id}'";
         $query = $this->db->query($sql);
         $data = $this->db->fetch($query);
@@ -453,7 +511,7 @@ class DonSVC
         }
 
         $sql  = "
-            SELECT seq, user_id, name, member_type, password 
+            SELECT seq, user_id, name, member_type, password
             FROM `donmm_members`
             WHERE `user_id` = '{$login_id}'
         ";
@@ -478,15 +536,15 @@ class DonSVC
 
         return $result_array;
     }
-    
-    
+
+
     public function password_encrypt($password) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT /*, $password_options */);
         // $hashed_password = password_hash($password, PASSWORD_DEFAULT, $password_options);
         // $hashed_password = password_hash($password, PASSWORD_BCRYPT, $password_options);
         return $hashed_password;
     }
-    
+
     public function password_matches($password, $hashed_password) {
         if (password_verify($password, $hashed_password /*, password_options */)) {
             //return true;
@@ -499,19 +557,19 @@ class DonSVC
 
     public function getMemberInfoList($page = 1, $searchType = '',  $searchStr = '') {
         $baseSql = "
-            select 
-              @rownum:=@rownum+1 as no, 
+            select
+              @rownum:=@rownum+1 as no,
               vv.memId, vv.name, vv.phone, vv.created_at, ifnull(vv.num, 'N') as lnum, ifnull(exam.score1, 'N') as score1, ifnull(exam.score2, 'N') as score2 from (
                 select regi.memId, regi.name, regi.phone, regi.created_at, lect.num
                 from donmm_registration regi
-                left outer join (select ltemp.memId, max(ifnull(ltemp.num, 0)) as num from donmm_lecture ltemp group by ltemp.memId) lect on regi.memId = lect.memId 
-            ) vv left outer join (SELECT 
-            etemp.memId, 
-            GROUP_CONCAT( if(etemp.num=1, etemp.score, NULL) ) AS score1, 
+                left outer join (select ltemp.memId, max(ifnull(ltemp.num, 0)) as num from donmm_lecture ltemp group by ltemp.memId) lect on regi.memId = lect.memId
+            ) vv left outer join (SELECT
+            etemp.memId,
+            GROUP_CONCAT( if(etemp.num=1, etemp.score, NULL) ) AS score1,
             GROUP_CONCAT( if(etemp.num=2, etemp.score, NULL) ) AS score2
             FROM donmm_exam etemp, (SELECT @rownum:=0) no_temp
             GROUP BY etemp.memId) exam on vv.memId = exam.memId
-            ORDER BY vv.created_at desc 
+            ORDER BY vv.created_at desc
         ";
 
         $searchSql = "SELECT ss_temp.* from ( " . $baseSql . " ) ss_temp ";
@@ -550,31 +608,31 @@ class DonSVC
 
         $paging_info_json = json_encode($paging_info, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         $result_array = [
-            'page_sql' => $pageSql, 
+            'page_sql' => $pageSql,
             'paging_info' => $paging_info,
-            'paging_info_json' => $paging_info_json, 
+            'paging_info_json' => $paging_info_json,
             'data_list' => $data_list
         ];
 
         return $result_array;
     }
 
-    
+
     public function getMemberInfoTotalList() {
         $sql = "
-            select 
-              @rownum:=@rownum+1 as no, 
+            select
+              @rownum:=@rownum+1 as no,
               vv.memId, vv.name, vv.phone, vv.created_at, ifnull(vv.num, 'N') as lnum, ifnull(exam.score1, 'N') as score1, ifnull(exam.score2, 'N') as score2 from (
                 select regi.memId, regi.name, regi.phone, regi.created_at, lect.num
                 from donmm_registration regi
-                left outer join (select ltemp.memId, max(ifnull(ltemp.num, 0)) as num from donmm_lecture ltemp group by ltemp.memId) lect on regi.memId = lect.memId 
-            ) vv left outer join (SELECT 
-            etemp.memId, 
-            GROUP_CONCAT( if(etemp.num=1, etemp.score, NULL) ) AS score1, 
+                left outer join (select ltemp.memId, max(ifnull(ltemp.num, 0)) as num from donmm_lecture ltemp group by ltemp.memId) lect on regi.memId = lect.memId
+            ) vv left outer join (SELECT
+            etemp.memId,
+            GROUP_CONCAT( if(etemp.num=1, etemp.score, NULL) ) AS score1,
             GROUP_CONCAT( if(etemp.num=2, etemp.score, NULL) ) AS score2
             FROM donmm_exam etemp, (SELECT @rownum:=0) no_temp
             GROUP BY etemp.memId) exam on vv.memId = exam.memId
-            ORDER BY vv.created_at asc 
+            ORDER BY vv.created_at asc
         ";
 
         $query = $this->db->query($sql);
@@ -594,11 +652,11 @@ class DonSVC
 
         return $data_list;
     }
-    
+
     public function getLicenseInfoList($page = 1, $searchType = '',  $searchStr = '') {
         $baseSql = "
-            SELECT 
-                @rownum:=@rownum+1 as no, lic.memNo, lic.memId, lic.season, lic.name, lic.phone, 
+            SELECT
+                @rownum:=@rownum+1 as no, lic.memNo, lic.memId, lic.season, lic.name, lic.phone,
                 lic.post_code, lic.address, lic.address_detail, lic.address_extra, lic.send_message, lic.created_at
             FROM donmm_license lic, (SELECT @rownum:=0) no_temp
             order by lic.created_at desc
@@ -641,20 +699,20 @@ class DonSVC
         }
         $paging_info_json = json_encode($paging_info, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         $result_array = [
-            'page_sql' => $pageSql, 
+            'page_sql' => $pageSql,
             'paging_info' => $paging_info,
-            'paging_info_json' => $paging_info_json, 
+            'paging_info_json' => $paging_info_json,
             'data_list' => $data_list
         ];
 
         return $result_array;
     }
 
-    
+
     public function getLicenseInfoTotalList() {
         $sql = "
-        SELECT 
-            @rownum:=@rownum+1 as no, lic.memNo, lic.memId, lic.season, lic.name, lic.phone, 
+        SELECT
+            @rownum:=@rownum+1 as no, lic.memNo, lic.memId, lic.season, lic.name, lic.phone,
             lic.post_code, lic.address, lic.address_detail, lic.address_extra, lic.send_message, lic.created_at
         FROM donmm_license lic, (SELECT @rownum:=0) no_temp
         order by lic.created_at desc

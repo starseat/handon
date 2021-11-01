@@ -81,7 +81,7 @@ class LicenseController extends \Controller\Mobile\Controller
 
     $submitLicenseCount = $donSvc->getLicenseCount($memId);
     if($submitLicenseCount > 0) {
-      $msg = 'alert(\'자격증 신청이 완료되었습니다. \');parent.location.href=\'./license_result.php\';';
+      $msg = 'alert(\'한돈소믈리에 자격증 신청이 완료되었습니다!\n\n자격증 및 굿즈 발송은 11월 21일(일) 수강 기간 종료 후 발송 예정이며, 자세한 일정은 추후 별도 공지 예정입니다.\');parent.location.href=\'./license_result.php\';';
       $this->js($msg);
       exit;
     }
