@@ -119,7 +119,8 @@ function _submitQuiz() {
     $tempForm.attr('name', 'temp-submit-form');
     $tempForm.attr('method', 'post');
     $tempForm.attr('action', './exam_submit.php');
-    $tempForm.appendTo('#hidden-view-box');
+    // $tempForm.appendTo('#hidden-view-box');
+    $tempForm.appendTo('body'); // Form submission canceled because the form is not connected 오류 대응
 
     for (let i = 0; i < __quiz_length; i++) {
         $tempForm.append('<input type="hidden" name="select_answer_' + i + '" value="' + __TEMP_QUIZ_INFO.selectList[i] + '">');
