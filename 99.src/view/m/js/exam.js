@@ -11,7 +11,7 @@ var __time_id = 0;
 function initExam() {
     __TEMP_QUIZ_TYPE = $('#exam_type').val();
     if (__TEMP_QUIZ_TYPE) {
-        if (__TEMP_QUIZ_TYPE != 'a' || __TEMP_QUIZ_TYPE != 'b') {
+        if (__TEMP_QUIZ_TYPE != 'a' && __TEMP_QUIZ_TYPE != 'b') {
             __TEMP_QUIZ_TYPE = 'a';
         }
     } else {
@@ -26,7 +26,7 @@ function initExam() {
         for (let i = 0; i < __quiz_length; i++) {
             __TEMP_QUIZ_INFO.selectList[i] = 0;
         }
-        __TEMP_QUIZ_INFO.remaining = 600;
+        __TEMP_QUIZ_INFO.remaining = 3600;
     }
 
     getQuizView(__TEMP_QUIZ_INFO.index);
@@ -496,7 +496,7 @@ function getQuizView_a_5() {
     var quiz_list_title = '<strong class="quiz_list_title"><span>6.</span>다음 그림의 돼지고기 부위명을 옳게 작성한 것을 고르시오.</strong>';
     var quiz_list_items = '';
     quiz_list_items += '<div class="quiz_ex_box">';
-    quiz_list_items += '    <img src="./imgs/pc/quiz_pig.jpg" alt="돼지 부위">';
+    quiz_list_items += '    <img src="/data/skin/front/mplshop_210928/donmmelier/imgs/pc/quiz_pig.jpg" alt="돼지 부위">';
     quiz_list_items += '</div>';
     quiz_list_items += '<ul class="quiz_list quiz_type2">';
     quiz_list_items += '    <li class="quiz-list-item">';
@@ -1065,7 +1065,7 @@ function getQuizView_b_4() {
     var quiz_list_title = '<strong class="quiz_list_title"><span>5.</span>다음 그림의 돼지고기 부위명을 옳게 작성한 것을 고르시오.</strong>';
     var quiz_list_items = '';
     quiz_list_items += '<div class="quiz_ex_box">';
-    quiz_list_items += '    <img src="./imgs/pc/quiz_pig.jpg" alt="돼지 부위">';
+    quiz_list_items += '    <img src="/data/skin/front/mplshop_210928/donmmelier/imgs/pc/quiz_pig.jpg" alt="돼지 부위">';
     quiz_list_items += '</div>';
     quiz_list_items += '<ul class="quiz_list quiz_type2">';
     quiz_list_items += '    <li class="quiz-list-item">';
