@@ -258,9 +258,11 @@ class DonSVC
             return 0;
         }
 
-        $examResult = $this->getExamResultLast($login_id);
+        // 최종 불합격 일때만 result 로 이동 (합격해도 한번 더 볼 수 있도록. 한돈 요청사항. (두번 중 더 높은 점수를 원함.))
+        // $examResult = $this->getExamResultLast($login_id);
+        $examResult = $this->getExamResultHigherScore($login_id);
         $score = $examResult['score'];
-        $num = $examResult['num'];
+        $num = $examCount; // $examResult['num'];
 
         $ret = 0;
         if($score >= 60) {

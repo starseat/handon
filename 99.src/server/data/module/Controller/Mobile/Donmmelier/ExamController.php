@@ -71,8 +71,20 @@ class ExamController extends \Controller\Mobile\Controller
     // 합격 : 1
     // 불합격 - 응시1: -1
     // 불합격 - 응시2: -2  // 다음기회 X
+    // $retExam = $donSvc->checkExamPass($memId);
+    // if($retExam == 1 || $retExam == -2) {
+    //   $msg = 'parent.location.href=\'./exam_result.php\';';
+    //   $this->js($msg);
+    //   exit;
+    // }
+
+    // 응시 X : 0
+    // 합격 : 1
+    // 불합격 - 응시1: -1
+    // 불합격 - 응시2: -2  // 다음기회 X
     $retExam = $donSvc->checkExamPass($memId);
-    if($retExam == 1 || $retExam == -2) {
+    $examCount = $donSvc->getExamCount($memId);
+    if ($examCount == 2 || $retExam == -2) {  // 최종 불합격 일때만 result 로 이동 (합격해도 한번 더 볼 수 있도록. 한돈 요청사항. (두번 중 더 높은 점수를 원함.))
       $msg = 'parent.location.href=\'./exam_result.php\';';
       $this->js($msg);
       exit;
