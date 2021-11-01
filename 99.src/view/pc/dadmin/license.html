@@ -94,6 +94,7 @@
                                     <th class="list_date">상세</th>
                                     <th class="list_date">배송 메시지</th>
                                     <th class="list_date">신청일</th>
+                                    <th class="list_date">이미지<br>다운로드</th>
                                 </tr>
                             </thead>
                             <tbody id="license-list">
@@ -108,6 +109,11 @@
                                     <td class="list_date">{=.address_detail}</td>
                                     <td class="list_date">{=.send_message}</td>
                                     <td class="list_date">{=.created_at}</td>
+                                    <td class="list_date">
+                                        <a download="{=.img_real_name}" href="https://mall.han-don.com/data/board/upload/donmmelier/{=.img_save_name}" title="이미지 다운로드">
+                                            <img alt="ImageName" src="https://mall.han-don.com/data/board/upload/donmmelier/{=.img_save_name}">
+                                        </a>
+                                    </td>
                                 </tr>
                                 <!--{ / }-->
                             </tbody>
