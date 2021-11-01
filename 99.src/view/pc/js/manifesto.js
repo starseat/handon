@@ -38,21 +38,24 @@ function popupOpen_noti() {
     var isAllViewLecture = $('#hiddenIsAllViewLecture').val();
     var isPass = $('#hiddenIsPass').val();
 
-    if (isRegi == '1') {
-        $('#noti-popup').show();
+    if (isRegi != '1') {
+        // $('#noti-popup').show();
+        $('#noti-popup').css('display', 'flex');
         $('#noti-popup-msg-1').show();
         $('.wrap').addClass('popup_open');
         return;
     }
 
-    if (isAllViewLecture == '1') {
-        $('#noti-popup').show();
+    if (isAllViewLecture != '1') {
+        // $('#noti-popup').show();
+        $('#noti-popup').css('display', 'flex');
         $('#noti-popup-msg-2').show();
         $('.wrap').addClass('popup_open');
     }
 
-    if (isPass == '1') {
-        $('#noti-popup').show();
+    if (isPass != '1') {
+        // $('#noti-popup').show();
+        $('#noti-popup').css('display', 'flex');
         $('#noti-popup-msg-3').show();
         $('.wrap').addClass('popup_open');
     }

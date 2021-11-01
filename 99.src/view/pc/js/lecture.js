@@ -106,7 +106,6 @@ function initLecture2() {
     $('#lecture-popup-btn-index-prev').val(1);
     $('#lecture-popup-btn-index-next').val(3);
 
-
     VIDEO_OPTIONS.sources = [{
         // src: "./video/test.mp4",
         src: 'https://file.han-don.com/donmmelier/lecture2.mp4',
@@ -125,6 +124,19 @@ function initLecture3() {
     $('#lecture-popup .btn_arrow_l').show();
     $('#lecture-popup .txt_red').text('3회차 교육');
     $('#lecture-popup-btn-index-prev').val(2);
+
+     VIDEO_OPTIONS.sources = [{
+        // src: "./video/test.mp4",
+        src: 'https://file.han-don.com/donmmelier/lecture3.mp4',
+        type: "video/mp4"
+    }];
+
+    LECTURE_PLAYER = videojs('lecture-player', VIDEO_OPTIONS);
+    LECTURE_PLAYER.ready(function() {
+        this.on('ended', function() {
+            sendViewComplated(3);
+        });
+    });
 }
 
 function prevLecturePopup() {
@@ -134,10 +146,6 @@ function prevLecturePopup() {
 
 function nextLecturePopup() {
     var nextIndex = parseInt($('#lecture-popup-btn-index-next').val(), 10);
-    if (nextIndex == 3) {
-        alert('3회차 교육은 준비중 입니다.');
-        return false;
-    }
     popupOpen_lecture(null, nextIndex, true);
 }
 
