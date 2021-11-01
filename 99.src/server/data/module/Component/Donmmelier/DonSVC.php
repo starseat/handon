@@ -128,13 +128,19 @@ class DonSVC
         $season = $lecture_info['season'];
         $num = $lecture_info['num'];
 
-        $sql = "
-            INSERT INTO `donmm_lecture` (memNo, memId, season, num)
-            VALUES ('{$memNo}', '{$memId}', {$season}, {$num})
-        ";
+        $nRet = 0;
+        $count = $this->getCountLectureViewComplated($lecture_info);
+        if($count == 0) {
+            $sql = "
+                INSERT INTO `donmm_lecture` (memNo, memId, season, num)
+                VALUES ('{$memNo}', '{$memId}', {$season}, {$num})
+            ";
 
-        $this->db->query($sql);
-        return 1;
+            $this->db->query($sql);
+            $nRet = 1;
+        }
+        
+        return $nRet;
     }
 
     public function isEmpty($value) {
@@ -470,20 +476,27 @@ class DonSVC
         $img_save_name = $insert_info['img_save_name'];
         $img_upload_path = $insert_info['img_upload_path'];
 
-        $sql = "
-        INSERT INTO `donmm_license`
-            (memNo, memId, season, name, phone,
-            post_code, address, address_detail, address_extra, send_message,
-            img_real_name, img_save_name, img_upload_path )
-        VALUES (
-            '{$memNo}', '{$memId}', {$season}, '{$name}', '{$phone}',
-            '{$post_code}', '{$address}', '{$address_detail}', '{$address_extra}', '{$send_message}',
-            '{$img_real_name}', '{$img_save_name}', '{$img_upload_path}'
-        )
-        ";
+        // 중복 등록 될 수 있으므로 한개만 등록되도록 수정
+        $nRet = 0;
+        $insertedCount = $this->getLicenseCount($memId);
+        if($insertedCount == 0) {
+            $sql = "
+            INSERT INTO `donmm_license`
+                (memNo, memId, season, name, phone,
+                post_code, address, address_detail, address_extra, send_message,
+                img_real_name, img_save_name, img_upload_path )
+            VALUES (
+                '{$memNo}', '{$memId}', {$season}, '{$name}', '{$phone}',
+                '{$post_code}', '{$address}', '{$address_detail}', '{$address_extra}', '{$send_message}',
+                '{$img_real_name}', '{$img_save_name}', '{$img_upload_path}'
+            )
+            ";
 
-        $this->db->query($sql);
-        return 1;
+            $this->db->query($sql);
+            $nRet = 1;
+        }
+        
+        return $nRet;
     }
 
     public function getLicenseCount($login_id) {
@@ -668,7 +681,9 @@ class DonSVC
         $baseSql = "
             SELECT
                 @rownum:=@rownum+1 as no, lic.memNo, lic.memId, lic.season, lic.name, lic.phone,
-                lic.post_code, lic.address, lic.address_detail, lic.address_extra, lic.send_message, lic.created_at
+                lic.post_code, lic.address, lic.address_detail, lic.address_extra, lic.send_message, 
+                lic.img_real_name, lic.img_save_name, lic.img_upload_path,
+                lic.created_at
             FROM donmm_license lic, (SELECT @rownum:=0) no_temp
             order by lic.created_at desc
         ";
@@ -705,6 +720,9 @@ class DonSVC
                 'address_detail' => $data['address_detail'],
                 'address_extra' => $data['address_extra'],
                 'send_message' => $data['send_message'],
+                'img_real_name' => $data['img_real_name'],
+                'img_save_name' => $data['img_save_name'],
+                'img_upload_path' => $data['img_upload_path'],
                 'created_at' => $data['created_at']
             ]);
         }
