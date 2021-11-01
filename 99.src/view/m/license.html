@@ -81,7 +81,7 @@
                                     <a href="./exam_init.php" class="ssl_cont">내 시험보기</a>
                                 </li>
                                 <li class="ssl_inner">
-                                    <a href="javascript: void(0);" class="ssl_cont" onclick="popupOpen_preparing(event);">자격증 발급 신청/조회</a>
+                                    <a href="javascript: void(0);" class="ssl_cont">자격증 발급 신청/조회</a>
                                     <!-- ./manifesto.php -->
                                 </li>
                                 <li class="ssl_inner">
@@ -151,22 +151,22 @@
                                     <div class="license_input_w">
                                         <div class="license_input_row ip_name">
                                             <label for="licenseName">이름<i class="essential"></i></label>
-                                            <input type="text" id="licenseName" class="license_input" placeholder="김한돈" value="{=member_name}" />
+                                            <input type="text" id="licenseName" name="licenseName" class="license_input" placeholder="김한돈" value="{=member_name}" />
                                         </div>
                                         <div class="license_input_row ip_phone">
                                             <label for="licensePhone">연락처<i class="essential"></i></label>
-                                            <input type="text" id="licensePhone" class="license_input" placeholder="연락처를 입력해주세요" value="{=regi_phone}" />
+                                            <input type="text" id="licensePhone" name="licensePhone" class="license_input" placeholder="연락처를 입력해주세요" value="{=regi_phone}" />
                                         </div>
                                         <div class="license_input_row ip_address01">
-                                            <label for="licenseAddress01">주소<i class="essential"></i></label>
-                                            <input type="text" id="licensePostCode" class="license_input" placeholder="우편번호" />
+                                            <label for="licensePostCode">주소<i class="essential"></i></label>
+                                            <input type="text" id="licensePostCode" name="licensePostCode" class="license_input" placeholder="우편번호" />
                                             <button type="button" class="input_btn bg_black" onclick="getAddressInfo();">우편번호 검색</button>
                                         </div>
                                         <div class="license_input_row ip_address02">
-                                            <input type="text" id="licenseAddress" class="license_input" placeholder="주소를 입력해주세요" />
+                                            <input type="text" id="licenseAddress" name="licenseAddress" class="license_input" placeholder="주소를 입력해주세요" />
                                         </div>
                                         <div class="license_input_row ip_address03">
-                                            <input type="text" id="licenseAddressDetail" class="license_input" placeholder="상세주소를 입력해주세요" />
+                                            <input type="text" id="licenseAddressDetail" name="licenseAddressDetail" class="license_input" placeholder="상세주소를 입력해주세요" />
                                         </div>
                                         <input type="hidden" id="licenseAddressExtra" name="licenseAddressExtra" class="license_input" placeholder="참고항목를 입력해주세요" />
                                     </div>
