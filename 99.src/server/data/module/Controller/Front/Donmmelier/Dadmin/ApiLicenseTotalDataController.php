@@ -47,7 +47,7 @@ class ApiLicenseTotalDataController extends \Controller\Front\Controller
     $result_array = [
       'result' => true, 
       'code' => 0, 
-      'data' => $donSvc->getLicenseInfoList()
+      'data' => $donSvc->getLicenseInfoTotalList()
     ];
 
     $this->json($result_array);
