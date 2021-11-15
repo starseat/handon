@@ -668,7 +668,7 @@ class DonSVC
                 'name' => $data['name'],
                 'phone' => $data['phone'],
                 'created_at' => $data['created_at'],
-                'lnum' => $data['lnum'],
+                'lecture' => $data['lnum'],
                 'score1' => $data['score1'],
                 'score2' => $data['score2']
             ]);
