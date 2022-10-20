@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>한돈대학</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="한돈 소믈리에">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="한돈 소믈리에">
+    <meta property="og:description" content="한돈 대학 | 한돈 소믈리에">
+    <meta property="og:url" content="https://mall.han-don.com/donmmelier/license.php">
+    <link rel="canonical" href="https://mall.han-don.com/donmmelier/license.php">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xpressengine/xeicon@2.3.1/xeicon.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" type="text/css" href="./css/slick.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="./css/common_pc.css" media="all" />
+    <style>
+        #noti-popup,
+        #noti-popup-msg-1,
+        #noti-popup-msg-2,
+        #noti-popup-msg-3 {
+            display: none;
+        }
+        
+        #licenseFileBtn {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- 레이어팝업 제어 클래스 popup_open -->
+        <!-- GNB -->
+        <div class="common_gnb_w">
+            <!-- lnbtype_main / sticky / 모바일:gnb_open -->
+            <div class="common_lnb_w">
+                <h1 class="gnb_big_logo">
+                    <a href="./index.php" class="gnb_logo"><img src="./imgs/pc/logo.png" alt="한돈대학 한돈소믈리에"></a>
+                </h1>
+                <div class="common_lnb_inner">
+                    <ul class="common_lnb_list">
+                        <li class="slnb_inner">
+                            <a href="javascript:alert('수강 종료되었습니다.')" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                    <span class="slnb_txt">
+                                        수강신청
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="slnb_inner">
+                            <a href="./index.php#section_05" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                    <span class="slnb_txt">
+                                        한돈 소믈리에 자격증
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="slnb_inner gnb_on">
+                            <a href="./mypage.php" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                    <span class="slnb_txt">
+                                        마이페이지
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="gnb_quick_w">
+                    <a href="javascript: void(0);" class="sns_share_btn" id="snsShareBtn">
+                        <img src="./imgs/pc/sns_share.png" alt="공유링크">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 콘텐츠 -->
+        <div class="container">
+            <div class="sub_section_w">
+                <div class="sub_article_l">
+                    <div class="member_info_w">
+                        <span class="mi_text">안녕하세요!</span>
+                        <strong class="mi_name">{=member_name}</strong>
+                        <span class="mi_text2">님</span>
+                    </div>
+                    <input type="hidden" id="member_id" value="{=member_id}">
+                    <div class="mypage_menu_w">
+                        <ul class="mp_menu_list">
+                            <li class="mpml_inner">
+                                <a href="./mypage.php" class="mpml_cont">마이 첫 페이지</a>
+                            </li>
+                            <li class="mpml_inner">
+                                <a href="javascript:alert('수강 종료되었습니다.')" class="mpml_cont">내 강의 보기</a>
+                            </li>
+                            <li class="mpml_inner">
+                                <a href="javascript:alert('수강 종료되었습니다.')" class="mpml_cont">내 시험 보기</a>
+                            </li>
+                            <li class="mpml_inner mymenu_current">
+                                <a href="javascript: void(0);" class="mpml_cont">자격증 발급 신청 / 조회</a>
+                            </li>
+                            <li class="mpml_inner">
+                                <a href="https://www.han-don.com/bbs/index.php?board=announce" class="mpml_cont" target="_blank">공지사항</a>
+                            </li>
+                            <li class="mpml_inner">
+                                <a href="https://www.han-don.com/member/mypage.php?mode=info&tabst=handon" class="mpml_cont" target="_blank">회원 정보 수정</a>
+                            </li>
+                            <li class="mpml_inner">
+                                <a href="https://www.han-don.com/bbs/index.php?board=inquiry" class="mpml_cont" target="_blank">문의 게시판</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="button" class="mypage_btn_logout" onclick="logout()">
+                        <span class="mp_btn_text">
+                            <i class="xi-log-out">
+                                <span class="blind">로그아웃 아이콘</span>
+                            </i>
+                            로그아웃
+                        </span>
+                    </button>
+                </div>
+
+                <div class="sub_article_r">
+                    <form action="./license_submit.php" method="post" id="licenseSendForm" name="licenseSendForm" enctype="multipart/form-data">
+                        <div class="license_card_w">
+                            <div class="license_title">
+                                <strong>2021 한돈소믈리에</strong>
+                                <span class="txt_red">자격증 신청하기</span>
+                            </div>
+                            <div class="license_card_inner">
+                                <!-- 정보입력 -->
+                                <div class="license_card_form_w">
+                                    <img src="./imgs/pc/license_card.jpg" alt="자격증 이미지">
+                                    <div class="license_input_w">
+                                        <div class="license_input_row ip_name">
+                                            <label for="licenseName">이름<i class="essential"></i></label>
+                                            <input type="text" id="licenseName" name="licenseName" class="license_input" placeholder="김한돈" value="{=member_name}" />
+                                        </div>
+                                        <div class="license_input_row ip_phone">
+                                            <label for="licensePhone">연락처<i class="essential"></i></label>
+                                            <input type="text" id="licensePhone" name="licensePhone" class="license_input" placeholder="연락처를 입력해주세요" value="{=regi_phone}" />
+                                        </div>
+                                        <div class="license_input_row ip_address01">
+                                            <label for="licensePostCode">주소<i class="essential"></i></label>
+                                            <input type="text" id="licensePostCode" name="licensePostCode" class="license_input" placeholder="우편번호" id="license-post-code" readonly />
+                                            <button type="button" class="input_btn bg_black" onclick="getAddressInfo();">우편번호 검색</button>
+                                        </div>
+                                        <div class="license_input_row ip_address02">
+                                            <input type="text" id="licenseAddress" name="licenseAddress" class="license_input" placeholder="주소를 입력해주세요" readonly />
+                                        </div>
+                                        <div class="license_input_row ip_address03">
+                                            <input type="text" id="licenseAddressDetail" name="licenseAddressDetail" class="license_input" placeholder="상세주소를 입력해주세요" />
+                                        </div>
+                                        <input type="hidden" id="licenseAddressExtra" name="licenseAddressExtra" class="license_input" placeholder="참고항목를 입력해주세요" />
+                                    </div>
+                                </div>
+                                <div class="license_message_w">
+                                    <strong class="sub_stitle">배송 메세지</strong>
+                                    <textarea id="licenseSendMessage" name="licenseSendMessage" cols="30" rows="10" placeholder="50자까지 작성 가능합니다."></textarea>
+                                </div>
+                                <div class="license_add_w">
+                                    <strong class="sub_stitle">사진첨부<i class="essential"></i></strong>
+                                    <div class="addfile_info">
+                                        <span class="addfile_info_text">* 파일형식 : jpeg,png만 가능</span>
+                                        <span class="addfile_info_text">* 파일크기 : 최대10MB</span>
+                                    </div>
+                                    <div class="addfile_upload">
+                                        <span class="addfile_name" id="licenseFileName"></span>
+                                        <label class="input_btn bg_black" for="licenseFile" id="licenseFileBtn">파일 업로드</label>
+                                        <input type="file" class="input_file" id="licenseFile" name="licenseFile" accept="image/jpg, image/jpeg, image/png" onchange="changeLicenseImage(this)">
+                                    </div>
+                                </div>
+                                <div class="user_agree_w">
+                                    <span class="form_agree">
+                                    <input type="checkbox" id="formAgree" class="ip_checkbox">
+                                    <label for="formAgree" class="input_label">개인정보 수집, 이용 및 SMS 수신에 동의합니다.</label>
+                                    <a href="#none" class="agree_detail">자세히보기</a>
+                                </span>
+                                    <strong class="delivery_info">※ 자격증 배송시 수료증도 함께 동봉되어 배송됩니다.</strong>
+                                </div>
+                            </div>
+                            <button type="submit" class="module_btn_red" onclick="submitLicenseSend(event);">한돈소믈리에 자격증 신청하기</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <input type="hidden" id="hiddenLastLectureNum" value="{=last_lecture_num}">
+            <input type="hidden" id="hiddenIsRegi" value="{=is_regi}">
+            <input type="hidden" id="hiddenIsAllViewLecture" value="{=is_all_view_lecture}">
+            <input type="hidden" id="hiddenIsPass" value="{=is_pass}">
+
+            <!-- 레이어팝업 -->
+            <div class="layer_popup_w">
+                <!-- popup -->
+                <div class="layer_popup_box" id="noti-popup">
+                    <div class="layer_popup_inner">
+                        <div class="layer_popup_cont">
+                            <strong class="layer_popup_title">시험응시</strong>
+                            <p class="player_popup_text text-1" id="noti-popup-msg-1">
+                                예비 한돈소믈리에 님,<br />
+                                <strong>수강 신청 후 이용하실 수 있습니다.</strong>
+                            </p>
+                            <p class="player_popup_text text-1" id="noti-popup-msg-2">
+                                예비 한돈소믈리에 님,<br />
+                                <strong>시험은 기초과정의 3강좌를<br />모두 수강 후 응시 가능합니다.</strong>
+                            </p>
+                            <p class="player_popup_text text-3" id="noti-popup-msg-3">
+                                예비 한돈소믈리에 님,<br />
+                                <strong>가슴 속 고기부심을 증명 후 이용 가능합니다.</strong>
+                            </p>
+                        </div>
+                        <button type="button" class="popup_btn_x" title="팝업 닫기" onclick="popupClose()">
+                            <i class="xi-close"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <i class="dim"></i>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <div class="footer">
+            <div class="footer_inner">
+                <div class="footer_text_list">
+                    <span class="ftl_cont">법인명(상호) : 한돈소믈리에 운영사무국(한돈자조금)</span>
+                    <span class="ftl_cont">대표자(성명) : 김명준</span>
+                    <span class="ftl_cont">사업자 등록번호 안내 : 899-88-00918</span>
+                    <span class="ftl_cont">통신판매업 신고 제2017-서울서초-0176호</span>
+                    <span class="ftl_cont">전화 : 02-2135-8473</span>
+                    <span class="ftl_cont">팩스 : 02-2135-8471</span>
+                </div>
+                <div class="footer_text_list2">
+                    <span class="ftl_cont">※ 한돈소믈리에 운영사무국은 한돈소믈리에 자격증 교육과정 운영대행 업무를 맡고 있습니다.</span>
+                    <span class="ftl_cont">Copyright © mall.han-don.com. All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
+        if (isMobile) {
+            document.location.href = '//m.mall.han-don.com/donmmelier/license.php';
+        }
+    </script>
+    <script type="text/javascript" src="./vendor/slick-1.6.0/slick-1.6.0.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/license.js"></script>
+</body>
+
+</html>

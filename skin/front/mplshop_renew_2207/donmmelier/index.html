@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>한돈대학</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="한돈소믈리에">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="한돈소믈리에">
+    <meta property="og:description" content="한돈 대학 | 한돈소믈리에">
+    <meta property="og:url" content="https://mall.han-don.com/donmmelier/index.php">
+    <link rel="canonical" href="https://mall.han-don.com/donmmelier/index.php">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xpressengine/xeicon@2.3.1/xeicon.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" type="text/css" href="./css/slick.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="./css/common_pc.css" media="all" />
+    <style>
+        #target_youtube_view {
+            width: 100%;
+            height: 100%;
+        }
+        .lecture-poster {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap main">
+        <!-- 레이어팝업 제어 클래스 popup_open -->
+        <!-- GNB -->
+        <div class="common_gnb_w">
+            <!-- lnbtype_main / sticky / 모바일:gnb_open -->
+
+            <div class="common_lnb_w">
+                <h1 class="gnb_big_logo">
+                    <a href="./index.php" class="gnb_logo"><img src="./imgs/pc/logo.png" alt="한돈대학 한돈소믈리에"></a>
+                </h1>
+                <input type="hidden" id="hiddenIsLogin" value="{=is_login}">
+                <input type="hidden" id="hiddenIsRegistered" value="{=is_registered}">
+                <input type="hidden" id="hiddenRegiName" value="{=regi_name}">
+                <input type="hidden" id="hiddenRegiPhone" value="{=regi_phone}">
+                <div class="common_lnb_inner">
+                    <ul class="common_lnb_list">
+                        <li class="slnb_inner">
+                            <!-- active: gnb_on -->
+                            <a href="javascript:alert('수강 종료되었습니다.')" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                    <span class="slnb_txt">
+                                        수강신청
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="slnb_inner">
+                            <a href="#section_05" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                    <span class="slnb_txt">
+                                        한돈소믈리에 자격증
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="slnb_inner" id="navi-menu-mypage">
+                            <a href="javascript: void(0);" class="slnb_link" onclick="moveMyPage(event)">
+                                <span class="slnb_txt_box">
+                                    <span class="slnb_txt">
+                                        마이페이지
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="gnb_quick_w">
+                    <a href="{=login_url}" class="member_btn" id="navi-menu-login">
+                        <span class="slnb_txt_box">
+                            <span class="slnb_txt">
+                                로그인
+                            </span>
+                        </span>
+                    </a>
+                    <a href="javascript: void(0);" class="sns_share_btn" id="snsShareBtn">
+                        <img src="./imgs/pc/sns_share.png" alt="공유링크">
+                    </a>
+                </div>
+                <input type="hidden" id="navi-menu-login-link" value="{=login_url}">
+            </div>
+        </div>
+
+        <!-- 콘텐츠 -->
+        <div class="container">
+            <!-- 콘텐츠01 -->
+            <div id="section_01" class="section_01_w" style="background-image:url('./imgs/pc/s01_bg.jpg');">
+                <div class="section_inner">
+                    <div class="section_cont">
+                        <div class="s01_text_w">
+                            <div class="s01_motion_text">[한돈소믈리에 스페셜 라운드 행사 취소 안내]</div>
+                            <span class="s01_text">
+                                안녕하세요. <br />한돈자조금관리위원회는 이번 코로나19 확산 방지 및 참가자 여러분의 안전 확보를 위해 잠정 연기되었던<br /><한돈소믈리에 스페셜 라운드> 행사를 더이상 미룰 수 없어 전면 취소하기로 결정하였습니다.<br />
+ <br />
+<한돈소믈리에 스페셜 라운드>에 많은 관심을 가져주시고 오래 기다려주신 분들께 진심으로 사과드립니다.<br />
+ <br />
+향후 행사 재개가 가능한 상황이 되면 <한돈소믈리에 스페셜 라운드>를 다시 개최할 수 있도록 노력하겠습니다.<br />여러분의 많은 양해와 한돈자조금에서 추진하는 여러 사업들에 지속적인 관심 부탁드립니다.<br />
+ <br />
+조속히 코로나19 상황이 극복되기를 기원하며, 올 한해에도 한돈과 함께 건강하고 다복한 한 해 되시길 바라겠습니다.<br />
+ <br />
+감사합니다.<br />
+                                    <br />
+                                    <span style="color:#e2be76; font-size: 0.8em;">- 한돈소믈리에 스페셜 라운드 운영 사무국 -</span>
+                        </span>
+                        </div>
+<!--
+                        <div class="s01_image_w">
+                            <img src="./imgs/pc/s01_pig.png" alt="" class="s01_img">
+                            <span class="s01_light_top"><img src="./imgs/pc/light_top.png" alt=""></span>
+                            <span class="s01_light_bottom"><img src="./imgs/pc/light_btm.png" alt=""></span>
+                        </div>
+-->
+                    </div>
+                </div>
+                <button type="button" class="btn_scroll_down">
+                <span class="btn_icon_down"><img src="./imgs/pc/scroll_btn.png" alt="scoll down"></span>
+            </button>
+            </div>
+
+            <!-- 콘텐츠11 211123_add -->
+            <div id="section_11" class="section_011_w">
+                <div class="section_inner">
+                    <div class="section_cont">
+                        <strong class="s11_title_w">
+                            <span class="s11_title_sub">Handon Sommelier Special Round </span>
+                            나의 고기부심은 한낱 허세가 아니었음을 <br>증명할 수 있는 절호의 기회!
+                        </strong><!-- // cont_center -->
+                        <div class="s11_center">
+                            <img src="imgs/pc/s11_center.png" usemap="#image-map">
+                            <map name="image-map">
+                                <area target="_blank" alt="한돈소믈리에 수료자 신청하기" title="한돈소믈리에 수료자 신청하기" href="https://docs.google.com/forms/d/e/1FAIpQLSc8Rv0QxIOz6iF-TRB-P6JP6xKL2m6mkaqSUQv45P54uXLaxw/viewform" coords="777,1265,1014,1321" shape="rect">
+                                <area target="_blank" alt="일반신청 미수료자 신청하기" title="일반신청 미수료자 신청하기" href="https://docs.google.com/forms/d/e/1FAIpQLScw6gosf_AwT8GlPMaiy3j5L6kkoo185UPdSyJZtCv5sA-w-A/viewform" coords="1137,1263,1373,1321" shape="rect">
+                            </map>
+                        </div><!-- // s11_cont_center -->
+                        <div class="s11_bottom">
+                            <img src="imgs/pc/s11_bottom.png">
+                            <div class="btn_wrap">
+                                <button type="button" class="guide_open_btn" onclick="displayElement('s11GuideModal')">유의사항 및 안내사항 확인</button>
+                            </div>
+                        </div><!-- // s11_cont_bottom -->
+                    </div>
+                </div>
+            </div>
+            <!-- 스페셜 라운드 유의사항/안내사항 모달 -->
+            <div id="s11GuideModal" class="s11_guide_modal">
+                <div class="cont_box">
+                    <div class="head">
+                        <div class="tit">한돈소믈리에 스페셜 라운드 [유의사항/안내사항]</div>
+                        <button type="button" class="close_btn"><img src="imgs/pc/s11_icon_close.jpg" alt="닫기"></button>
+                    </div>
+                    <div class="cont desc_wrap">
+                        <p class="dot_deco">행사 참여 시 영상 촬영이 진행되며 참여자의 행사 영상을 편집하여 활용(게시) 및 본인의 캡쳐된 얼굴(화면) 등을 보도자료 배포, SNS 업로드, 방송 등에 활용될 수 있습니다.</p>
+                        <p class="dot_deco">행사 참여에 있어, 「개인정보보호법」등 관련 법규에 의거하여 수집된 개인 정보는 참가자 선정 및 경품 발송을 위한 목적으로만 활용됩니다.</p>
+                        <div class="dot_deco">
+                            진행되는 행사로 인해 수집되는 개인정보는 행사 진행과 경품 발송을 위해 (주)케이피알앤드어소시에이츠에 취급 및 위탁됩니다.
+                            <p>-제공받는자 : (주)케이피알앤드어소시에이츠
+                            </p>
+                            <p>-이용 목적 : 이벤트 운영/ 당첨자 선정 및 경품 발송/ ARS 안내/ 제세공과금 납부 등
+                            </p>
+                            <p>-제공정보 : 이름, 연락처, 나이, 이메일 주소
+                            </p>
+                            <p>-개인정보의 보유 및 이용기간(근거법률): 행사 종료일로부터 3개월
+                            </p>
+                        </div>
+                        <p class="dot_deco">위 항목의 동의를 거부할 수 있으나, 동의를 거부하실 경우 '한돈 소믈리에 스페셜 라운드' 참여 신청이 거부될 수 있습니다.</p>
+                        <p class="dot_deco">경품은 양도 및 양수 불가하며, 타 상품으로 교환 및 환불이 불가합니다.</p>
+                        <p class="dot_deco">경품 이미지는 이벤트 페이지 상의 이미지와 상이할 수 있습니다.</p>
+                        <p class="dot_deco">경품에 대한 제세공과금은 당첨자 본인 부담입니다.</p>
+                        <p class="dot_deco">불법이나 편법, 비정상적인 방법으로 참여 시, 당첨이 취소 될 수 있습니다. (판단은 한돈자조금과 케이피알앤드어소시에이츠에서 진행합니다.)</p>
+                    </div>
+                    <div class="bottom">
+                        <button type="button" class="confirm_btn">확인</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 스페셜 라운드 유의사항/안내사항 모달 : end -->
+            <!-- 콘텐츠11 -->
+
+
+            <!-- 콘텐츠02 -->
+            <div id="section_02" class="section_02_w" style="background-image:url('./imgs/pc/s02_bg.jpg'); display:none;">
+                <div class="section_inner">
+                    <div class="section_cont">
+                        <div class="section_left">
+                            <div class="s02_motion_text" data-aos="fade-up" data-aos-duration="3000">
+                                <img src="./imgs/pc/s02_title.png" alt="한돈소믈리에 자격증 사전 수강 신청만 해도 선물이 펑펑!">
+                            </div>
+                            <div class="s02_image_w">
+                                <img src="./imgs/pc/s02_left_img.png" alt="">
+                                <div class="blind">
+                                    사전 수강 신청을 한 신청자분들 중 추첨을 통해 스타벅스 기프티콘(500명) 지급 스타벅스 아메리카노 (500명) 이벤트 기간 9/27~10/17 당첨자발표 : 당첨자 개별 공지 지금바로 사전 수강!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section_right">
+                            <div class="s02_form_w">
+                                <img src="./imgs/pc/s02_right_img.jpg" alt="사전 수강 신청서">
+                                <div class="form_input_w">
+                                    <span class="form_group">
+                                    <label class="input_label">성함</label>
+                                    <span class="input_box"><input type="text" /></span>
+                                    </span>
+                                    <span class="form_group phoneNumber">
+                                    <label class="input_label">연락처</label>
+                                    <span class="input_box">
+                                        <input type="text" />
+                                        <span class="input_dash">-</span>
+                                    <input type="text" />
+                                    <span class="input_dash">-</span>
+                                    <input type="text" />
+                                    </span>
+                                    </span>
+                                    <span class="form_agree">
+                                    <input type="checkbox" id="formAgree" class="ip_checkbox">
+                                    <label for="formAgree" class="input_label">개인정보 수집, 이용 및 SMS 수신에 동의합니다.</label>
+                                </span>
+                                    <button type="button" class="btn_form_send">사전 수강 신청하기</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 콘텐츠03 -->
+            <div id="section_03" class="section_03_w">
+                <div class="section_inner">
+                    <div class="section_cont">
+                        <div class="section_left">
+                            <div class="s03_title">
+                                증명하라!<br/> 당신의 고기부심!
+                            </div>
+                        </div>
+                        <div class="section_right">
+                            <div class="s0301_motion_text" data-aos="fade-up" data-aos-duration="3600">
+                                한돈소믈리에 자격증에<br/> 도전해야 하는 7가지 이유
+                            </div>
+                            <div class="s0302_motion_text" data-aos="fade-up" data-aos-duration="3000">
+                                <ul>
+                                    <li><span class="number">1</span>당신의 고기부심은 한낱 허세가 아니었음을 증명할 수 있다. </li>
+                                    <li><span class="number">2</span>돈(豚)과 명예를 가진 상위 0.1% 한돈전문가가 될 수 있다. </li>
+                                    <li><span class="number">3</span>불판위의 권력자! 고기 집게 독점권으로 한돈지식 TMI 대방출이 가능하다.</li>
+                                    <li><span class="number">4</span>남들의 시선을 즐겨라, 당신의 한돈부심을 SNS에 마음껏 알릴 수 있다.</li>
+                                    <li><span class="number">5</span>숙련된 손놀림, 철저한 각도조절과 완벽한 타이밍으로 고기를 뒤집는 순간!<br/>상대방은 이미 당신에게 폴인럽…. 매력포텐 뿜뿌의 지름길!</li>
+                                    <li><span class="number">6</span>1등급은 바로 너! 사장님이 꽁꽁 숨겨놓은 고퀄리티 한돈도 놓치지 않고 획득할 수 있다.</li>
+                                    <li><span class="number">7</span>고기를 태워도 마이야르라고 이야기 할 수 있는 용서권을 얻는다.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 콘텐츠05 -->
+            <div id="section_05" class="section_05_w" style="background-image:url('./imgs/pc/s05_bg.jpg');">
+                <div class="section_inner">
+                    <div class="section_cont">
+                        <div class="s05_text">
+                            <strong class="s05_title_w">
+                            <span class="s05_title_sub">지금부터 - 당신의 고기부심 체크!</span>
+                            한돈소믈리에 자격과정
+                        </strong>
+                            <div class="s05_text_w">
+                                <strong>밥상위의 국가대표 우리 돼지 한돈</strong> 돼지고기를 먹고 요리하는 즐거움을 느낄 수 있도록 전문 교육강사가 기초상식부터 요리까지 높은 퀄리티의 강의를 제공합니다.<br/> 한돈소믈리에 교육 과정에서 여러분은 취향에 맞는 좋은 돼지고기와 고기부위를 고르는 법부터 각 부위별 영양분을 알고<br/> 맞춤형 레시피를 만드는 방법을 배울수 있습니다.
+                            </div>
+                        </div>
+                        <div class="s05_step_w">
+                            <div class="s05_step_cont aos-item aos-init aos-animate lecture-poster" data-aos="fade-up" data-aos-duration="4000" onclick="javascript:alert('수강 종료되었습니다.')">
+                                <div class="step_image"><img src="./imgs/pc/s05_step1.png" alt="좋은 돼지고기 고르는 법"></div>
+                            </div>
+                            <div class="s05_step_cont aos-item aos-init aos-animate lecture-poster" data-aos="fade-up" data-aos-duration="3400" onclick="javascript:alert('수강 종료되었습니다.')">
+                                <div class="step_image"><img src="./imgs/pc/s05_step2.png" alt="부위별 맛과 영양분"></div>
+                            </div>
+                            <div class="s05_step_cont aos-item aos-init aos-animate lecture-poster" data-aos="fade-up" data-aos-duration="1600" onclick="javascript:alert('수강 종료되었습니다.')">
+                                <div class="step_image"><img src="./imgs/pc/s05_step3.png" alt="특별한 레시피 만드는 법"></div>
+                            </div>
+                        </div>
+<!--
+                        <div class="s05_step_date">
+                            2021. 10. 25 (월) 온라인 클래스 OPEN!
+                        </div>
+-->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 콘텐츠07 -->
+            <div id="section_07" class="section_07_w">
+                <div class="section_inner">
+                    <div class="section_cont">
+                        <div class="s07_text">
+                            <strong class="s_title_w">
+                            <span class="s_title_sub">단 3회 온라인 강의수강으로 이제부터 나도 한돈소믈리에!</span>
+                                한돈소믈리에 자격증
+                            </strong>
+                            <div class="s_text_w">
+                                <strong>합격자에게는 특별한 한돈소믈리에 굿즈 증정!</strong>
+                            </div>
+                            <div class="event_test_btn_w">
+                                <a href="#none" class="event_test_link">
+                                    <div class="event_test_inner">
+                                        <span class="event_test_text">한돈소믈리에<br/>영상 교육 과정 3회</span>
+                                        <span class="event_test_icon"><img src="./imgs/pc/s07_test1.png" alt="영상교육 아이콘"></span>
+                                    </div>
+                                </a>
+                                <a href="#none" class="event_test_link">
+                                    <div class="event_test_inner">
+                                        <span class="event_test_text">한돈소믈리에<br/>최종시험(60점 이상)<p>&#8251; 시험 응시기회 2회!</p></span>
+                                        <span class="event_test_icon"><img src="./imgs/pc/s07_test2.png" alt="최종시험 아이콘"></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="section_07_gift">
+                                <img src="./imgs/pc/section_07_gift_pc.png" alt="혜택">
+                            </div>
+                            <div class="bottomtxt">
+                                ※ 선착순 지급 굿즈는 조기 소진될 수 있습니다.<br/>※ 위 상품 이미지는 예시이며 실물은 상기 이미지와 다를 수 있습니다.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 콘텐츠08 -->
+            <div id="section_08" class="section_08_w" style="background-image:url('./imgs/pc/s08_bg.png');">
+                <!--<span class="s08_bg"><img src="./imgs/pc/s08_bg.png" alt=""></span>-->
+                <div class="section_inner">
+                    <div class="s08_text">
+                        <strong class="s_title_w">
+                        <span class="s_title_sub">한돈산업의 건전한 발전</span>
+                            한돈자조금관리위원회
+                        </strong>
+                        <div class="s08_text_w">
+                            <strong>본회는 한돈산업의 건전한 발전과 한돈인의 사회, 경제적 지위향상에 기여함을 목적으로 한다.</strong>
+                        </div>
+                    </div>
+                    <div class="section_cont">
+                        <div class="s08_list_box">
+                            <img src="./imgs/pc/s08_commit_img.jpg" alt="한돈자조금관리위원회">
+                            <ul class="commit_list_w">
+                                <li>소비촉진 홍보 및 판로 확대</li>
+                                <li>계도교육 및 정보제공</li>
+                                <li>조사와 연구</li>
+                                <li>정책개발 및 제도개선</li>
+                                <li>자율적 수급안정 유통구조 개선</li>
+                                <li>신제품 개발 수출 활성화</li>
+                            </ul>
+                        </div>
+                        <div class="s08_list_box s08_table_w">
+                            <div class="table_scroll">
+                                <p>
+                                    <strong>한돈 자조금관리위원회 소개</strong> 한돈자조금관리위원회는 2004년 축산업계 최초로 자조금 사업을 시작했으며,<br/> 1마리당 1,100원의 자조금을 한돈농가 스스로 납부 및 조성하여 한돈의 소비 촉진과 홍보,<br/> 수급 조절 및 품질 관리 강화를 위해 다양한 사업을 추진하고 있습니다.<br/><br/> 설립 이후 17년간 다양한 사업은 물론 꾸준한 사회공헌 활동을
+                                    전개하며
+                                    <br/> 사회적 책임을 다하고 있는 비영리 농민단체입니다.
+                                </p>
+<!--
+                                <p>
+                                    <strong>한돈자조금이란?</strong> 한돈자조금관리위원회는 2004년 축산업계 최초로 자조금 사업을 시작했다.<br/> 우리나라 돼지고기 한돈의 소비 촉진과 홍보, 수급 조절 및 품질 관리 강화를 위해 설립 이후<br/> 15여년간 다양한 사업은 물론 꾸준한 사회공헌 활동을 전개하며 사회적 책임을 다하고 있다.<br/> 한돈자조금은 2004년부터 도축장에서 등급판정을 받은
+                                    돼지 1두당 400원의 거출금을 받아조성되었으며,<br/> 2021년 현재는 1두당 1,100원을 거출해 한돈산업의 건전한 발전과 한돈 소비활성화를 위한 노력을 기울이고 있다.<br/> 한돈자조금은 한돈 소비홍보 및 소비촉진 사업, 유통구조 개선, 소비자 교육 및 정보제공, 생산자교육 및 정보제공,<br/> 안전한 한돈 생산 계도, 미래 인력 양성 및 기술 개발, 국내외 시장조사 및
+                                    시장개발, 한돈산업 전반에 대한<br/> 조사 연구 등 지속가능하고 국민에게 사랑받는 한돈산업을 위해 주요 사업에 집중적으로 사용되고 있다.
+                                </p>
+-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 콘텐츠09 : 211103 del -->
+<!--
+            <div id="section_09" class="section_09_w" style="background-image:url('./imgs/pc/s09_bg.jpg');">
+                <div class="section_inner">
+                    <div class="section_cont">
+                        <div class="s09_text">
+                            <strong class="s_title_w">
+                            <span class="s_title_sub">수강하면 매주 선물 이벤트가 쏟아진다!</span>
+                            한돈소믈리에 자격증 교육과정
+                        </strong>
+                        </div>
+                        <div class="s09_list_w">
+                            <div class="s09_list_box">
+
+                                <div class="s09_list_text">
+                                    <strong>1주차</strong>
+                                    <span>
+                                    - 삼성 갤럭시 버즈 프로<br/>
+                                    - 대한민국 돼지이야기 책
+                                </span>
+                                </div>
+                                <div class="s09_list_text">
+                                    <strong>2주차</strong>
+                                    <span>
+                                    - 삼성 갤럭시 워치<br/>
+                                    - 삼성 갤럭시 버즈 프로
+                                </span>
+                                </div>
+                                <div class="s09_list_text">
+                                    <strong>3주차</strong>
+                                    <span>
+                                    - 삼성 갤럭시 탭
+                                </span>
+                                </div>
+                                <div class="s09_list_text">
+                                    <strong>4주차</strong>
+                                    <span>
+                                    - LG그램 15인치
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+-->
+
+            <!-- 콘텐츠10 -->
+            <div id="section_10" class="section_10_w" style="background-image:url('./imgs/pc/s10_bg.jpg');">
+                <div class="section_inner">
+                    <div class="s10_bg_img">
+                        <img src="./imgs/pc/s10_frame.png" alt="">
+                    </div>
+                    <div class="s10_oath_w">
+                        <div class="s10_oath_inner">
+                            <strong class="s10_title_w">
+                            한돈소믈리에의 마음 자세
+                        </strong>
+                            <div class="oath_text_w">
+                                <ul class="oath_list">
+                                    <li><span>1.</span> 한돈에 대한 사랑처럼 진실된 사랑은 없다.</li>
+                                    <li><span>2.</span> 고기는 남의 돈으로 먹을 때가 제맛이다.</li>
+                                    <li><span>3.</span> 12시간 전에 먹은 고기는 하루가 지났기 때문에 살이 안 찐다.</li>
+                                    <li><span>4.</span> 커피에 설탕, 휘핑크림 올려서 살 찌느니 한돈먹고 살 찌겠다.</li>
+                                    <li><span>5.</span> 체하면 삼겹살, 이별의 아픔에는 항정살</li>
+                                    <li><span>6.</span> 한돈의 향과 맛을 유지하기 위해 최소 두시간뒤에 양치를 한다.</li>
+                                    <li><span>7.</span> 고기와 밀가루를 멀리하면 오래 살 수 있지만 그렇다면 무엇을 위해 사는가?</li>
+                                    <li><span>8.</span> 등심, 목살 나눌 시간에 하나라도 더먹자</li>
+                                    <li><span>9.</span> 내 몸은 소중하니까 수입 돼지고기 아닌 한돈으로 내 배를 채운다.</li>
+                                    <li><span>10.</span> 홍익인간 뜻으로 한돈몰 통해 널리 인간을 이롭게 하겠다.</li>
+                                </ul>
+                                <strong class="oath_text">
+                                이상 한돈에 진심인 한돈소믈리에의 마음 자세였습니다.
+                            </strong>
+                                <div class="oath_to">
+                                    * 위 명언들은 여러 연예인분들과 위인분들의 음식에 대한 조예깊은 명언을 참고하였으며<br/> 그 귀한 입맛에 깊은 존경을 보내는 바입니다.
+                                </div>
+                                <span class="form_agree">
+                                <input type="checkbox" id="oathAgree" class="ip_checkbox">
+                                <label for="oathAgree" class="input_label">개인(신청자)은 한돈에 진심임을 동의합니다.</label>
+                            </span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn_study_enter" title="수강신청" onclick="javascript:alert('수강 종료되었습니다.')">
+                            <img src="./imgs/pc/s10_btn_study.png" alt="2021 한돈소믈리에 수강신청">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 이벤트 레이어팝업 -->
+            <div class="layer_popup_w event_popup" id="regi-popup">
+                <div class="layer_popup_box">
+                    <div class="layer_popup_inner">
+                        <div class="event_popup_inner">
+                            <strong class="layer_popup_title">한돈소믈리에 자격 과정</strong>
+                            <div class="event_popup_cont">
+                                <div class="event_popup_text_w">
+                                    <p class="evp_text01">
+                                        <span class="evp_img"><img src="./imgs/pc/lesson_thumb210x130.png" alt="강의이미지"></span>
+                                        <strong>
+                                        한돈소믈리에가 되기 위한 시작!<br/>
+                                        당신의 고기부심! 이제는 마음껏 펼치세요!
+                                    </strong> 한돈소믈리에 과정을 통해 한돈에 대한 기본 지식과 다양한 조리법을 쉽고 재미있게 습득할 수 있습니다.<br/> 고기집게의 권력자가 되길 원한다면? 지금 바로 수강해보세요!
+                                    </p>
+                                </div>
+                                <div class="event_study_w">
+                                    <div class="study_list_w">
+                                        <div class="study_list_cont study_on">
+                                            <a href="#none" class="study_link">
+                                                <span class="study_label">영상 1회차</span>
+                                                <strong class="study_title">한돈 그것을 알려드림!</strong>
+                                                <span class="study_time">10:36</span>
+                                            </a>
+                                        </div>
+                                        <div class="study_list_cont">
+                                            <a href="#none" class="study_link">
+                                                <span class="study_label">영상 2회차</span>
+                                                <strong class="study_title">한돈학개론</strong>
+                                                <span class="study_time">-</span>
+                                            </a>
+                                        </div>
+                                        <div class="study_list_cont">
+                                            <a href="#none" class="study_link">
+                                                <span class="study_label">영상 3회차</span>
+                                                <strong class="study_title">한돈 굽고 인싸되기!</strong>
+                                                <span class="study_time">-</span>
+                                            </a>
+                                        </div>
+                                        <a href="./mypage.php" class="module_btn_red" target="_blank">마이페이지</a>
+                                    </div>
+                                    <div class="study_form_w">
+                                        <div class="study_form_bg">
+                                            <img src="./imgs/pc/s10_form_bg.png" alt="">
+                                        </div>
+                                        <div class="study_form_inner">
+
+                                            <div class="study_form_input">
+                                                <strong class="form_study_title">
+                                                <span>2021 한돈소믈리에 자격 과정</span>
+                                                수강 신청서
+                                            </strong>
+                                                <div class="form_input_w">
+                                                    <span class="form_group">
+                                                    <label class="input_label">성 함</label>
+                                                    <span class="input_box"><input type="text" id="regi-name"></span>
+                                                    </span>
+                                                    <span class="form_group phoneNumber">
+                                                    <label class="input_label">연락처</label>
+                                                    <span class="input_box">
+                                                        <input type="text" id="regi-phone1">
+                                                        <span class="input_dash">-</span>
+                                                    <input type="text" id="regi-phone2">
+                                                    <span class="input_dash">-</span>
+                                                    <input type="text" id="regi-phone3">
+                                                    </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <span class="form_agree">
+                                            <input type="checkbox" id="studyAgree" class="ip_checkbox">
+                                            <label for="studyAgree" class="input_label">개인정보 수집, 이용 및 SMS 수신에 동의합니다.</label>
+                                            <button type="button" class="btn_form_send" onclick="registerDonmmelier(event)">수강 신청</button>
+                                        </span>
+
+                                        </div>
+                                    </div>
+                                    <button type="button" class="popup_btn_x" title="팝업 닫기" onclick="popupClose();">
+                                    <i class="xi-close-thin xi-2x"><i class="ir">close</i></i>
+                                </button>
+                                    <input type="hidden" id="hiddenIsRegi" value="{=is_regi}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <i class="dim"></i>
+            </div>
+        </div>
+    </div>
+    
+    
+            <!-- 콘텐츠04 -->
+            <div id="section_04" class="section_04_w">
+                <div class="section_inner">
+                    <div class="section_cont">
+                        <strong class="s04_title">
+                        전설의 시작, 한돈소믈리에
+                        <span class="s04_tit_sub">한돈능력자</span>
+                    </strong>
+                        <div class="s04_player_w">
+                            <iframe id="target_youtube_view" src="https://www.youtube.com/embed/ZdqpjiX36g0?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="footer_inner">
+            <div class="footer_text_list">
+                <span class="ftl_cont">법인명(상호) : 한돈소믈리에 운영사무국(한돈자조금)</span>
+                <span class="ftl_cont">대표자(성명) : 김명준</span>
+                <span class="ftl_cont">사업자 등록번호 안내 : 899-88-00918</span>
+                <span class="ftl_cont">통신판매업 신고 제2017-서울서초-0176호</span>
+                <span class="ftl_cont">전화 : 02-2135-8473</span>
+                <span class="ftl_cont">팩스 : 02-2135-8471</span>
+            </div>
+            <div class="footer_text_list2">
+                <span class="ftl_cont">※ 한돈소믈리에 운영사무국은 한돈소믈리에 자격증 교육과정 운영대행 업무를 맡고 있습니다.</span>
+                <span class="ftl_cont">Copyright © mall.han-don.com. All rights reserved.</span>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
+        if (isMobile) {
+            document.location.href = '//m.mall.han-don.com/donmmelier/index.php';
+        }
+    </script>
+    <script type="text/javascript" src="./vendor/slick-1.6.0/slick-1.6.0.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="text/javascript" src="./js/common.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+
+</body>
+
+</html>

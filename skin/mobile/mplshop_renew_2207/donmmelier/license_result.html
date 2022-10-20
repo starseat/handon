@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>한돈대학</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="한돈 소믈리에">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="한돈 소믈리에">
+    <meta property="og:description" content="한돈 대학 | 한돈 소믈리에">
+    <meta property="og:url" content="https://m.mall.han-don.com/donmmelier/license_result.php">
+    <link rel="canonical" href="https://m.mall.han-don.com/donmmelier/license_result.php">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xpressengine/xeicon@2.3.1/xeicon.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" type="text/css" href="./css/slick.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="./css/common_m.css" media="all" />
+    <style>
+        .player_popup_text.text-2 {
+            display: none;
+        }
+        
+        #noti-popup,
+        #noti-popup-msg-1,
+        #noti-popup-msg-2,
+        #noti-popup-msg-3 {
+            display: none;
+        }
+        
+        #licenseFileBtn {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap" id="main-wrap">
+        <!-- GNB -->
+        <div class="common_gnb_w" id="main-menu-wrap">
+            <!-- gnb_open-->
+            <h1 class="gnb_big_logo">
+                <a href="./index.php" class="gnb_logo"><img src="./imgs/m/logo.png" alt="한돈대학 한돈소믈리에"></a>
+            </h1>
+            <div class="common_lnb_w mypage_lnb">
+                <button class="lnb_btn" id="btn-navi-menu-open">
+                    <span class="gnb_hambug"><i class="blind">메뉴오픈</i></span>
+                </button>
+                <div class="common_lnb_inner">
+                    <ul class="common_lnb_list">
+                        <li class="slnb_inner">
+                            <a href="javascript:alert('수강 종료되었습니다.')" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                    <span class="slnb_txt">
+                                        수강신청
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="slnb_inner">
+                            <a href="./index.php#section_05" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                    <span class="slnb_txt">
+                                        한돈 소믈리에 자격증
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="slnb_inner gnb_on">
+                            <a href="javascript: void(0);" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                    <span class="slnb_txt">
+                                        마이페이지
+                                    </span>
+                                </span>
+                            </a>
+                            <ul class="slnb_sub_list">
+                                <li class="ssl_inner">
+                                    <a href="./mypage.php" class="ssl_cont">마이페이지</a>
+                                </li>
+                                <li class="ssl_inner">
+                                    <a href="javascript:alert('수강 종료되었습니다.')" class="ssl_cont">내 강의 보기</a>
+                                </li>
+                                <li class="ssl_inner">
+                                    <a href="javascript:alert('수강 종료되었습니다.')" class="ssl_cont">내 시험보기</a>
+                                </li>
+                                <li class="ssl_inner">
+                                    <a href="javascript: void(0);" class="ssl_cont">자격증 발급 신청/조회</a>
+                                    <!-- ./manifesto.php -->
+                                </li>
+                                <li class="ssl_inner">
+                                    <a href="https://www.han-don.com/bbs/index.php?board=announce" class="ssl_cont" target="_blank">공지사항</a>
+                                </li>
+                                <li class="ssl_inner">
+                                    <a href="https://www.han-don.com/member/mypage.php?mode=info&tabst=handon" class="ssl_cont">회원 정보 수정</a>
+                                </li>
+                                <li class="ssl_inner">
+                                    <a href="https://www.han-don.com/bbs/index.php?board=inquiry" class="ssl_cont" target="_blank">문의 게시판</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <button type="button" class="mypage_btn_logout" onclick="logout()">
+                        <span class="mp_btn_text">
+                            <i class="xi-log-out">
+                                <span class="blind">로그아웃 아이콘</span>
+                            </i>
+                            로그아웃
+                        </span>
+                    </button>
+                    <button type="button" class="lnb_btn_close" id="btn-navi-menu-close">
+                        <i class="xi-close"><span class="blind">메뉴닫기</span></i>
+                    </button>
+                </div>
+            </div>
+            <div class="gnb_quick_w">
+                <a href="javascript: void(0);" class="member_my_btn">
+                    <span class="icon_cont">
+                        My
+                    </span>
+                </a>
+                <a href="javascript: void(0);" class="sns_share_btn" id="snsShareBtn">
+                    <span class="icon_cont">
+                        <i class="xi-share-alt-o"><i class="blind">링크공유</i></i>
+                    </span>
+                </a>
+            </div>
+            <i class="dim"></i>
+        </div>
+
+        <!-- 콘텐츠 -->
+        <div class="container">
+            <div class="sub_section_w">
+                <div class="sub_article">
+                    <div class="category_step_w">
+                        <span class="category_text">
+                            마이페이지
+                            <i class="xi-angle-right-thin"></i>
+                            <span class="category_now">자격증 발급 신청 조회</span>
+                        </span>
+                    </div>
+                    <div class="license_view_w">
+                        <div class="license_title">
+                            <strong>2021 한돈소믈리에</strong><br/>
+                            <span class="txt_red">수료증 보기</span>
+                        </div>
+                        <div class="license_view_inner" id="license-box">
+                            <strong class="license_view_name" id="license-user-name">{=license_name}</strong>
+                            <img src="./imgs/m/license_card_view.jpg" alt="한돈대학 수료증">
+                            <div class="license_view_date">
+                                Date
+                                <span id="license-view-date">{=license_created_at}</span>
+                            </div>
+                        </div>
+                        <button type="button" class="module_btn_red" onclick="downloadLicense()">수료증 내려받기</button>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" id="hiddenLastLectureNum" value="{=last_lecture_num}">
+            <input type="hidden" id="member_id" value="{=member_id}">
+            <input type="hidden" id="hiddenCreatedAt" value="{=license_created_at}">
+
+            <!-- 레이어팝업 -->
+            <div class="layer_popup_w">
+                <div class="layer_popup_box" id="noti-popup">
+                    <div class="layer_popup_inner">
+                        <div class="layer_popup_cont">
+                            <strong class="layer_popup_title">알림</strong>
+                            <p class="player_popup_text text-1" id="noti-popup-msg-1">
+                                예비 한돈소믈리에 님,<br />
+                                <strong>수강 신청 후 이용하실 수 있습니다.</strong>
+                            </p>
+                            <p class="player_popup_text text-1" id="noti-popup-msg-2">
+                                예비 한돈소믈리에 님,<br />
+                                <strong>시험은 기초과정의 3강좌를<br />모두 수강 후 응시 가능합니다.</strong>
+                            </p>
+                            <p class="player_popup_text text-3" id="noti-popup-msg-3">
+                                예비 한돈소믈리에 님,<br />
+                                <strong>가슴 속 고기부심을 증명 후 이용 가능합니다.</strong>
+                            </p>
+                        </div>
+                        <button type="button" class="popup_btn_x" title="팝업 닫기" onclick="popupClose()">
+                            <i class="xi-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <i class="dim"></i>
+            </div>
+        </div>
+        <!-- 푸터 -->
+        <div class="footer">
+            <div class="footer_inner">
+                <div class="footer_text_list">
+                    <span class="ftl_cont">대표자(성명) : 김명준 </span><br/>
+                    <span class="ftl_cont">법인명(상호) : 한돈소믈리에 운영사무국(한돈자조금) </span><br/>
+                    <span class="ftl_cont">사업자 등록번호 안내 : 899-88-00918 </span><br/>
+                    <span class="ftl_cont">통신판매업 신고 제2017-서울서초-0176호</span><br/>
+                    <span class="ftl_cont">전화 : 02-2135-8473</span>
+                    <span class="ftl_cont">팩스 : 02-2135-8471</span>
+                </div>
+                <div class="footer_text_list2">
+                    <span class="ftl_cont">&#8251 한돈소믈리에 운영사무국은 한돈소믈리에 <br/>자격증 교육과정 운영대행 업무를 맡고 있습니다.</span>
+                    <span class="ftl_cont">Copyright © mall.han-don.com. All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="./vendor/slick-1.6.0/slick-1.6.0.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="text/javascript" src="./js/common.js"></script>
+    <script src="./vendor/html2canvas/html2canvas.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var savedDate = $('#hiddenCreatedAt').val();
+            var viewDate = savedDate.substring(0, 10);
+            viewDate = viewDate.replaceAll('-', '.');
+
+            $('#license-view-date').text(viewDate);
+        });
+
+        function downloadLicense() {
+            html2canvas($('#license-box')[0]).then(function(canvas) {
+                downloadURI(canvas.toDataURL(), '한돈소믈리에_' + $('#license-user-name').text() + '.png');
+            });
+        }
+
+        function downloadURI(uri, name) {
+            var link = document.createElement("a")
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+        }
+    </script>
+</body>
+
+</html>

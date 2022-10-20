@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>한돈대학 | 관리자</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="한돈 소믈리에">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="한돈 소믈리에">
+    <meta property="og:description" content="한돈 대학 | 한돈 소믈리에">
+    <meta property="og:url" content="https://mall.han-don.com/donmmelier/admin/login.php">
+    <link rel="canonical" href="https://mall.han-don.com/donmmelier/admin/login.php">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xpressengine/xeicon@2.3.1/xeicon.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/common_pc.css" media="all" />
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- 레이어팝업 제어 클래스 popup_open -->
+        <!-- GNB -->
+        <div class="common_gnb_w">
+            <!-- lnbtype_main / sticky / 모바일:gnb_open -->
+            <div class="common_lnb_w">
+                <h1 class="gnb_big_logo">
+                    <a href="../index.php" class="gnb_logo"><img src="../imgs/pc/logo.png" alt="한돈대학 한돈소믈리에"></a>
+                </h1>
+                <div class="common_lnb_inner">
+                    <ul class="common_lnb_list">
+                        <!--
+                        <li class="slnb_inner">
+                            <a href="../index.php#section_10" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                    <span class="slnb_txt">
+                                        수강신청
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="slnb_inner">
+                            <a href="../index.php#section_05" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                    <span class="slnb_txt">
+                                        한돈 소믈리에 자격증
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="slnb_inner gnb_on">
+                            <a href="javascript: void(0);" class="slnb_link">
+                                <span class="slnb_txt_box">
+                                    <span class="slnb_txt">
+                                        마이페이지
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        -->
+                    </ul>
+                </div>
+                <div class="gnb_quick_w">
+                    <a href="javascript: void(0);" class="sns_share_btn" id="snsShareBtn">
+                        <img src="../imgs/pc/sns_share.png" alt="공유링크">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 콘텐츠 -->
+        <div class="container">
+            <div class="sub_section_w">
+                <div class="admin_login_w">
+                    <strong class="login_title">Admin</strong>
+                    <form id="donmmLoginForm" name="donmmLoginForm" method="post">
+                        <fieldset class="login_hd_flst">
+                            <div class="login_input_w">
+                                <legend>로그인</legend>
+                                <i class="xi-user-o"></i>
+                                <label id="lab_id" for="login_id" class="lg_hdlb_id"></label>
+                                <input type="text" title="아이디를 입력하세요" id="login_id" name="login_id" class="lg_hdinput_id" placeholder="아이디">
+                            </div>
+                            <div class="login_input_w">
+                                <i class="xi-lock-o"></i>
+                                <label id="lab_pwd" for="login_pw" class="lg_hdlb_pw"></label>
+                                <input type="password" title="비밀번호를 입력하세요" id="login_pw" name="login_pw" class="lg_hdinput_pw">
+                            </div>
+                            <label for="loginBtn" class="blind">로그인버튼</label>
+                            <input type="submit" title="로그인을 하시려면 버튼을 누르세요" id="loginBtn" class="module_btn_red lg_hd_btn" value="로그인" onclick="loginSubmit(event)">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <div class="footer">
+            <div class="footer_inner">
+                <div class="footer_text_list">
+                    <span class="ftl_cont">법인명(상호) : 한돈소믈리에 운영사무국(한돈자조금)</span>
+                    <span class="ftl_cont">대표자(성명) : 김명준</span>
+                    <span class="ftl_cont">사업자 등록번호 안내 : 899-88-00918</span>
+                    <span class="ftl_cont">통신판매업 신고 제2017-서울서초-0176호</span>
+                    <span class="ftl_cont">전화 : 02-2135-8473</span>
+                    <span class="ftl_cont">팩스 : 02-2135-8471</span>
+                </div>
+                <div class="footer_text_list2">
+                    <span class="ftl_cont">※ 한돈소믈리에 운영사무국은 한돈소믈리에 자격증 교육과정 운영대행 업무를 맡고 있습니다.</span>
+                    <span class="ftl_cont">Copyright © mall.han-don.com. All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="./js/common.js"></script>
+    <script type="text/javascript" src="./js/login.js"></script>
+</body>
+
+</html>
